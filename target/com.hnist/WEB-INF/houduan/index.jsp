@@ -77,156 +77,6 @@
 						</dd>
 					</dl>
 				</li>
-				<!-- <li>
-					<dl>
-						<dt>
-							<i class="icon-table"></i>表格UI<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="table.html">基础表格</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-list-alt"></i>表单UI<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="form.html">表单结构样式</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-external-link"></i>弹出窗口<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="popups.html">基础弹出层</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-bar-chart"></i>百度统计echarts图表<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="echarts.html">echarts统计图表</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-font"></i>文本编辑器<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="ueditor.html">百度UEDITOR编辑器</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-road"></i>进度条<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="progress.html">progress进度条兼容</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-tags"></i>Tab选项卡<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="tab.html">Tab选项卡</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-filter"></i>下拉菜单<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="button-dropdown.html">按钮式下拉菜单</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-sitemap"></i>页面分组标题<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="title.html">页面标题</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-columns"></i>分页<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="paging.html">jquery分页效果</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-spinner"></i>旋转动画<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="animation.html">刷新加载动画</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-fighter-jet"></i>面包屑导航<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="breadcrumb.html">面包屑</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-laptop"></i>文本面板<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="text-panel.html">文本面板</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-leaf"></i>块引用<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="blockquote.html">块引用</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-star"></i>第三方弹窗组件<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="layer.html">web弹层组件</a>
-						</dd>
-					</dl>
-				</li> -->
 			</ul>
 		</nav>
 		<footer class="side-footer">© DeathGhost 版权所有</footer>
@@ -271,10 +121,10 @@
 					<hr>
 				</section>
 				<blockquote class="blockquote mb-20">
-					<p class="text-success">管理员主页事项</p>
+					<p class="text-success">管理员注意事项</p>
 					<p class="text-success">不得将账号密码泄漏给无关人员</p>
 					<p class="text-success">不得随意导入导出数据</p>
-					<p>请使用高版本的浏览器，如果未使用高版本的浏览器，肯能会出现一些问题！！！</p>
+					<p>请使用高版本的浏览器，如果未使用高版本的浏览器，可能会出现一些问题！！！</p>
 				</blockquote>
 				<div class="panel panel-default">
 					<div class="panel-bd capitalize">

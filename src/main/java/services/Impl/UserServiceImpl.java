@@ -2,13 +2,15 @@ package services.Impl;
 
 import mapper.UserMapper;
 import modle.User;
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import services.UserService;
 
 import java.util.Map;
 
+
+@Transactional
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -19,5 +21,6 @@ public class UserServiceImpl implements UserService {
     {
 
         return userMapper.selectUserByLoginNameAndPWD(map);
+
     }
 }

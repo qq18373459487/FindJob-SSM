@@ -32,12 +32,25 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+<<<<<<< HEAD
     <!-- 配置事务 (* services.*.*(..))-->
     <aop:config>
         <aop:pointcut expression="execution(* services.*.*(..)))" id="allMethodPointcut"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="allMethodPointcut"/>
     </aop:config>
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
+=======
+
+    <!--    开启事务管理注解支持-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 配置事务 (* services.*.*(..))-->
+<!--    <aop:config>-->
+<!--        <aop:pointcut expression="execution(* services.*.*(..)))" id="allMethodPointcut"/>-->
+<!--        <aop:advisor advice-ref="txAdvice" pointcut-ref="allMethodPointcut"/>-->
+<!--    </aop:config>-->
+<!--    <tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+>>>>>>> 650ed10 (仅登录注册功能)
 <!--        <tx:attributes>-->
 <!--            <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception"/>-->
 <!--            <tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>-->
@@ -47,5 +60,9 @@
 <!--            <tx:method name="do*" propagation="REQUIRED" rollback-for="Exception"/>-->
 <!--            <tx:method name="*" propagation="REQUIRED" read-only="true"/>-->
 <!--        </tx:attributes>-->
+<<<<<<< HEAD
     </tx:advice>
+=======
+<!--    </tx:advice>-->
+>>>>>>> 650ed10 (仅登录注册功能)
 </beans>

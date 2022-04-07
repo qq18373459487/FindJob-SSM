@@ -137,8 +137,8 @@
 </li>
 </ul>
 <div class="other-option">
-<a href="sign-up.jsp" class="signup-btn">注册&nbsp;</a>
-<a href="sign-in.html" class="signin-btn">登录</a>
+<a href="/toregister" class="signup-btn">注册&nbsp;</a>
+<a href="/tocommonlogin" class="signin-btn">登录</a>
 </div>
 </div>
 </nav>
@@ -217,7 +217,7 @@
                     <div class="create-btn text-center">
                         <p>
                             已经拥有账号了？
-                            <a href="javascript:;">
+                            <a href="/tocommonlogin">
                                 登录<i class='bx bx-chevrons-right bx-fade-right'></i>
                             </a>
                         </p>
@@ -377,8 +377,8 @@ Address:
                     if(data.code==="1")
                     {
                         $("#msg").html("注册成功,3秒后跳转到登录页面");
-                        setTimeout(url='http://localhost:8080/com_hnist_war_exploded/tocommonlogin',3000);
-                        window.location.href(url);
+                        // setTimeout(url=,3000);
+                        window.location.href('http://localhost:8080/com_hnist_war_exploded/tocommonlogin');
 
                     }else if(data.code=="2")
                     {

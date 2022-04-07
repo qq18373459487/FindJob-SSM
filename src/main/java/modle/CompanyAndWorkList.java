@@ -1,7 +1,11 @@
 package modle;
 
-public class WorkList {
-
+public class CompanyAndWorkList
+{
+    String CompanyName;
+    String CompanyAddress;
+    String CompanyEmail;
+    String CompanyData;
     String WorkName;
     int WorkNumber;
     String PostCompany;
@@ -9,6 +13,39 @@ public class WorkList {
     String Location;
     String Salary;
     String WorkTime;
+
+    public String getCompanyName() {
+        return CompanyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        CompanyName = companyName;
+    }
+
+    public String getCompanyAddress() {
+        return CompanyAddress;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        CompanyAddress = companyAddress;
+    }
+
+    public String getCompanyEmail() {
+        return CompanyEmail;
+    }
+
+    public void setCompanyEmail(String companyEmail) {
+        CompanyEmail = companyEmail;
+    }
+
+    public String getCompanyData() {
+        return CompanyData;
+    }
+
+    public void setCompanyData(String companyData) {
+        CompanyData = companyData;
+    }
+
     public String getWorkName() {
         return WorkName;
     }
@@ -64,9 +101,14 @@ public class WorkList {
     public void setWorkTime(String workTime) {
         WorkTime = workTime;
     }
+    @Override
     public String toString() {
-        return "WorkList{" +
-                "WorkName='" + WorkName + '\'' +
+        return "CompanyAndWorkList{" +
+                "CompanyName='" + CompanyName + '\'' +
+                ", CompanyAddress='" + CompanyAddress + '\'' +
+                ", CompanyEmail='" + CompanyEmail + '\'' +
+                ", CompanyData='" + CompanyData + '\'' +
+                ", WorkName='" + WorkName + '\'' +
                 ", WorkNumber=" + WorkNumber +
                 ", PostCompany='" + PostCompany + '\'' +
                 ", Experince='" + Experince + '\'' +
@@ -75,6 +117,5 @@ public class WorkList {
                 ", WorkTime='" + WorkTime + '\'' +
                 '}';
     }
-
 
 }

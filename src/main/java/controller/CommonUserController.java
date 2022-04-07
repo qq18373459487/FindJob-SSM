@@ -3,12 +3,15 @@ package controller;
 
 import ResponseMessage.ReturnObject;
 import modle.CommonUser;
-import modle.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import services.CommonUserService;
+
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +20,9 @@ import java.util.Map;
 public class CommonUserController {
     @Autowired
     private CommonUserService commonUserService;
+
     @RequestMapping("/toregister")
+
     public String toregister()
     {
         return "/sign-up";
@@ -25,18 +30,16 @@ public class CommonUserController {
 
     @RequestMapping("/register")
 
-    public @ResponseBody Object Register(String com_user, String com_pwd, String email)
+    public @ResponseBody Object Register(@ModelAttribute CommonUser user, Model model, HttpSession session)
     {
         Map<String,Object> map=new HashMap<>();
-        map.put("com_user",com_user);
-        map.put("com_pwd",com_pwd);
-        map.put("email",email);
+        map.put("com_user",user.getCom_user());
+        map.put("com_pwd",user.getCom_pwd());
+        map.put("email",user.getEmail());
         //调用service方法查询用户
-        commonUserService.InsertComUser(map);
-        CommonUser commonUser= commonUserService.SelectComUser(map);
-        System.out.println("commonUserService"+commonUser);
+        int  a= commonUserService.InsertComUser(map);
         ReturnObject returnObject = new ReturnObject();
-        if(commonUser!=null)
+        if(a==1)
         {
             returnObject.setCode("1");
         }
@@ -47,17 +50,19 @@ public class CommonUserController {
         return returnObject;
     }
     @RequestMapping("/tocommonlogin")
+
     public String tocommonlogin()
     {
         return "/sign-in";
     }
+
     @RequestMapping("/commonlogin")
-    public  @ResponseBody Object toLogin(String com_user,String com_pwd)
+    public  @ResponseBody Object toLogin(@ModelAttribute CommonUser user, Model model, HttpSession session)
     {
         //封装参数
         Map<String,Object> map=new HashMap<>();
-        map.put("com_user",com_user);
-        map.put("com_pwd",com_pwd);
+        map.put("com_user",user.getCom_user());
+        map.put("com_pwd",user.getCom_pwd());
 
         //调用service方法查询用户
         CommonUser commonUser= commonUserService.SelectComUser(map);

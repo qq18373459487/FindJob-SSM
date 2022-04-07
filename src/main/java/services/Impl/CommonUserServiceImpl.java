@@ -4,9 +4,11 @@ import mapper.ComUserMapper;
 import modle.CommonUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import services.CommonUserService;
 import java.util.Map;
 
+@Transactional
 @Service("CommonUserService")
 public class CommonUserServiceImpl implements CommonUserService {
     @Autowired

@@ -15,11 +15,11 @@
 </select>
 
     <update id="updateBycom_user">
-
+update commonuser SET com_pwd=#{com_pwd}  where com_user=#{com_user}
     </update>
 
     <delete id="deleteBycom_user">
-
+delete from commonuser where com_user=#{com_user}
     </delete>
 
     <insert id="insertBycom_user" parameterType="Map" >
