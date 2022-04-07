@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ComUserMapper">
+    <!--实体类与数据库映射字段部分-->
+    <resultMap id="ResultUser" type="modle.CommonUser">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="com_user" column="com_user" jdbcType="VARCHAR"/>
+        <result property="com_pwd" column="com_pwd" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+<select id="selectBycom_user" parameterType="Map" resultMap="ResultUser">
+    select * from commonuser where com_user=#{com_user}
+</select>
+
+    <update id="updateBycom_user">
+
+    </update>
+
+    <delete id="deleteBycom_user">
+
+    </delete>
+
+    <insert id="insertBycom_user" parameterType="Map" >
+       insert into commonuser(com_user,com_pwd,email)
+       values (#{com_user},#{com_pwd},#{email})
+    </insert>
+</mapper>
