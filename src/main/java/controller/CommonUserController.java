@@ -49,6 +49,7 @@ public class CommonUserController {
         }
         return returnObject;
     }
+
     @RequestMapping("/tocommonlogin")
 
     public String tocommonlogin()
