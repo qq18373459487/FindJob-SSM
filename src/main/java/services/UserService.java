@@ -1,10 +1,13 @@
 package services;
 
+import ResponseMessage.ReturnObject;
 import modle.User;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
-import java.util.Map;
+import javax.servlet.http.HttpSession;
+
 @Service
 public interface UserService {
-    User queryUserByLoginNameAndPwd(Map<String,Object> map);
+    ReturnObject queryUserByLoginNameAndPwd(User user, Model model, HttpSession session);
 }

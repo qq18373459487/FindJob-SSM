@@ -1,12 +1,13 @@
 package services;
 
+import ResponseMessage.ReturnObject;
 import modle.CommonUser;
+import org.springframework.ui.Model;
 
 
-import java.util.Map;
+import javax.servlet.http.HttpSession;
 
 public interface CommonUserService {
-    int InsertComUser(Map<String,Object> map);
-    CommonUser SelectComUser(Map<String,Object> map);
-
+    ReturnObject InsertComUser(CommonUser user, Model model, HttpSession session);
+    ReturnObject SelectComUser(CommonUser user, Model model, HttpSession session);
 }
