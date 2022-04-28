@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import services.CommonUserService;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 
@@ -25,7 +26,7 @@ public class CommonUserController {
 
     @RequestMapping("/register")
 
-    public @ResponseBody Object Register(@ModelAttribute CommonUser user, Model model, HttpSession session)
+    public @ResponseBody Object Register(@Valid @ModelAttribute CommonUser user, Model model, HttpSession session)
     {
 
         return commonUserService.InsertComUser(user,model,session);
@@ -39,7 +40,7 @@ public class CommonUserController {
     }
 
     @RequestMapping("/commonlogin")
-    public  @ResponseBody Object toLogin(@ModelAttribute CommonUser user, Model model, HttpSession session)
+    public  @ResponseBody Object toLogin(@Valid @ModelAttribute CommonUser user, Model model, HttpSession session)
     {
       return commonUserService.SelectComUser(user, model, session);
     }

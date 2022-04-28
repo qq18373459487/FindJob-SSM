@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.WorkMapper">
+
+<!--    <resultMap id="ResultWorkList" type="modle.WorkList">-->
+<!--        <result property="WorkName" column="worknumber" jdbcType="INTEGER"/>-->
+<!--        <result property="WorkName" column="workname" jdbcType="VARCHAR"/>-->
+<!--        <result property="PostCompany" column="postcompany" jdbcType="VARCHAR"/>-->
+<!--        <result property="Experince" column="experince" jdbcType="VARCHAR"/>-->
+<!--        <result property="Location" column="location" jdbcType="VARCHAR"/>-->
+<!--        <result property="Salary" column="salay" jdbcType="VARCHAR"/>-->
+<!--        <result property="WorkTime" column="worktime" jdbcType="VARCHAR"/>-->
+<!--        <result property="WorkType" column="worktype" jdbcType="VARCHAR"/>-->
+<!--        <result property="WorkDetail" column="workdetail" jdbcType="JAVA_OBJECT"/>-->
+<!--    </resultMap>-->
+
+    <insert id="InsertWork" parameterType="modle.WorkList" >
+    insert into worklist(workname,worknumber,postcompany,experince,location,salary,worktime,worktype,workdetail)
+       values (#{WorkName},#{WorkNumber},#{PostCompany},#{Experince},
+               #{Location},#{Salary},#{WorkTime},#{WorkType},#{WorkDetail})
+    </insert>
+
+    <select id="queryWorkList" resultType="modle.WorkList">
+        select  * from worklist order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryPage" resultType="java.lang.Integer">
+        select count(id) from worklist;
+    </select>
+
+</mapper>

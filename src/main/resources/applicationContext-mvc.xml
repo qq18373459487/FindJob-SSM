@@ -33,6 +33,21 @@ http://www.springframework.org/schema/util/spring-util.xsd">
         <property name="prefix" value="/WEB-INF/houduan/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+
+
+<!--    开启类型的自动转换  -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+<!-- 这里是自动转换的方法路径-->
+                <bean class="controller.MyFormatter"></bean>
+            </set>
+        </property>
+    </bean>
+
+
+
     <!-- 配置文件上传解析器 id:必须是multipartResolver-->
     <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="#{1024*1024*80}"/>

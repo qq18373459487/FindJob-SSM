@@ -9,6 +9,25 @@ public class WorkList {
     String Location;
     String Salary;
     String WorkTime;
+    String WorkType;
+    String WorkDetail;
+    public String getWorkDetail() {
+        return WorkDetail;
+    }
+
+    public void setWorkDetail(String workDetail) {
+        WorkDetail = workDetail;
+    }
+
+
+    public String getWorkType() {
+        return WorkType;
+    }
+    public void setWorkType(String workType) {
+        WorkType = workType;
+    }
+
+
     public String getWorkName() {
         return WorkName;
     }
@@ -64,6 +83,8 @@ public class WorkList {
     public void setWorkTime(String workTime) {
         WorkTime = workTime;
     }
+
+    @Override
     public String toString() {
         return "WorkList{" +
                 "WorkName='" + WorkName + '\'' +
@@ -73,8 +94,8 @@ public class WorkList {
                 ", Location='" + Location + '\'' +
                 ", Salary='" + Salary + '\'' +
                 ", WorkTime='" + WorkTime + '\'' +
+                ", WorkType='" + WorkType + '\'' +
+                ", WorkDetail='" + WorkDetail + '\'' +
                 '}';
     }
-
-
 }

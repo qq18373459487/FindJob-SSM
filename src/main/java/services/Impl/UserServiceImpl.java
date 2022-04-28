@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         //调用方法查询用户
         User user1= userMapper.selectUserByLoginNameAndPWD(map);
 
-
+        session.setAttribute("username",user.getUsername());
         ReturnObject returnObject=new ReturnObject();
         if(user1==null)
         {

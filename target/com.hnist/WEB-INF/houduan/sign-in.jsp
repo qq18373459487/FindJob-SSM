@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -42,6 +43,7 @@
 <script type="text/javascript">
     function tocommonlogin()
     {
+
         var com_user=$.trim($("#com_user").val());
         var com_pwd=$.trim($("#com_pwd").val());
         if(com_user==null)
@@ -67,7 +69,7 @@
                     if(data.code==="1")
                     {
                         $("#msg").html("登录成功");
-                        // window.location.href('http://localhost:8080/com_hnist_war_exploded/qianduan/sign-in.html');
+                        window.location.href('http://localhost:8080/com_hnist_war_exploded/tocommonlogin');
 
                     }else if(data.code=="0")
                     {
@@ -137,10 +139,10 @@
 <a href="../../qianduan/find-job.html" class="nav-link">搜索工作</a>
 </li>
 <li class="nav-item">
-<a href="../../qianduan/post-job.html" class="nav-link">发布工作</a>
+<a href="post-job.jsp" class="nav-link">发布工作</a>
 </li>
 <li class="nav-item">
-<a href="../../qianduan/job-list.html" class="nav-link">工作列表</a>
+<a href="job-list.jsp" class="nav-link">工作列表</a>
 </li>
 </ul>
 </li>
@@ -181,10 +183,15 @@
 </ul>
 </li>
 </ul>
-<div class="other-option">
-<a href="sign-up.jsp" class="signup-btn">注册&nbsp;</a>
-<a href="sign-in.jsp" class="signin-btn">登录</a>
-</div>
+    <% if (session.getAttribute("username")==null) { %>
+    <div class="other-option">
+        <a href="sign-up.jsp" class="signup-btn">注册&nbsp;</a>
+        <a href="sign-in.jsp" class="signin-btn">登录</a>
+    </div>
+    <% } else { %>
+    <p>WelCome ${username}</p>
+    <% } %>
+
 </div>
 </nav>
 </div>
@@ -228,7 +235,9 @@
 <div class="signin-btn text-center">
 <button type="submit" onclick="tocommonlogin()">登录</button>
 </div>
-    <span id="msg" class="span text-center"></span>
+    <span id="msg" name="msg" class="span text-center">
+
+    </span>
 <div class="other-signin text-center">
 <span>或者使用其他账号</span>
 <ul>
@@ -267,33 +276,6 @@
 </div>
 </div>
 </div>
-
-<!--
-
-<section class="subscribe-section">
-<div class="container">
-<div class="row align-items-center">
-<div class="col-md-6">
-<div class="section-title">
-<h2>Get New Job Notifications</h2>
-<p>Subscribe & get all related jobs notification</p>
-</div>
-</div>
-<div class="col-md-6">
- <form class="newsletter-form" data-toggle="validator">
-<input type="email" class="form-control" placeholder="Enter your email" name="EMAIL" required="" autocomplete="off">
-<button class="default-btn sub-btn" type="submit">
-Subscribe
-</button>
-<div id="validator-newsletter" class="form-result"></div>
-</form>
-</div>
-</div>
-</div>
-</section>
--->
-
-
 <footer class="footer-area pt-100 pb-70">
 <div class="container">
 <div class="row">
@@ -324,7 +306,7 @@ Subscribe
 </a>
 </li>
 <li>
-<a href="../../qianduan/job-list.html">
+<a href="job-list.jsp">
 <i class='bx bx-chevrons-right bx-tada'></i>
 工作列表 </a>
 </li>

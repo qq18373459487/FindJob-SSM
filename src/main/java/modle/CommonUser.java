@@ -1,9 +1,19 @@
 package modle;
 
+
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public class CommonUser {
+
     private int id;
+    @NotEmpty
     private String com_user;
+    @Length(min = 6,max = 20,message = "{ 密码长度无效}")
     private String com_pwd;
+    @Email
     private String email;
 
     public  CommonUser(){}
@@ -39,4 +49,5 @@ public class CommonUser {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

@@ -99,6 +99,22 @@
       <artifactId>spring-oxm</artifactId>
       <version>4.3.9.RELEASE</version>
     </dependency>
+<!--设置数据配置管理，检测前端传过来的数据是否合法-->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.1.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>3.0.1-b11</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator-cdi</artifactId>
+      <version>6.1.0.Final</version>
+    </dependency>
 
 
     <!-- Spring AOP支持-->
@@ -184,10 +200,11 @@
       <artifactId>log4j-jcl</artifactId>
       <version>2.3</version>
     </dependency>
-
-
-
-
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-core</artifactId>
+          <version>5.4.9.Final</version>
+      </dependency>
 
 
   </dependencies>

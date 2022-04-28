@@ -92,10 +92,10 @@
 <a href="qianduan/find-job.html" class="nav-link">搜索工作</a>
 </li>
 <li class="nav-item">
-<a href="qianduan/post-job.html" class="nav-link">发布工作</a>
+<a href="../../qianduan/post-job.jsp" class="nav-link">发布工作</a>
 </li>
 <li class="nav-item">
-<a href="qianduan/job-list.html" class="nav-link">工作列表</a>
+<a href="../../qianduan/job-list.jsp" class="nav-link">工作列表</a>
 </li>
 </ul>
 </li>
@@ -137,8 +137,8 @@
 </li>
 </ul>
 <div class="other-option">
-<a href="/toregister" class="signup-btn">注册&nbsp;</a>
-<a href="/tocommonlogin" class="signin-btn">登录</a>
+<a href="http://localhost:8080/com_hnist_war_exploded/toregister" class="signup-btn">注册&nbsp;</a>
+<a href="http://localhost:8080/com_hnist_war_exploded/tocommonlogin" class="signin-btn">登录</a>
 </div>
 </div>
 </nav>
@@ -260,7 +260,7 @@
 </a>
 </li>
 <li>
-<a href="qianduan/job-list.html">
+<a href="../../qianduan/job-list.jsp">
 <i class='bx bx-chevrons-right bx-tada'></i>
 工作列表 </a>
 </li>
@@ -376,8 +376,6 @@ Address:
                 {
                     if(data.code==="1")
                     {
-                        $("#msg").html("注册成功,3秒后跳转到登录页面");
-                        // setTimeout(url=,3000);
                         window.location.href('http://localhost:8080/com_hnist_war_exploded/tocommonlogin');
 
                     }else if(data.code=="2")
