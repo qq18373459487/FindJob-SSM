@@ -38,7 +38,6 @@ public class WorkController {
     //这里的获取所有主要是实现分页功能
     public String GetAllWork(@ModelAttribute WorkList workList,Model model,HttpSession session,String page)
     {
-        System.out.println("进入了workController");
         return workService.GetAllWork(workList, model, session,page);
     }
     @RequestMapping("/DeleteWork")

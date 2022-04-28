@@ -65,8 +65,6 @@ public class WorkServiceImpl implements WorkService {
             ReturnPage=1;
         }
 
-
-        System.out.println("ReturnPage的值为:"+ReturnPage);
         //当传过来是空的时候,默认第一页
         if (page == null) {
             ReturnPage = 1;
@@ -81,12 +79,10 @@ public class WorkServiceImpl implements WorkService {
         model.addAttribute("maxPage", max);
         //调用service层查询第几页的数据
         List<WorkList> list= queryBookPage(ReturnPage);
-        System.out.println("输出了查询到的结果："+list.toString());
         //绑定查询的结果到列表
         model.addAttribute("list",list);
-        System.out.println("model"+model);
         //绑定当前的页码
-        model.addAttribute("page", page);
+        model.addAttribute("page", ReturnPage);
         return "/job-list";
     }
 }

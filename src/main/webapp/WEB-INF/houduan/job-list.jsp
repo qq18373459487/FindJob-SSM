@@ -229,11 +229,11 @@
        <i class='bx bx-chevrons-left bx-fade-left'></i>
       </a>
      </li>
-     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=1}">首页</a></li>
-     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page+1}">上页</a></li>
-     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=1">${page-1}</a></li>
-     <li class="page-item active"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=2">${page}</a></li>
-     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=3">${page+1}</a></li>
+     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=1">首页</a></li>
+     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page-1}">上页</a></li>
+     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page-1}">${page-1}</a></li>
+     <li class="page-item active"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page}">${page}</a></li>
+     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page+1}">${page+1}</a></li>
      <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page+1}">下页</a></li>
      <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${maxPage}">尾页</a></li>
      <li class="page-item">
