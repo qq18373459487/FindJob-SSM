@@ -16,7 +16,11 @@ import javax.validation.Valid;
 public class CommonUserController {
     @Autowired
     private CommonUserService commonUserService;
-
+    @RequestMapping("default")
+    public String index()
+    {
+        return "/default";
+    }
     @RequestMapping("/toregister")
 
     public String toregister()

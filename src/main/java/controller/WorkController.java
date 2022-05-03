@@ -26,6 +26,12 @@ public class WorkController {
         return "/post-job";
     }
 
+    @RequestMapping("ToSelectWork")
+    public String ToSelectWork()
+    {
+        return "/find-job";
+    }
+
     @RequestMapping("/AddWork")
 
     public String AddWork(@ModelAttribute WorkList workList, Model model, HttpSession session)
@@ -55,6 +61,7 @@ public class WorkController {
     //查询这里也需要用到到分页
     public String SelectWork(@ModelAttribute WorkList workList,Model model,HttpSession session)
     {
-        return null;
+        System.out.println(workList.getLocation());
+        return workService.SelectWorkByNameAndType(workList, model, session);
     }
 }

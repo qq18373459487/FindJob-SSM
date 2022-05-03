@@ -14,7 +14,7 @@ public class WorkServiceImpl implements WorkService {
     @Autowired
     WorkMapper workMapper;
 
-    private int num = 10;
+    private int num = 5;//设置每一页数据的个数
     @Override
     public String InsertWork(WorkList workList, Model model, HttpSession session) {
         int i=workMapper.InsertWork(workList);
@@ -35,11 +35,7 @@ public class WorkServiceImpl implements WorkService {
     public List<WorkList> queryBookPage(int page) {
         int n = this.num;
         int m = n * (page - 1);
-//        Map<String, Integer> map = new HashMap<>();
-//        map.put("m", m);
-//        map.put("n", n);
         return workMapper.queryWorkList(m, n);
-
     }
     //查询最大页数
     @Override
@@ -83,6 +79,16 @@ public class WorkServiceImpl implements WorkService {
         model.addAttribute("list",list);
         //绑定当前的页码
         model.addAttribute("page", ReturnPage);
+        return "/job-list";
+    }
+
+    @Override
+    public String SelectWorkByNameAndType(WorkList workList, Model model, HttpSession session)
+    {
+
+        List<WorkList> list=workMapper.queryConditional(workList);
+        model.addAttribute("list",list);
+        model.addAttribute("page", "1");
         return "/job-list";
     }
 }

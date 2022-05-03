@@ -154,7 +154,7 @@
    <h2>工作列表</h2>
    <ul>
     <li>
-     <a href="index.html">主页</a>
+     <a href="default.jsp">主页</a>
     </li>
     <li>工作列表</li>
    </ul>

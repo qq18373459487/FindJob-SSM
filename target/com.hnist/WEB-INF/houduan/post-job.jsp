@@ -156,7 +156,7 @@
    <h2>发布工作</h2>
    <ul>
     <li>
-     <a href="index.html">主页</a>
+     <a href="default.jsp">主页</a>
     </li>
     <li>发布工作</li>
    </ul>
@@ -241,7 +241,7 @@
       <textarea class="form-control description-area" id="WorkDetail" rows="6" placeholder="Job Description" required="" name="WorkDetail"></textarea>
      </div>
     </div>
-    <span >${message}</span>
+    <span class="span">${message}</span>
     <div class="col-md-12 text-center">
      <button type="submit" class="post-btn">
       发布工作</button>

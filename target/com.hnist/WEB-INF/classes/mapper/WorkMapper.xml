@@ -21,11 +21,14 @@
     </insert>
 
     <select id="queryWorkList" resultType="modle.WorkList">
-        select  * from worklist order by id desc limit #{m},#{n};
+        select * from worklist order by id desc limit #{m},#{n};
     </select>
 
     <select id="queryPage" resultType="java.lang.Integer">
         select count(id) from worklist;
+    </select>
+    <select id="queryConditional" parameterType="modle.WorkList" resultType="modle.WorkList">
+        select * from worklist where location=#{Location} and worktype=#{WorkType} and workname=#{WorkName}
     </select>
 
 </mapper>

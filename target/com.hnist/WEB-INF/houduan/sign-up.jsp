@@ -89,7 +89,7 @@
 <a href="#" class="nav-link dropdown-toggle">工作&nbsp;</a>
 <ul class="dropdown-menu">
 <li class="nav-item">
-<a href="qianduan/find-job.html" class="nav-link">搜索工作</a>
+<a href="../../qianduan/find-job.jsp" class="nav-link">搜索工作</a>
 </li>
 <li class="nav-item">
 <a href="../../qianduan/post-job.jsp" class="nav-link">发布工作</a>
@@ -153,7 +153,7 @@
 <h2>注册&nbsp;</h2>
 <ul>
 <li>
-<a href="qianduan/index.html">主页</a>
+<a href="index.html">主页</a>
 </li>
 <li>注册</li>
 </ul>

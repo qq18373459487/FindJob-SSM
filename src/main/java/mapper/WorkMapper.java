@@ -14,4 +14,7 @@ public interface WorkMapper
     // 查询页数
     int queryPage();
 
+    //按照条件进行查询
+    List<WorkList> queryConditional(WorkList workList);
+
 }
