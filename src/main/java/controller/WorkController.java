@@ -61,7 +61,6 @@ public class WorkController {
     //查询这里也需要用到到分页
     public String SelectWork(@ModelAttribute WorkList workList,Model model,HttpSession session)
     {
-        System.out.println(workList.getLocation());
         return workService.SelectWorkByNameAndType(workList, model, session);
     }
 }
