@@ -172,7 +172,8 @@
 
 <div class="job-post ptb-100">
  <div class="container">
-  <form class="job-post-from" action="http://localhost:8080/com_hnist_war_exploded/work/AddWork" method="post" modelAttribute="WorkList">
+  <%--@elvariable id="WorkList" type="modle"--%>
+  <form:form class="job-post-from" action="http://localhost:8080/com_hnist_war_exploded/work/AddWork" method="post" modelAttribute="WorkList">
    <h2>发布您公司招聘的岗位详情</h2>
    <div class="row">
     <div class="col-md-6">
@@ -247,7 +248,7 @@
       发布工作</button>
     </div>
    </div>
-  </form>
+  </form:form>
  </div>
 </div>
 

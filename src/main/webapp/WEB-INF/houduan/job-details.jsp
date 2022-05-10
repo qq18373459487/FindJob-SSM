@@ -11,7 +11,6 @@
 <html lang="zxx">
 <head>
  <base href="<%=basePath%>">
- <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
  <link rel="stylesheet" href="newStatic/css/bootstrap.min.css">
@@ -35,12 +34,7 @@
  <link rel="stylesheet" href="newStatic/css/responsive.css">
 
  <title>Jovie - Job Board & Portal HTML Template</title>
- <style>
-  .span{
-   color:red;
-   font-weight:bold;
-  }
- </style>
+
 </head>
 <body>
 
@@ -92,13 +86,13 @@
        <a href="#" class="nav-link dropdown-toggle">工作&nbsp;</a>
        <ul class="dropdown-menu">
         <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/work/ToSelectWork" class="nav-link">搜索工作</a>
+         <a href="find-job.html" class="nav-link">搜索工作</a>
         </li>
         <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
+         <a href="post-job.html" class="nav-link">发布工作</a>
         </li>
         <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork" class="nav-link">工作列表</a>
+         <a href="job-list.html" class="nav-link">工作列表</a>
         </li>
        </ul>
       </li>
@@ -106,24 +100,24 @@
        <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
        <ul class="dropdown-menu">
         <li class="nav-item">
-         <a href="../../qianduan/company.html" class="nav-link">公司</a>
+         <a href="company.html" class="nav-link">公司</a>
         </li>
         <li class="nav-item">
-         <a href="../../qianduan/pricing.html" class="nav-link">价格&nbsp;</a>
+         <a href="pricing.html" class="nav-link">价格&nbsp;</a>
         </li>
         <li class="nav-item">
          <a href="#" class="nav-link dropdown-toggle">用户</a>
          <ul class="dropdown-menu">
           <li class="nav-item">
-           <a href="../../qianduan/account.html" class="nav-link">账号</a>
+           <a href="account.html" class="nav-link">账号</a>
 
           <li class="nav-item">
-           <a href="../../qianduan/reset-password.html" class="nav-link">修改密码</a>
+           <a href="reset-password.html" class="nav-link">修改密码</a>
           </li>
          </ul>
         </li>
         <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/login" class="nav-link">后台</a>
+         <a href="404.html" class="nav-link">404 Page</a>
         </li>
        </ul>
       </li>
@@ -131,17 +125,17 @@
        <a href="#" class="nav-link dropdown-toggle">博客</a>
        <ul class="dropdown-menu">
         <li class="nav-item">
-         <a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>
+         <a href="blog.html" class="nav-link">博客主页&nbsp;</a>
         </li>
         <li class="nav-item">
-         <a href="../../qianduan/blog-details.html" class="nav-link">详情</a>
+         <a href="blog-details.html" class="nav-link">详情</a>
         </li>
        </ul>
       </li>
      </ul>
      <div class="other-option">
-      <a href="http://localhost:8080/com_hnist_war_exploded/toregister" class="signup-btn">注册&nbsp;</a>
-      <a href="http://localhost:8080/com_hnist_war_exploded/tocommonlogin" class="signin-btn">登录</a>
+      <a href="sign-up.html" class="signup-btn">注册&nbsp;</a>
+      <a href="sign-in.html" class="signin-btn">登录</a>
      </div>
     </div>
    </nav>
@@ -150,15 +144,15 @@
 </div>
 
 
-<section class="page-title title-bg3">
+<section class="page-title title-bg6">
  <div class="d-table">
   <div class="d-table-cell">
-   <h2>发布工作</h2>
+   <h2>工作详情</h2>
    <ul>
     <li>
-     <a href="default.jsp">主页</a>
+     <a href="index.html">主页</a>
     </li>
-    <li>发布工作</li>
+    <li>工作详情</li>
    </ul>
   </div>
  </div>
@@ -170,112 +164,205 @@
 </section>
 
 
-<div class="job-post ptb-100">
+<section class="job-details ptb-100">
  <div class="container">
-  <%--@elvariable id="WorkList" type="modle"--%>
-  <form:form class="job-post-from" action="http://localhost:8080/com_hnist_war_exploded/work/AddWork" method="post" modelAttribute="WorkList">
-   <h2>发布您公司招聘的岗位详情</h2>
-   <div class="row">
-    <div class="col-md-6">
-     <div class="form-group">
-      <label>工作名称</label>
-      <input type="text" class="form-control" id="WorkName" placeholder="岗位名称" required="" name="WorkName">
+  <div class="row">
+   <div class="col-lg-8">
+    <div class="row">
+     <div class="col-lg-12">
+      <div class="job-details-text">
+       <div class="job-card">
+        <div class="row align-items-center">
+         <div class="col-md-2">
+          <!-- <div class="company-logo">
+          <img src="newStatic/picture/1.png" alt="logo">
+          </div> -->
+         </div>
+         <!-- <div class="col-md-10">
+         <div class="job-info">
+         <h3></h3>
+         <ul>
+         <li>
+         <i class='bx bx-location-plus'></i>
+         Wellesley Rd, London
+         </li>
+         <li>
+         <i class='bx bx-filter-alt'></i>
+         Accountancy
+         </li>
+         <li>
+         <i class='bx bx-briefcase'></i>
+         Freelance
+         </li>
+         </ul>
+         <span>
+         <i class='bx bx-paper-plane'></i>
+         Apply Before: June 01,2022
+         </span>
+         </div>
+         </div> -->
+        </div>
+       </div>
+       <div class="details-text">
+        <h3>描述</h3>
+        <p>一般的程序员都有在专业领域的学习，还有很小一部分程序员是自学的，尽管一些专业性的学校或者综合大学可以提供，但是也需要一些别的途径来提供相关的人才。尽管学历是比较重要的，但是公司经常把重点放在应聘者的工作经验上，很多刚从大学毕业的大学生虽然有引人注目的学位证书，但是他们找不到工作是因为他们缺乏经验。一个程序员虽然没有正规的学历，但是如果一个人拥有程序设计的深厚知识背景或者丰富的工作经验的话，那么他的机会要比有学历的应届毕业生大得多。所以要尽量抓住有用的工作和实习机会，这样的话在毕业后你就会发现，多实习让你有更多的经验，在找工作的时候就有更多的机会。
+         对于职业程序员，另外一个重要的方面就是，程序员需要不断提升自己的业务技术，他的技术必须一直保持在一个较高的水平，并且要不断发展，程序员也要寻找贸易的机会，要参加研讨会，在周刊上发表文章和接受职业教育，这些使程序员在自己的领域中分级或者不断并排前进。</p>
+       </div>
+       <div class="details-text">
+        <h3>工作要求</h3>
+        <p> 如果你想要应聘这份工作你至少要达到以下的几点要求</p>
+        <ul>
+         <li>
+          <i class='bx bx-check'></i>
+          具有工作经历</li>
+         <li>
+          <i class='bx bx-check'></i>
+          具有专业的工作技能（软件开发或者文档写作）</li>
+         <li>
+          <i class='bx bx-check'></i>
+          具有良好的道德品质和价值观
+         </li>
+         <li>
+          <i class='bx bx-check'></i>
+          支持将软件推广到生产环境。</li>
+         <li>
+          <i class='bx bx-check'></i>
+          指导和指导初级工程师。如果合适，担任团队负责人。</li>
+        </ul>
+       </div>
+       <div class="details-text">
+        <h3>工作详情</h3>
+        <div class="row">
+         <div class="col-md-6">
+          <table class="table">
+           <tbody>
+           <tr>
+            <td><span>公司:</span></td>
+            <td>${result.getPostCompany()}</td>
+           </tr>
+           <tr>
+            <td><span>地址:</span></td>
+            <td>${result.getLocation()}</td>
+           </tr>
+           <tr>
+            <td><span>工作时间类型:</span></td>
+            <td>${result.getWorkTime()}</td>
+           </tr>
+           <tr>
+            <td><span>工作类型:</span></td>
+<%--            <td><a href="email-protection.html#2a424f4646456a4945475a4b445304494547"><span class="__cf_email__" data-cfemail="751d1019191a35161a1805141b0c5b161a18">[email&#160;protected]</span></a></td>--%>
+            <td>${result.getWorkType()}</td>
+           </tr>
+           </tbody>
+          </table>
+         </div>
+         <div class="col-md-6">
+          <table class="table">
+           <tbody>
+           <tr>
+            <td><span>工作经历:</span></td>
+            <td>${result.getExperince()}</td>
+           </tr>
+           <tr>
+            <td><span>工作名称:</span></td>
+            <td>${result.getWorkName()}</td>
+           </tr>
+           <tr>
+            <td><span>薪水:</span></td>
+            <td>${result.getSalary()}</td>
+           </tr>
+           <tr>
+            <td><span>招聘人数:</span></td>
+            <td><a href="#">${result.getWorkNumber()}</a></td>
+           </tr>
+           </tbody>
+          </table>
+         </div>
+        </div>
+       </div>
+       <div class="theme-btn">
+        <a href="#" class="default-btn">
+         立即申请
+        </a>
+       </div>
+      </div>
      </div>
-    </div>
-    <div class="col-md-6">
-     <div class="form-group">
-      <label>工作类型</label>
-    <select class="category" name="WorkType" id="WorkType" >
-       <option value="互联网">互联网</option>
-       <option value="房地产">房地产</option>
-       <option value="设计">设计</option>
-       <option value="教育">教育</option>
-       <option value="金融">金融</option>
-       <option value="汽车">汽车</option>
-      </select>
-     </div>
-    </div>
-    <div class="col-md-6">
-     <div class="form-group">
-      <label>公司名称</label>
-      <input type="text" class="form-control" id="PostCompany" placeholder="Company Name" required="" name="PostCompany">
-     </div>
-    </div>
-    <div class="col-md-6">
-     <div class="form-group">
-      <label>岗位数量</label>
-      <input type="text" class="form-control" id="WorkNumber" placeholder="招聘人数" name="WorkNumber">
-     </div>
-    </div>
-    <div class="col-md-6">
-     <div class="form-group">
-      <label>地址</label>
-      <input type="text" class="form-control" id="Location" placeholder="e.g. London" required="" name="Location">
-     </div>
-    </div>
-    <div class="col-md-6">
-     <div class="form-group">
-      <label>工作时间</label>
-      <select class="category" name="WorkTime" id="WorkTime">
-       <option data-display="Job Type">工作时间</option>
-       <option value="8小时">8小时</option>
-       <option value="自由控制">自由控制</option>
-       <option value="出差">出差</option>
-      </select>
-     </div>
-    </div>
-    <div class="col-md-6">
-     <div class="form-group">
-      <label>薪水</label>
-      <input type="number" class="form-control" id="Salary" placeholder="e.g. $20,000" name="Salary">
-     </div>
-    </div>
-    <div class="col-md-6">
-     <div class="form-group">
-      <label>工作经验</label>
-      <input type="text" class="form-control" id="Experince" placeholder="e.g. 1 year" required="" name="Experince">
-     </div>
-    </div>
-    <div class="col-md-12">
-     <div class="form-group">
-      <label for="WorkDetail">具体工作要求</label>
-      <textarea class="form-control description-area" id="WorkDetail" rows="6" placeholder="Job Description" required="" name="WorkDetail"></textarea>
-     </div>
-    </div>
-    <span class="span">${message}</span>
-    <div class="col-md-12 text-center">
-     <button type="submit" class="post-btn">
-      发布工作</button>
     </div>
    </div>
-  </form:form>
+   <div class="col-lg-4">
+    <div class="job-sidebar">
+     <h3>发布者</h3>
+     <div class="posted-by">
+      <img src="newStatic/picture/client-1.png" alt="client image">
+      <h4>John Doe</h4>
+      <span>公司CEO</span>
+     </div>
+    </div>
+    <div class="job-sidebar">
+     <h3>Location</h3>
+     <img src="newStatic/image/25.jpg"></img>
+    </div>
+    <div class="job-sidebar">
+     <h3>Keywords</h3>
+     <ul>
+      <li>
+       <a href="#">Web Design</a>
+      </li>
+      <li>
+       <a href="#">Data Sceince</a>
+      </li>
+      <li>
+       <a href="#">SEO</a>
+      </li>
+      <li>
+       <a href="#">Content Writter</a>
+      </li>
+      <li>
+       <a href="#">Finance</a>
+      </li>
+      <li>
+       <a href="#">Business</a>
+      </li>
+      <li>
+       <a href="#">Education</a>
+      </li>
+      <li>
+       <a href="#">Graphics</a>
+      </li>
+      <li>
+       <a href="#">Video</a>
+      </li>
+     </ul>
+    </div>
+    <div class="job-sidebar social-share">
+     <h3>Share In</h3>
+     <ul>
+      <li>
+       <a href="#" target="_blank">
+        <i class="bx bxl-facebook"></i>
+       </a>
+      </li>
+      <li>
+       <a href="#" target="_blank">
+        <i class="bx bxl-twitter"></i>
+       </a>
+      </li>
+      <li>
+       <a href="#" target="_blank">
+        <i class="bx bxl-pinterest"></i>
+       </a>
+      </li>
+      <li>
+       <a href="#" target="_blank">
+        <i class="bx bxl-linkedin"></i>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </div>
  </div>
-</div>
-
-<!--
-
-<section class="subscribe-section">
-<div class="container">
-<div class="row align-items-center">
-<div class="col-md-6">
-<div class="section-title">
-<h2>Get New Job Notifications</h2>
-<p>Subscribe & get all related jobs notification</p>
-</div>
-</div>
-<div class="col-md-6">
-<form class="newsletter-form" data-toggle="validator">
-<input type="email" class="form-control" placeholder="Enter your email" name="EMAIL" required="" autocomplete="off">
-<button class="default-btn sub-btn" type="submit">
-Subscribe
-</button>
-<div id="validator-newsletter" class="form-result"></div>
-</form>
-</div>
-</div>
-</div>
 </section>
--->
 
 
 <footer class="footer-area pt-100 pb-70">
@@ -392,7 +479,6 @@ Address:
 <div class="top-btn">
  <i class='bx bx-chevrons-up bx-fade-up'></i>
 </div>
-
 
 <script data-cfasync="false" src="newStatic/js/email-decode.min.js"></script><script src="newStatic/js/jquery.min.js"></script>
 <script src="newStatic/js/bootstrap.bundle.min.js"></script>

@@ -91,4 +91,13 @@ public class WorkServiceImpl implements WorkService {
         model.addAttribute("page", "1");
         return "/job-list";
     }
+
+    @Override
+    public String SelectWorkById(WorkList workList, Model model, HttpSession session,String id) {
+        System.out.println("到了impl方法里面");
+        WorkList result=workMapper.queryWorkListById(id);
+        System.out.println("result内容"+result);
+        model.addAttribute("result",result);
+        return "/job-details";
+    }
 }

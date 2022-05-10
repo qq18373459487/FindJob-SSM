@@ -2,6 +2,9 @@ package modle;
 
 public class WorkList {
 
+
+
+    String Id;
     String WorkName;
     int WorkNumber;
     String PostCompany;
@@ -11,6 +14,13 @@ public class WorkList {
     String WorkTime;
     String WorkType;
     String WorkDetail;
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
     public String getWorkDetail() {
         return WorkDetail;
     }

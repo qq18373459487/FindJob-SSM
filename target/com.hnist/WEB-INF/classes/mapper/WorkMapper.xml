@@ -31,4 +31,7 @@
         select * from worklist where location=#{Location} and worktype=#{WorkType} and workname=#{WorkName}
     </select>
 
+    <select id="queryWorkListById" parameterType="string" resultType="modle.WorkList">
+        select * from worklist where id=#{id};
+    </select>
 </mapper>

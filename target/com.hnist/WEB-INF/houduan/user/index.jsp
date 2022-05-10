@@ -51,16 +51,16 @@
 							<i class="icon-columns"></i>数据列表<i class="icon-angle-right"></i>
 						</dt>
 						<dd>
-							<a href="flex-layout.jsp">公司列表</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/user/company">公司列表</a>
 						</dd>
 						<dd>
-							<a href="flex-layout.jsp">用户列表</a>
+							<a href="companyManage.jsp">用户列表</a>
 						</dd>
 						<dd>
-							<a href="flex-layout.jsp">工作岗位列表</a>
+							<a href="companyManage.jsp">工作岗位列表</a>
 						</dd>
 						<dd>
-							<a href="flex-layout.jsp">个人列表</a>
+							<a href="companyManage.jsp">个人列表</a>
 						</dd>
 					</dl>
 				</li>
@@ -70,10 +70,10 @@
 							<i class="icon-inbox"></i>文章管理<i class="icon-angle-right"></i>
 						</dt>
 						<dd>
-							<a href="flex-layout.jsp">文章发布</a>
+							<a href="companyManage.jsp">文章发布</a>
 						</dd>
 						<dd>
-							<a href="flex-layout.jsp">文章审核</a>
+							<a href="companyManage.jsp">文章审核</a>
 						</dd>
 					</dl>
 				</li>

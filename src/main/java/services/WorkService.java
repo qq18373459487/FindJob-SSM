@@ -23,4 +23,6 @@ public interface WorkService
 
     String SelectWorkByNameAndType(WorkList workList, Model model, HttpSession session);
 
+    String SelectWorkById(WorkList workList, Model model, HttpSession session,String id);
+
 }

@@ -174,7 +174,6 @@
    <h2>你可能感兴趣的工作</h2>
    <p>这里会列出一些你可能会感兴趣的工作岗位，如果你觉得你的条件可以胜任，那么赶快抓住这次难得的机会吧</p>
   </div>
-
   <div class="row">
    <c:forEach items="${list}" var="coms">
    <div class="col-lg-12">
@@ -213,7 +212,7 @@
       </div>
       <div class="col-md-3">
        <div class="theme-btn text-end">
-        <a href="job-details.html" class="default-btn">
+        <a href="http://localhost:8080/com_hnist_war_exploded/work/SelectWorkDetail?id=${coms.getId()}" class="default-btn">
          工作详情
         </a>
        </div>

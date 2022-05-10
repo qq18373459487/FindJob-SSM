@@ -1,15 +1,12 @@
 package controller;
 
 import modle.WorkList;
-import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import services.WorkService;
-
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -26,7 +23,7 @@ public class WorkController {
         return "/post-job";
     }
 
-    @RequestMapping("ToSelectWork")
+    @RequestMapping("/ToSelectWork")
     public String ToSelectWork()
     {
         return "/find-job";
@@ -46,6 +43,7 @@ public class WorkController {
     {
         return workService.GetAllWork(workList, model, session,page);
     }
+
     @RequestMapping("/DeleteWork")
     public void DeleteWork(@ModelAttribute WorkList workList,Model model,HttpSession session)
     {
@@ -62,5 +60,12 @@ public class WorkController {
     public String SelectWork(@ModelAttribute WorkList workList,Model model,HttpSession session)
     {
         return workService.SelectWorkByNameAndType(workList, model, session);
+    }
+    @RequestMapping("/SelectWorkDetail")
+    //查询这里也需要用到到分页
+    public String SelectWorkDetail(@ModelAttribute WorkList workList,Model model,HttpSession session,String id)
+    {
+        System.out.println("id"+id);
+        return workService.SelectWorkById(workList, model, session,id);
     }
 }

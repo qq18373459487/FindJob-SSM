@@ -31,29 +31,13 @@ public class AppTest {
     }
 
     @Test
-    public void test01() throws IOException {
+    public void test01() throws IOException
+    {
         CompanyAndWorkListMapper companyAndWorkListMapper = session.getMapper(CompanyAndWorkListMapper.class);
         List<CompanyAndWorkList > list = companyAndWorkListMapper.selectByCompany("华为");
         System.out.println(list.toString());
-
-//        List<CompanyAndWorkList> list = teacherMapper.getTeachers(1);
-//        for (int i = 0; i < list.size(); i++) {
-//            Teacher teacher = list.get(i);
-//            for (int j = 0; j < teacher.getOrgnizationList().size(); j++) {
-//                Orgnization orgnization = teacher.getOrgnizationList().get(j);
-//                System.out.println(teacher.gettNickname() + " " + orgnization.getoName());
-//            }
-//        }
     }
 
-    /*@Test
-    public void test02() throws IOException {
-        OrgnizationMapper orgnizationMapper = session.getMapper(OrgnizationMapper.class);
-        List<Orgnization> list = orgnizationMapper.getOrgnizations(3);
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getoName());
-        }
-    }*/
 
     @After
     public void end() {

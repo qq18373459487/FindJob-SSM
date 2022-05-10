@@ -212,7 +212,7 @@
       </div>
       <div class="col-md-3">
        <div class="theme-btn text-end">
-        <a href="job-details.html" class="default-btn">
+        <a href="http://localhost:8080/com_hnist_war_exploded/work/SelectWorkDetail?id=${coms.getId()}" class="default-btn">
          工作详情
         </a>
        </div>

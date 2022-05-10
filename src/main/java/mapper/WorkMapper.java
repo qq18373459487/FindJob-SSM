@@ -17,4 +17,5 @@ public interface WorkMapper
     //按照条件进行查询
     List<WorkList> queryConditional(WorkList workList);
 
+    WorkList queryWorkListById(String id);
 }

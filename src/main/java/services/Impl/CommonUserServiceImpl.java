@@ -55,12 +55,16 @@ public class CommonUserServiceImpl implements CommonUserService {
             //登录账号或密码错误
             returnObject.setCode("0");
             returnObject.setMessage("用户名或密码错误");
+            session.setAttribute("message",null);
             return returnObject;
         }
         else
         {
+            session.setAttribute("message","1");
             returnObject.setCode("1");
             returnObject.setMessage("登录成功");
+            model.addAttribute("message","1");
+            model.addAttribute("username",commonUser.getCom_user());
         }
         return returnObject;
     }
