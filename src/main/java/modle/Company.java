@@ -5,7 +5,20 @@ public class Company {
     String CompanyAddress;
     String CompanyEmail;
     String CompanyData;
+    int CompanyId;
+    String CompanyQualification;
 
+    public String getCompanyQualification() {
+        return CompanyQualification;
+    }
+
+    public void setCompanyQualification(String companyQualification) {
+        CompanyQualification = companyQualification;
+    }
+
+    public int getCompanyId() {return CompanyId;}
+
+    public void setCompanyId(int companyId) {CompanyId = companyId;}
 
     public String getCompanyName() {
         return CompanyName;
@@ -46,8 +59,10 @@ public class Company {
                 ", CompanyAddress='" + CompanyAddress + '\'' +
                 ", CompanyEmail='" + CompanyEmail + '\'' +
                 ", CompanyData='" + CompanyData + '\'' +
+                ", CompanyId='" + CompanyId + '\'' +
                 '}';
     }
+
 
 
 }

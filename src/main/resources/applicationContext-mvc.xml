@@ -41,7 +41,7 @@ http://www.springframework.org/schema/util/spring-util.xsd">
         <property name="formatters">
             <set>
 <!-- 这里是自动转换的方法路径-->
-                <bean class="controller.MyFormatter"></bean>
+                <bean class="ResponseMessage.MyFormatter"></bean>
             </set>
         </property>
     </bean>
@@ -49,8 +49,23 @@ http://www.springframework.org/schema/util/spring-util.xsd">
 
 
     <!-- 配置文件上传解析器 id:必须是multipartResolver-->
-    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="#{1024*1024*80}"/>
         <property name="defaultEncoding" value="utf-8"/>
-    </bean>-->
+    </bean>
+
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 拦截所有mvc控制器 -->
+            <mvc:mapping path="/user/**"/>
+            <!-- mvc:exclude-mapping是另外一种拦截，它可以在你后来的测试中对某个页面进行不拦截，这样就不用在
+                LoginInterceptor的preHandler方法里面获取不拦截的请求uri地址了(优选) -->
+            <mvc:exclude-mapping path="/user/index" />
+            <mvc:exclude-mapping path="/user/login" />
+            <bean class="ResponseMessage.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
 </beans>

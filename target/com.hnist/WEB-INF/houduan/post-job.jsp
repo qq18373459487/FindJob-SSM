@@ -33,7 +33,17 @@
  <link rel="stylesheet" href="newStatic/css/style.css">
 
  <link rel="stylesheet" href="newStatic/css/responsive.css">
-
+ <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+ <link rel="icon" href="images/icon/favicon.ico" type="image/x-icon">
+ <link rel="stylesheet" type="text/css" href="css/style.css" />
+ <script src="javascript/jquery.js"></script>
+ <script src="javascript/plug-ins/customScrollbar.min.js"></script>
+ <script src="javascript/plug-ins/echarts.min.js"></script>
+ <script src="javascript/plug-ins/layerUi/layer.js"></script>
+ <script src="editor/ueditor.config.js"></script>
+ <script src="editor/ueditor.all.js"></script>
+ <script src="javascript/plug-ins/pagination.js"></script>
+ <script src="javascript/public.js"></script>
  <title>Jovie - Job Board & Portal HTML Template</title>
  <style>
   .span{
@@ -64,7 +74,6 @@
   </div>
  </div>
 </div>
-
 
 <div class="navbar-area">
 
@@ -139,10 +148,17 @@
        </ul>
       </li>
      </ul>
-     <div class="other-option">
-      <a href="http://localhost:8080/com_hnist_war_exploded/toregister" class="signup-btn">注册&nbsp;</a>
-      <a href="http://localhost:8080/com_hnist_war_exploded/tocommonlogin" class="signin-btn">登录</a>
-     </div>
+     <c:if test="${message==null}">
+      <div class="other-option">
+       <a href="http://localhost:8080/com_hnist_war_exploded/toregister" class="signup-btn">注册&nbsp;</a>
+       <a href="http://localhost:8080/com_hnist_war_exploded/tocommonlogin" class="signin-btn">登录</a>
+      </div>
+     </c:if>
+     <c:if test="${message==1}">
+      <div class="other-option">
+       <a>WelCome:  ${username}</a>
+      </div>
+     </c:if>
     </div>
    </nav>
   </div>
@@ -238,8 +254,17 @@
     </div>
     <div class="col-md-12">
      <div class="form-group">
-      <label for="WorkDetail">具体工作要求</label>
-      <textarea class="form-control description-area" id="WorkDetail" rows="6" placeholder="Job Description" required="" name="WorkDetail"></textarea>
+      <label >具体工作要求</label>
+<%--      <textarea class="form-control description-area" id="WorkDetail" rows="6" placeholder="Job Description" required="" name="WorkDetail"></textarea>--%>
+      <div class="panel panel-default">
+       <div class="panel-hd">百度ueditor文本编辑器</div>
+       <div class="panel-bd">
+        <script id="container" name="WorkDetail" type="text/plain"></script>
+        <script type="text/javascript"> var ue = UE.getEditor('container'); </script>
+       </div>
+      </div>
+      <!--开始::结束-->
+     </div>
      </div>
     </div>
     <span class="span">${message}</span>
@@ -252,30 +277,6 @@
  </div>
 </div>
 
-<!--
-
-<section class="subscribe-section">
-<div class="container">
-<div class="row align-items-center">
-<div class="col-md-6">
-<div class="section-title">
-<h2>Get New Job Notifications</h2>
-<p>Subscribe & get all related jobs notification</p>
-</div>
-</div>
-<div class="col-md-6">
-<form class="newsletter-form" data-toggle="validator">
-<input type="email" class="form-control" placeholder="Enter your email" name="EMAIL" required="" autocomplete="off">
-<button class="default-btn sub-btn" type="submit">
-Subscribe
-</button>
-<div id="validator-newsletter" class="form-result"></div>
-</form>
-</div>
-</div>
-</div>
-</section>
--->
 
 
 <footer class="footer-area pt-100 pb-70">
@@ -392,6 +393,8 @@ Address:
 <div class="top-btn">
  <i class='bx bx-chevrons-up bx-fade-up'></i>
 </div>
+
+
 
 
 <script data-cfasync="false" src="newStatic/js/email-decode.min.js"></script><script src="newStatic/js/jquery.min.js"></script>

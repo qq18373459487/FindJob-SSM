@@ -45,12 +45,9 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
     <!-- 欢迎页，默认进入index controller -->
-    <welcome-file-list>
-        <welcome-file ></welcome-file>
-    </welcome-file-list>
 <!--配置404-error页面-->
-    <error-page>
-        <location>/error</location>
-    </error-page>
+<!--    <error-page>-->
+<!--        <location>/error</location>-->
+<!--    </error-page>-->
 </web-app>
 

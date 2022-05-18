@@ -2383,7 +2383,7 @@ Expr = Sizzle.selectors = {
 Expr.pseudos["nth"] = Expr.pseudos["eq"];
 
 // Add button/input type pseudos
-for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
+for ( i in { radio: true, checkbox: true, fileModle: true, password: true, image: true } ) {
 	Expr.pseudos[ i ] = createInputPseudo( i );
 }
 for ( i in { submit: true, reset: true } ) {
@@ -7455,7 +7455,7 @@ jQuery.each({
 var r20 = /%20/g,
 	rbracket = /\[\]$/,
 	rCRLF = /\r?\n/g,
-	rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i,
+	rsubmitterTypes = /^(?:submit|button|image|reset|fileModle)$/i,
 	rsubmittable = /^(?:input|select|textarea|keygen)/i;
 
 jQuery.fn.extend({
@@ -7594,7 +7594,7 @@ var
 	rts = /([?&])_=[^&]*/,
 	rheaders = /^(.*?):[ \t]*([^\r\n]*)\r?$/mg, // IE leaves an \r character at EOL
 	// #7653, #8125, #8152: local protocol detection
-	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
+	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|fileModle|res|widget):$/,
 	rnoContent = /^(?:GET|HEAD)$/,
 	rprotocol = /^\/\//,
 	rurl = /^([\w.+-]+:)(?:\/\/([^\/?#:]*)(?::(\d+)|)|)/,
@@ -9778,8 +9778,8 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 	// files that may use define, but not via a proper concatenation script that
 	// understands anonymous AMD modules. A named AMD is safest and most robust
 	// way to register. Lowercase jquery is used because AMD module names are
-	// derived from file names, and jQuery is normally delivered in a lowercase
-	// file name. Do this after creating the global so that if an AMD module wants
+	// derived from fileModle names, and jQuery is normally delivered in a lowercase
+	// fileModle name. Do this after creating the global so that if an AMD module wants
 	// to call noConflict to hide this version of jQuery, it will work.
 	if ( typeof define === "function" && define.amd ) {
 		define( "jquery", [], function () { return jQuery; } );

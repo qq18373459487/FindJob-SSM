@@ -13,4 +13,19 @@
      select *
 from user  where username=#{username} and password=#{password}
     </select>
+
+    <select id="selectAllFile"  resultType="modle.FileModle">
+        select * from file
+    </select>
+    <select id="GetAllUser"  resultType="modle.User">
+        select * from user
+    </select>
+    <insert id="insertFile" parameterType="modle.User">
+        insert into file(filename,url,time)
+        values (#{filename},#{url},#{time})
+    </insert>
+    <insert id="insertUser" parameterType="modle.User">
+        insert into user(username,password,realname)
+        values (#{username},#{password},#{realname})
+    </insert>
     </mapper>

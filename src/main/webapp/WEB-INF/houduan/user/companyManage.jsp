@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -77,6 +79,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</dd>
 					</dl>
 				</li>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-inbox"></i>文件管理<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="companyManage.jsp">文件下载</a>
+						</dd>
+						<dd>
+							<a href="companyManage.jsp">数据导入导出</a>
+						</dd>
+					</dl>
+				</li>
 
 			</ul>
 		</nav>
@@ -111,55 +126,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</header>
 		<main class="main-cont content mCustomScrollbar">
 			<div class="page-wrap">
+				<button class="btn btn-secondary JopenMaskPanel_addStudent mr-10" style="margin-bottom: 20px; margin-left: 20px;">添加</button>
 				<table class="table table-bordered table-striped table-hover">
 					<thead>
 					<tr>
 						<th>id</th>
 						<th>公司名称</th>
-						<th>公司发布岗位</th>
 						<th>招聘总人数</th>
+						<th>公司地址</th>
+						<th>公司邮箱</th>
 						<th>资质</th>
 						<th>操作</th>
 					</tr>
 					</thead>
+<c:forEach items="${list}" var="company">
+
 					<tbody>
 					<tr class="cen">
-						<td>#001</td>
-						<td class="lt"><a href="#">华为</a></td>
-						<td>6</td>
-						<td>50</td>
-						<td>优</td>
+						<td>${company.getCompanyId()}</td>
+						<td class="lt"><a href="#">${company.getCompanyName()}</a></td>
+						<td>${company.getCompanyData()}</td>
+						<td>${company.getCompanyAddress()}</td>
+						<td>${company.getCompanyEmail()}</td>
+						<td>${company.getCompanyQualification()}</td>
 						<td>
 							<a title="编辑" class="mr-5">编辑</a>
-							<a title="详情" class="mr-5">详情</a>
-							<a title="删除">删除</a>
-						</td>
-					</tr>
-					<tr class="cen">
-						<td>#002</td>
-						<td class="lt"><a href="#">华为</a></td>
-						<td>6</td>
-						<td>50</td>
-						<td>优</td>
-						<td>
-							<a title="编辑" class="mr-5">编辑</a>
-							<a title="详情" class="mr-5">详情</a>
-							<a title="删除">删除</a>
-						</td>
-					</tr>
-					<tr class="cen">
-						<td>#002</td>
-						<td class="lt"><a href="#">华为</a></td>
-						<td>6</td>
-						<td>50</td>
-						<td>优</td>
-						<td>
-							<a title="编辑" class="mr-5">编辑</a>
-							<a title="详情" class="mr-5">详情</a>
 							<a title="删除">删除</a>
 						</td>
 					</tr>
 					</tbody>
+</c:forEach>
 				</table>
 				<!--开始::结束-->
 			</div>
@@ -189,10 +185,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 <script>
 	$(".pagination").createPage({
-		pageCount:5,
-		current:1,
+		pageCount:${maxPage},
+		current:${page},
 		backFn:function(p){
-			window.location.href=""
+			window.location.href="http://localhost:8080/com_hnist_war_exploded/company/GetAllCompany?page="+p;
 		}
 	});
 </script>

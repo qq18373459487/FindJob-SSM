@@ -115,7 +115,7 @@
 </ul>
 </li>
 <li class="nav-item">
-<a href="http://localhost:8080/com_hnist_war_exploded/login" class="nav-link">后台</a>
+<a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
 </li>
 </ul>
 </li>
@@ -139,7 +139,7 @@
     </c:if>
     <c:if test="${message==1}">
     <div class="other-option">
-        <a>WelCome ${username}</a>
+        <a>WelCome:  ${username}</a>
     </div>
     </c:if>
 </div>

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import services.CommonUserService;
-
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +38,7 @@ public class CommonUserServiceImpl implements CommonUserService {
         return returnObject;
     }
     @Override
-    public ReturnObject SelectComUser(CommonUser user, Model model, HttpSession session)
+    public String SelectComUser(CommonUser user, Model model, HttpSession session)
     {
         //封装参数
         Map<String,Object> map=new HashMap<>();
@@ -49,23 +48,18 @@ public class CommonUserServiceImpl implements CommonUserService {
         //调用service方法查询用户
         CommonUser commonUser= commonUserMapper.selectBycom_user(map);
 
-        ReturnObject returnObject=new ReturnObject();
         if(commonUser==null)
         {
             //登录账号或密码错误
-            returnObject.setCode("0");
-            returnObject.setMessage("用户名或密码错误");
             session.setAttribute("message",null);
-            return returnObject;
+            System.out.println("一直存在于登录页面");
+            return "/sign-in";
         }
         else
         {
             session.setAttribute("message","1");
-            returnObject.setCode("1");
-            returnObject.setMessage("登录成功");
-            model.addAttribute("message","1");
-            model.addAttribute("username",commonUser.getCom_user());
+            session.setAttribute("username",commonUser.getCom_user());
+            return "/default";
         }
-        return returnObject;
     }
 }

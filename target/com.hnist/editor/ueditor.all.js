@@ -32,7 +32,7 @@ var dom = UE.dom = {};
 // core/browser.js
 /**
  * 浏览器判断模块
- * @file
+ * @fileModle
  * @module UE.browser
  * @since 1.2.6.1
  */
@@ -292,7 +292,7 @@ var ie = browser.ie,
 // core/utils.js
 /**
  * 工具函数包
- * @file
+ * @fileModle
  * @module UE.utils
  * @since 1.2.6.1
  */
@@ -943,7 +943,7 @@ var utils = UE.utils = {
                 }
             };
             element.onerror = function () {
-                throw Error('The load ' + (obj.href || obj.src) + ' fails,check the url settings of file ueditor.config.js ')
+                throw Error('The load ' + (obj.href || obj.src) + ' fails,check the url settings of fileModle ueditor.config.js ')
             };
             doc.getElementsByTagName("head")[0].appendChild(element);
         }
@@ -1505,7 +1505,7 @@ utils.each(['String', 'Function', 'Array', 'Number', 'RegExp', 'Object', 'Date']
 // core/EventBase.js
 /**
  * UE采用的事件基类
- * @file
+ * @fileModle
  * @module UE
  * @class EventBase
  * @since 1.2.6.1
@@ -1857,7 +1857,7 @@ var dtd = dom.dtd = (function() {
 // core/domUtils.js
 /**
  * Dom操作工具包
- * @file
+ * @fileModle
  * @module UE.dom.domUtils
  * @since 1.2.6.1
  */
@@ -4272,7 +4272,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
 // core/Range.js
 /**
  * Range封装
- * @file
+ * @fileModle
  * @module UE.dom
  * @class Range
  * @since 1.2.6.1
@@ -6119,7 +6119,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
 // core/Selection.js
 /**
  * 选集
- * @file
+ * @fileModle
  * @module UE.dom
  * @class Selection
  * @since 1.2.6.1
@@ -6510,7 +6510,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
 // core/Editor.js
 /**
  * 编辑器主类，包含编辑器提供的大部分公用接口
- * @file
+ * @fileModle
  * @module UE
  * @class Editor
  * @since 1.2.6.1
@@ -7892,7 +7892,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
         getLang: function (path) {
             var lang = UE.I18N[this.options.lang];
             if (!lang) {
-                throw Error("not import language file");
+                throw Error("not import language fileModle");
             }
             path = (path || "").split(".");
             for (var i = 0, ci; ci = path[i++];) {
@@ -8141,7 +8141,7 @@ UE.Editor.defaultOptions = function(editor){
 
 // core/ajax.js
 /**
- * @file
+ * @fileModle
  * @module UE.ajax
  * @since 1.2.6.1
  */
@@ -8407,7 +8407,7 @@ UE.ajax = function() {
 // core/filterword.js
 /**
  * UE过滤word的静态方法
- * @file
+ * @fileModle
  */
 
 /**
@@ -8598,7 +8598,7 @@ var filterWord = UE.filterWord = function () {
 // core/node.js
 /**
  * 编辑器模拟的节点类
- * @file
+ * @fileModle
  * @module UE
  * @class uNode
  * @since 1.2.6.1
@@ -9355,7 +9355,7 @@ var filterWord = UE.filterWord = function () {
 // core/htmlparser.js
 /**
  * html字符串转换成uNode节点
- * @file
+ * @fileModle
  * @module UE
  * @since 1.2.6.1
  */
@@ -9555,7 +9555,7 @@ var htmlparser = UE.htmlparser = function (htmlstr,ignoreBlank) {
 // core/filternode.js
 /**
  * UE过滤节点的静态方法
- * @file
+ * @fileModle
  */
 
 /**
@@ -10194,7 +10194,7 @@ UE.plugins['defaultfilter'] = function () {
 // plugins/inserthtml.js
 /**
  * 插入html字符串插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -10452,7 +10452,7 @@ UE.commands['inserthtml'] = {
 // plugins/autotypeset.js
 /**
  * 自动排版
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -10776,7 +10776,7 @@ UE.plugins['autotypeset'] = function(){
 // plugins/autosubmit.js
 /**
  * 快捷键提交
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -10817,7 +10817,7 @@ UE.plugin.register('autosubmit',function(){
 // plugins/background.js
 /**
  * 背景插件，为UEditor提供设置背景功能
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 UE.plugin.register('background', function () {
@@ -10926,7 +10926,7 @@ UE.plugin.register('background', function () {
 // plugins/image.js
 /**
  * 图片插入、排版插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -11202,7 +11202,7 @@ UE.commands['insertimage'] = {
 // plugins/justify.js
 /**
  * 段落格式
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -11319,7 +11319,7 @@ UE.plugins['justify']=function(){
 // plugins/font.js
 /**
  * 字体颜色,背景色,字号,字体,下划线,删除线
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -11845,7 +11845,7 @@ UE.plugins['font'] = function () {
 // plugins/link.js
 /**
  * 超链接
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -11923,7 +11923,7 @@ UE.plugins['link'] = function(){
         var start = range.startContainer;
         if(start.nodeType == 1 && link){
             start = start.childNodes[range.startOffset];
-            if(start && start.nodeType == 1 && start.tagName == 'A' && /^(?:https?|ftp|file)\s*:\s*\/\//.test(start[browser.ie?'innerText':'textContent'])){
+            if(start && start.nodeType == 1 && start.tagName == 'A' && /^(?:https?|ftp|fileModle)\s*:\s*\/\//.test(start[browser.ie?'innerText':'textContent'])){
                 start[browser.ie ? 'innerText' : 'textContent'] =  utils.html(opt.textValue||opt.href);
 
             }
@@ -12056,7 +12056,7 @@ UE.commands['scrawl'] = {
 // plugins/removeformat.js
 /**
  * 清除格式
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -12241,7 +12241,7 @@ UE.plugins['removeformat'] = function(){
 // plugins/blockquote.js
 /**
  * 添加引用
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -12416,7 +12416,7 @@ UE.plugins['blockquote'] = function(){
 // plugins/convertcase.js
 /**
  * 大小写转换
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -12475,7 +12475,7 @@ UE.commands['tolowercase'] = {
 // plugins/indent.js
 /**
  * 首行缩进
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -12505,7 +12505,7 @@ UE.commands['indent'] = {
 // plugins/print.js
 /**
  * 打印
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -12531,7 +12531,7 @@ UE.commands['print'] = {
 // plugins/preview.js
 /**
  * 预览
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -12562,7 +12562,7 @@ UE.commands['preview'] = {
 // plugins/selectall.js
 /**
  * 全选
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -12607,7 +12607,7 @@ UE.plugins['selectall'] = function(){
 // plugins/paragraph.js
 /**
  * 段落样式
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -12780,7 +12780,7 @@ UE.plugins['paragraph'] = function() {
 // plugins/directionality.js
 /**
  * 设置文字输入的方向的插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 (function() {
@@ -12904,7 +12904,7 @@ UE.plugins['paragraph'] = function() {
 // plugins/horizontal.js
 /**
  * 插入分割线插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -13011,7 +13011,7 @@ UE.plugins['horizontal'] = function(){
 // plugins/time.js
 /**
  * 插入时间和日期
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -13064,7 +13064,7 @@ UE.commands['time'] = UE.commands["date"] = {
 // plugins/rowspacing.js
 /**
  * 段前段后间距插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -13113,7 +13113,7 @@ UE.plugins['rowspacing'] = function(){
 // plugins/lineheight.js
 /**
  * 设置行内间距
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 UE.plugins['lineheight'] = function(){
@@ -13164,7 +13164,7 @@ UE.plugins['lineheight'] = function(){
 // plugins/insertcode.js
 /**
  * 插入代码插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -13707,7 +13707,7 @@ UE.plugins['insertcode'] = function() {
 // plugins/cleardoc.js
 /**
  * 清空文档插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -13747,7 +13747,7 @@ UE.commands['cleardoc'] = {
 // plugins/anchor.js
 /**
  * 锚点插件，为UEditor提供插入锚点支持
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 UE.plugin.register('anchor', function (){
@@ -13871,7 +13871,7 @@ UE.plugins['wordcount'] = function(){
 // plugins/pagebreak.js
 /**
  * 分页功能插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 UE.plugins['pagebreak'] = function () {
@@ -14070,7 +14070,7 @@ UE.plugin.register('wordimage',function(){
                     flag = parseInt(attrs.width) < 128 || parseInt(attrs.height) < 43,
                     opt = me.options,
                     src = opt.UEDITOR_HOME_URL + 'themes/default/images/spacer.gif';
-                if (attrs['src'] && /^(?:(file:\/+))/.test(attrs['src'])) {
+                if (attrs['src'] && /^(?:(fileModle:\/+))/.test(attrs['src'])) {
                     img.setAttr({
                         width:attrs.width,
                         height:attrs.height,
@@ -14147,7 +14147,7 @@ UE.plugins['dragdrop'] = function (){
 // plugins/undo.js
 /**
  * undo redo
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -14828,7 +14828,7 @@ UE.plugins['paste'] = function () {
 // plugins/puretxtpaste.js
 /**
  * 纯文本粘贴插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -14928,7 +14928,7 @@ UE.plugins['pasteplain'] = function(){
 // plugins/list.js
 /**
  * 有序列表,无序列表插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -16177,7 +16177,7 @@ UE.plugins['list'] = function () {
 // plugins/source.js
 /**
  * 源码编辑插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -17247,9 +17247,9 @@ UE.plugin.register('autolink',function(){
                             charCode = range.toString().charCodeAt(0);
                         } while (charCode != 160 && charCode != 32);
 
-                        if (range.toString().replace(new RegExp(domUtils.fillChar, 'g'), '').match(/(?:https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.)/i)) {
+                        if (range.toString().replace(new RegExp(domUtils.fillChar, 'g'), '').match(/(?:https?:\/\/|ssh:\/\/|ftp:\/\/|fileModle:\/|www\.)/i)) {
                             while(range.toString().length){
-                                if(/^(?:https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.)/i.test(range.toString())){
+                                if(/^(?:https?:\/\/|ssh:\/\/|ftp:\/\/|fileModle:\/|www\.)/i.test(range.toString())){
                                     break;
                                 }
                                 try{
@@ -17625,7 +17625,7 @@ UE.plugins['autofloat'] = function() {
 // plugins/video.js
 /**
  * video插件， 为UEditor提供视频插入支持
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -22497,7 +22497,7 @@ UE.plugins['shortcutmenu'] = function () {
 // plugins/basestyle.js
 /**
  * B、I、sub、super命令支持
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -22648,7 +22648,7 @@ UE.plugins['basestyle'] = function(){
 // plugins/elementpath.js
 /**
  * 选取路径命令
- * @file
+ * @fileModle
  */
 UE.plugins['elementpath'] = function(){
     var currentLevel,
@@ -22694,7 +22694,7 @@ UE.plugins['elementpath'] = function(){
 // plugins/formatmatch.js
 /**
  * 格式刷，只格式inline的
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -23029,7 +23029,7 @@ UE.plugin.register('searchreplace',function(){
 // plugins/customstyle.js
 /**
  * 自定义样式
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -23285,7 +23285,7 @@ UE.plugins['catchremoteimage'] = function () {
 // plugins/snapscreen.js
 /**
  * 截屏插件，为UEditor提供插入支持
- * @file
+ * @fileModle
  * @since 1.4.2
  */
 UE.plugin.register('snapscreen', function (){
@@ -23389,7 +23389,7 @@ UE.plugin.register('snapscreen', function (){
 // plugins/insertparagraph.js
 /**
  * 插入段落
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -23436,7 +23436,7 @@ UE.commands['insertparagraph'] = {
 // plugins/webapp.js
 /**
  * 百度应用
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 
@@ -23647,7 +23647,7 @@ UE.plugins['template'] = function () {
 // plugins/music.js
 /**
  * 插入音乐命令
- * @file
+ * @fileModle
  */
 UE.plugin.register('music', function (){
     var me = this;
@@ -23735,12 +23735,12 @@ UE.plugin.register('music', function (){
  */
 UE.plugin.register('autoupload', function (){
 
-    function sendAndInsertFile(file, editor) {
+    function sendAndInsertFile(fileModle, editor) {
         var me  = editor;
         //模拟数据
         var fieldName, urlPrefix, maxSize, allowFiles, actionUrl,
             loadingHtml, errorHandler, successHandler,
-            filetype = /image\/\w+/i.test(file.type) ? 'image':'file',
+            filetype = /image\/\w+/i.test(fileModle.type) ? 'image':'fileModle',
             loadingId = 'loading_' + (+new Date()).toString(36);
 
         fieldName = me.getOpt(filetype + 'FieldName');
@@ -23802,12 +23802,12 @@ UE.plugin.register('autoupload', function (){
             return;
         }
         /* 判断文件大小是否超出限制 */
-        if(file.size > maxSize) {
+        if(fileModle.size > maxSize) {
             errorHandler(me.getLang('autoupload.exceedSizeError'));
             return;
         }
         /* 判断文件格式是否超出允许 */
-        var fileext = file.name ? file.name.substr(file.name.lastIndexOf('.')):'';
+        var fileext = fileModle.name ? fileModle.name.substr(fileModle.name.lastIndexOf('.')):'';
         if ((fileext && filetype != 'image') || (allowFiles && (allowFiles.join('') + '.').indexOf(fileext.toLowerCase() + '.') == -1)) {
             errorHandler(me.getLang('autoupload.exceedTypeError'));
             return;
@@ -23819,7 +23819,7 @@ UE.plugin.register('autoupload', function (){
             params = utils.serializeParam(me.queryCommandValue('serverparam')) || '',
             url = utils.formatUrl(actionUrl + (actionUrl.indexOf('?') == -1 ? '?':'&') + params);
 
-        fd.append(fieldName, file, file.name || ('blob.' + file.type.substr('image/'.length)));
+        fd.append(fieldName, fileModle, fileModle.name || ('blob.' + fileModle.type.substr('image/'.length)));
         fd.append('type', 'ajax');
         xhr.open("post", url, true);
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -23870,12 +23870,12 @@ UE.plugin.register('autoupload', function (){
                         items = e.type == 'paste' ? getPasteImage(e):getDropImage(e);
                         if(items){
                             var len = items.length,
-                                file;
+                                fileModle;
                             while (len--){
-                                file = items[len];
-                                if(file.getAsFile) file = file.getAsFile();
-                                if(file && file.size > 0) {
-                                    sendAndInsertFile(file, me);
+                                fileModle = items[len];
+                                if(fileModle.getAsFile) fileModle = fileModle.getAsFile();
+                                if(fileModle && fileModle.size > 0) {
+                                    sendAndInsertFile(fileModle, me);
                                     hasImg = true;
                                 }
                             }
@@ -24184,7 +24184,7 @@ UE.plugin.register('charts', function (){
 // plugins/section.js
 /**
  * 目录大纲支持插件
- * @file
+ * @fileModle
  * @since 1.3.0
  */
 UE.plugin.register('section', function (){
@@ -24483,7 +24483,7 @@ UE.plugin.register('simpleupload', function (){
 
             wrapper.innerHTML = '<form id="edui_form_' + timestrap + '" target="edui_iframe_' + timestrap + '" method="POST" enctype="multipart/form-data" action="' + me.getOpt('serverUrl') + '" ' +
             'style="' + btnStyle + '">' +
-            '<input id="edui_input_' + timestrap + '" type="file" accept="image/*" name="' + me.options.imageFieldName + '" ' +
+            '<input id="edui_input_' + timestrap + '" type="fileModle" accept="image/*" name="' + me.options.imageFieldName + '" ' +
             'style="' + btnStyle + '">' +
             '</form>' +
             '<iframe id="edui_iframe_' + timestrap + '" name="edui_iframe_' + timestrap + '" style="display:none;width:0;height:0;border:0;margin:0;padding:0;position:absolute;"></iframe>';
@@ -24629,7 +24629,7 @@ UE.plugin.register('simpleupload', function (){
 // plugins/serverparam.js
 /**
  * 服务器提交的额外参数列表设置插件
- * @file
+ * @fileModle
  * @since 1.2.6.1
  */
 UE.plugin.register('serverparam', function (){
@@ -24810,7 +24810,7 @@ UE.plugin.register('insertfile', function (){
 
 // plugins/xssFilter.js
 /**
- * @file xssFilter.js
+ * @fileModle xssFilter.js
  * @desc xss过滤器
  * @author robbenmu
  */
@@ -29431,7 +29431,7 @@ UE.ui = baidu.editor.ui = {};
 
 
     /**
-     * @file
+     * @fileModle
      * @name UE
      * @short UE
      * @desc UEditor的顶部命名空间

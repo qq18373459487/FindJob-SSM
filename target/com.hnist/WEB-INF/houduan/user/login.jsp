@@ -105,7 +105,7 @@
 				}
 				$.ajax(
 						{
-							url:'http://localhost:8080/com_hnist_war_exploded/index',
+							url:'http://localhost:8080/com_hnist_war_exploded/user/index',
 							data: {
 								username:username,
 								password:password
@@ -117,7 +117,7 @@
 								if(data.code=="1")
 								{
 									//跳转业务主页面
-									window.location.href="http://localhost:8080/com_hnist_war_exploded/login-sucess";
+									window.location.href="http://localhost:8080/com_hnist_war_exploded/user/login-sucess";
 								}else
 								{
 									$("#msg").html(data.message);

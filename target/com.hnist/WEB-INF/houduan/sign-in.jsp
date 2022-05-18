@@ -1,4 +1,4 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -64,21 +64,6 @@
                 },
                 type:'post',
                 dataType:'json',
-                success:function (data)
-                {
-                    if(data.code==="1")
-                    {
-                        $("#msg").html("登录成功");
-                        window.location.href('http://localhost:8080/com_hnist_war_exploded/tocommonlogin');
-
-                    }else if(data.code=="0")
-                    {
-                        $("#msg").html("登录失败");
-                    }else
-                    {
-                        $("#msg").html("未知错误");
-                    }
-                }
             }
 
         )
@@ -112,90 +97,92 @@
 
 <div class="navbar-area">
 
-<div class="mobile-nav">
-<a href="" class="logo">
-<img src="newStatic/picture/logo.png" alt="logo">
-</a>
-</div>
-
-<div class="main-nav">
-<div class="container">
-<nav class="navbar navbar-expand-lg navbar-light">
-<a class="navbar-brand" href="">
-<img src="newStatic/picture/logo.png" alt="logo">
-</a>
-<div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-<ul class="navbar-nav m-auto">
-<li class="nav-item">
-<a href="#" class="nav-link dropdown-toggle active">主页&nbsp;</a>
-<ul class="dropdown-menu">
-</ul>
-</li>
-
-<li class="nav-item">
-<a href="#" class="nav-link dropdown-toggle">工作&nbsp;</a>
-<ul class="dropdown-menu">
-<li class="nav-item">
-<a href="find-job.jsp" class="nav-link">搜索工作</a>
-</li>
-<li class="nav-item">
-<a href="post-job.jsp" class="nav-link">发布工作</a>
-</li>
-<li class="nav-item">
-<a href="job-list.jsp" class="nav-link">工作列表</a>
-</li>
-</ul>
-</li>
-<li class="nav-item">
-<a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
-<ul class="dropdown-menu">
-<li class="nav-item">
-<a href="../../qianduan/company.html" class="nav-link">公司</a>
-</li>
-<li class="nav-item">
-<a href="../../qianduan/pricing.html" class="nav-link">价格&nbsp;</a>
-</li>
-<li class="nav-item">
-<a href="#" class="nav-link dropdown-toggle">用户</a>
-<ul class="dropdown-menu">
-<li class="nav-item">
-<a href="../../qianduan/account.html" class="nav-link">账号</a>
-
-<li class="nav-item">
-<a href="../../qianduan/reset-password.html" class="nav-link">修改密码</a>
-</li>
-</ul>
-</li>
-<li class="nav-item">
-<a href="404.html" class="nav-link">404 Page</a>
-</li>
-</ul>
-</li>
-<li class="nav-item">
-<a href="#" class="nav-link dropdown-toggle">博客</a>
-<ul class="dropdown-menu">
-<li class="nav-item">
-<a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>
-</li>
-<li class="nav-item">
-<a href="../../qianduan/blog-details.html" class="nav-link">详情</a>
-</li>
-</ul>
-</li>
-</ul>
-    <% if (session.getAttribute("username")==null) { %>
-    <div class="other-option">
-        <a href="sign-up.jsp" class="signup-btn">注册&nbsp;</a>
-        <a href="sign-in.jsp" class="signin-btn">登录</a>
+    <div class="mobile-nav">
+        <a href="" class="logo">
+            <img src="newStatic/picture/logo.png" alt="logo">
+        </a>
     </div>
-    <% } else { %>
-    <p>WelCome ${username}</p>
-    <% } %>
 
-</div>
-</nav>
-</div>
-</div>
+    <div class="main-nav">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="">
+                    <img src="newStatic/picture/logo.png" alt="logo">
+                </a>
+                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item">
+                            <a href="/default" class="nav-link dropdown-toggle active">主页&nbsp;</a>
+                            <ul class="dropdown-menu">
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle">工作&nbsp;</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="http://localhost:8080/com_hnist_war_exploded/work/ToSelectWork" class="nav-link">搜索工作</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork" class="nav-link">工作列表</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="../../qianduan/company.html" class="nav-link">公司</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../../qianduan/pricing.html" class="nav-link">价格&nbsp;</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link dropdown-toggle">用户</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a href="../../qianduan/account.html" class="nav-link">账号</a>
+
+                                        <li class="nav-item">
+                                            <a href="../../qianduan/reset-password.html" class="nav-link">修改密码</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="http://localhost:8080/com_hnist_war_exploded/login" class="nav-link">后台</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle">博客</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../../qianduan/blog-details.html" class="nav-link">详情</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <c:if test="${message==null}">
+                        <div class="other-option">
+                            <a href="http://localhost:8080/com_hnist_war_exploded/toregister" class="signup-btn">注册&nbsp;</a>
+                            <a href="http://localhost:8080/com_hnist_war_exploded/tocommonlogin" class="signin-btn">登录</a>
+                        </div>
+                    </c:if>
+                    <c:if test="${message==1}">
+                        <div class="other-option">
+                            <h3>WelCome:  ${username}</h3>
+                        </div>
+                    </c:if>
+                </div>
+            </nav>
+        </div>
+    </div>
 </div>
 
 

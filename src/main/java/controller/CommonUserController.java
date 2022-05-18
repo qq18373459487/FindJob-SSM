@@ -32,7 +32,6 @@ public class CommonUserController {
 
     public @ResponseBody Object Register(@Valid @ModelAttribute CommonUser user, Model model, HttpSession session)
     {
-
         return commonUserService.InsertComUser(user,model,session);
     }
 
@@ -44,7 +43,7 @@ public class CommonUserController {
     }
 
     @RequestMapping("/commonlogin")
-    public  @ResponseBody Object toLogin(@Valid @ModelAttribute CommonUser user, Model model, HttpSession session)
+    public  String toLogin(@Valid @ModelAttribute CommonUser user, Model model, HttpSession session)
     {
       return commonUserService.SelectComUser(user, model, session);
     }

@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import services.WorkService;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -32,10 +31,10 @@ public class WorkServiceImpl implements WorkService {
 
     //查询每页的记录
     @Override
-    public List<WorkList> queryBookPage(int page) {
+    public List<WorkList> queryWorkListPage(int page) {
         int n = this.num;
         int m = n * (page - 1);
-        return workMapper.queryWorkList(m, n);
+        return workMapper.queryWorkList(m,n);
     }
     //查询最大页数
     @Override
@@ -71,10 +70,11 @@ public class WorkServiceImpl implements WorkService {
             //不能大于最大页
             ReturnPage = max;
         }
+
         //绑定最大页数
         model.addAttribute("maxPage", max);
         //调用service层查询第几页的数据
-        List<WorkList> list= queryBookPage(ReturnPage);
+        List<WorkList> list= queryWorkListPage(ReturnPage);
         //绑定查询的结果到列表
         model.addAttribute("list",list);
         //绑定当前的页码
@@ -94,7 +94,6 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public String SelectWorkById(WorkList workList, Model model, HttpSession session,String id) {
-        System.out.println("到了impl方法里面");
         WorkList result=workMapper.queryWorkListById(id);
         System.out.println("result内容"+result);
         model.addAttribute("result",result);

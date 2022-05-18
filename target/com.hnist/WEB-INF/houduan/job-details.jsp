@@ -86,13 +86,13 @@
        <a href="#" class="nav-link dropdown-toggle">工作&nbsp;</a>
        <ul class="dropdown-menu">
         <li class="nav-item">
-         <a href="find-job.html" class="nav-link">搜索工作</a>
+         <a href="http://localhost:8080/com_hnist_war_exploded/work/ToSelectWork" class="nav-link">搜索工作</a>
         </li>
         <li class="nav-item">
-         <a href="post-job.html" class="nav-link">发布工作</a>
+         <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
         </li>
         <li class="nav-item">
-         <a href="job-list.html" class="nav-link">工作列表</a>
+         <a href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork" class="nav-link">工作列表</a>
         </li>
        </ul>
       </li>
@@ -100,24 +100,24 @@
        <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
        <ul class="dropdown-menu">
         <li class="nav-item">
-         <a href="company.html" class="nav-link">公司</a>
+         <a href="../../qianduan/company.html" class="nav-link">公司</a>
         </li>
         <li class="nav-item">
-         <a href="pricing.html" class="nav-link">价格&nbsp;</a>
+         <a href="../../qianduan/pricing.html" class="nav-link">价格&nbsp;</a>
         </li>
         <li class="nav-item">
          <a href="#" class="nav-link dropdown-toggle">用户</a>
          <ul class="dropdown-menu">
           <li class="nav-item">
-           <a href="account.html" class="nav-link">账号</a>
+           <a href="../../qianduan/account.html" class="nav-link">账号</a>
 
           <li class="nav-item">
-           <a href="reset-password.html" class="nav-link">修改密码</a>
+           <a href="../../qianduan/reset-password.html" class="nav-link">修改密码</a>
           </li>
          </ul>
         </li>
         <li class="nav-item">
-         <a href="404.html" class="nav-link">404 Page</a>
+         <a href="http://localhost:8080/com_hnist_war_exploded/login" class="nav-link">后台</a>
         </li>
        </ul>
       </li>
@@ -125,24 +125,30 @@
        <a href="#" class="nav-link dropdown-toggle">博客</a>
        <ul class="dropdown-menu">
         <li class="nav-item">
-         <a href="blog.html" class="nav-link">博客主页&nbsp;</a>
+         <a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>
         </li>
         <li class="nav-item">
-         <a href="blog-details.html" class="nav-link">详情</a>
+         <a href="../../qianduan/blog-details.html" class="nav-link">详情</a>
         </li>
        </ul>
       </li>
      </ul>
-     <div class="other-option">
-      <a href="sign-up.html" class="signup-btn">注册&nbsp;</a>
-      <a href="sign-in.html" class="signin-btn">登录</a>
-     </div>
+     <c:if test="${message==null}">
+      <div class="other-option">
+       <a href="http://localhost:8080/com_hnist_war_exploded/toregister" class="signup-btn">注册&nbsp;</a>
+       <a href="http://localhost:8080/com_hnist_war_exploded/tocommonlogin" class="signin-btn">登录</a>
+      </div>
+     </c:if>
+     <c:if test="${message==1}">
+      <div class="other-option">
+       <a>WelCome:  ${username}</a>
+      </div>
+     </c:if>
     </div>
    </nav>
   </div>
  </div>
 </div>
-
 
 <section class="page-title title-bg6">
  <div class="d-table">

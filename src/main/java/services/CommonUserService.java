@@ -9,5 +9,5 @@ import javax.servlet.http.HttpSession;
 
 public interface CommonUserService {
     ReturnObject InsertComUser(CommonUser user, Model model, HttpSession session);
-    ReturnObject SelectComUser(CommonUser user, Model model, HttpSession session);
+    String SelectComUser(CommonUser user, Model model, HttpSession session);
 }

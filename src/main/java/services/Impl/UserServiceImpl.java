@@ -2,6 +2,7 @@ package services.Impl;
 
 import ResponseMessage.ReturnObject;
 import mapper.UserMapper;
+import modle.FileModle;
 import modle.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import services.UserService;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -49,6 +51,7 @@ public class UserServiceImpl implements UserService {
                 returnObject.setCode("1");
                 returnObject.setMessage("登录成功");
                 returnObject.setData(user.getUsername());
+                session.setAttribute("user",user1.getUsername());
             }else
             {
                 returnObject.setCode("2");
@@ -57,5 +60,18 @@ public class UserServiceImpl implements UserService {
         }
         return returnObject;
 
+    }
+
+    @Override
+    public String GetAllFile( Model model, HttpSession session) {
+    List<FileModle> list=   userMapper.selectAllFile();
+    model.addAttribute("list",list);
+    return "/user/fileManage";
+    }
+
+    @Override
+    public String insertFile(FileModle fileModle) {
+        userMapper.insertFile(fileModle);
+         return null;
     }
 }

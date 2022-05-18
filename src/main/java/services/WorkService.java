@@ -13,7 +13,7 @@ public interface WorkService
 
     String InsertWork(WorkList workList, Model model, HttpSession session);
     // 分页查询
-    List<WorkList> queryBookPage(int page);
+    List<WorkList> queryWorkListPage(int page);
     // 查询页数
     int queryPage();
 

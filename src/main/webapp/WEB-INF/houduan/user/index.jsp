@@ -51,7 +51,7 @@
 							<i class="icon-columns"></i>数据列表<i class="icon-angle-right"></i>
 						</dt>
 						<dd>
-							<a href="http://localhost:8080/com_hnist_war_exploded/user/company">公司列表</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/company/GetAllCompany">公司列表</a>
 						</dd>
 						<dd>
 							<a href="companyManage.jsp">用户列表</a>
@@ -74,6 +74,19 @@
 						</dd>
 						<dd>
 							<a href="companyManage.jsp">文章审核</a>
+						</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-inbox"></i>文件管理<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="http://localhost:8080/com_hnist_war_exploded/user/file">文件下载</a>
+						</dd>
+						<dd>
+							<a href="http://localhost:8080/com_hnist_war_exploded/user/excel">数据导入导出</a>
 						</dd>
 					</dl>
 				</li>
@@ -134,265 +147,6 @@
 			</div>
 
 
-				<!-- <div class="clear mt-20">
-					<div class="fl">
-						<button class="btn btn-secondary"><i class="icon-double-angle-left"></i>上一周</button>
-						<button class="btn btn-secondary">下一周<i class="icon-double-angle-right"></i></button>
-					</div>
-					<div class="fr input-group">
-						<input type="text" class="form-control" placeholder="搜索..." style="width:290px;"/>
-						<button class="btn btn-secondary-outline">搜索</button>
-					</div>
-				</div>
-				<table class="table table-bordered  mb-15 mt-15">
-					<thead>
-					<tr class="cen">
-						<th>今日订单数（单位：单）</th>
-						<th>今日订单额（单位：元）</th>
-						<th>今日销售量（单位：件）</th>
-						<th>库存警告（单位：件）</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr class="cen">
-						<td><b>839</b></td>
-						<td><b>￥12000.00</b></td>
-						<td><b>932</b></td>
-						<td><b class="text-warning">8</b></td>
-					</tr>
-					</tbody>
-				</table>
-				<div class="lt clear">
-					<div class="fl">
-						<button class="btn btn-warning"><i class="icon-cog"></i>批量编辑</button>
-						<button class="btn btn-danger"><i class="icon-trash"></i>批量删除</button>
-						<button class="btn btn-disabled" disabled="disabled"><i class="icon-remove-sign"></i>不可编辑</button>
-					</div>
-					<div class="pagination fr"></div>
-				</div>
-				<table class="table table-bordered  mb-15 mt-15">
-					<tbody>
-					<tr class="cen">
-						<td style="width:50%">
-							<div id="demo1" style="height:300px"></div>
-						</td>
-						<td style="width:50%">
-							<div id="demo2" style="height:300px"></div>
-						</td>
-					</tr>
-					</tbody>
-				</table> -->
-
-				<!--瀑布流布局3列：：嵌套-->
-				<!-- <div class="flow-layout col-3">
-					<ul>
-						<li class="child-wrap">
-							<div class="panel panel-default">
-								<div class="panel-bd">
-									后台模板不存在页面<abbr class="capitalize">seo</abbr>优化问题，这里将head单独提出来，加载公共引入文件。
-								</div>
-							</div>
-						</li>
-						<li class="child-wrap">
-							<div class="panel panel-default">
-								<div class="panel-bd">
-									整体结构比较清晰，大家可根据项目对其调整； 该模板色值预定义6类，对应每个模块颜色。
-									即：<span class="text-muted">text-muted</span>、
-									<span class="text-primary">text-primary</span>、
-									<span class="text-success">text-success</span>、
-									<span class="text-info">text-info</span>、
-									<span class="text-warning">text-warning</span>、
-									<span class="text-danger">text-danger</span>需要重新定义或增删自行修改即可。
-								</div>
-							</div>
-						</li>
-						<li class="child-wrap">
-							<div class="panel panel-default">
-								<div class="panel-bd">
-									<span class="text-primary">文本编辑器</span>及<span class="text-primary">数据统计图表</span>均引用百度相关插件，可另行处理。
-								</div>
-							</div>
-						</li>
-						<li class="child-wrap">
-							<div class="panel panel-default">
-								<div class="panel-bd">
-									样式通过简单的<span class="text-info capitalize">less格式</span>分类引入，需要二次编辑处理可以对其进行调整。
-								</div>
-							</div>
-						</li>
-						<li class="child-wrap">
-							<div class="panel panel-default">
-								<div class="panel-bd capitalize">
-									javascript包含公共库及第三方插件以及页面js文件。
-								</div>
-							</div>
-						</li>
-						<li class="child-wrap">
-							<div class="panel panel-default">
-								<div class="panel-bd">
-									<span class="text-info capitalize">images</span>文件为模板所需图片文件；<span class="text-info capitalize">upload</span>为测试图片，亲们可根据项目定义路径。
-								</div>
-							</div>
-						</li>
-						<li class="child-wrap">
-							<div class="panel panel-default">
-								<div class="panel-bd">
-									正式项目可以文件进行实际操作时直接归置到该模板的根目录下即可，而<span class="text-danger capitalize">现在所看到的仅为demo演示而已</span>，<span class="text-muted">可对其删除</span>。
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div> -->
-
-
-				<!-- <script>
-                    //分页
-                    $(".pagination").createPage({
-                        pageCount:5,
-                        current:1,
-                        backFn:function(p){
-                            console.log(p);
-                        }
-                    });
-                    //demo1
-                    var dom = document.getElementById("demo1");
-                    var myChart = echarts.init(dom);
-                    var app = {};
-                    option = null;
-                    function randomData() {
-                        now = new Date(+now + oneDay);
-                        value = value + Math.random() * 21 - 10;
-                        return {
-                            name: now.toString(),
-                            value: [
-                                [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
-                                Math.round(value)
-                            ]
-                        }
-                    }
-
-                    var data = [];
-                    var now = +new Date(1997, 9, 3);
-                    var oneDay = 24 * 3600 * 1000;
-                    var value = Math.random() * 1000;
-                    for (var i = 0; i < 1000; i++) {
-                        data.push(randomData());
-                    }
-
-                    option = {
-                        tooltip: {
-                            trigger: 'axis',
-                            formatter: function (params) {
-                                params = params[0];
-                                var date = new Date(params.name);
-                                return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
-                            },
-                            axisPointer: {
-                                animation: false
-                            }
-                        },
-                        xAxis: {
-                            type: 'time',
-                            splitLine: {
-                                show: false
-                            }
-                        },
-                        yAxis: {
-                            type: 'value',
-                            boundaryGap: [0, '100%'],
-                            splitLine: {
-                                show: false
-                            }
-                        },
-                        series: [{
-                            name: '模拟数据',
-                            type: 'line',
-                            showSymbol: false,
-                            hoverAnimation: false,
-                            data: data
-                        }]
-                    };
-
-                    setInterval(function () {
-
-                        for (var i = 0; i < 5; i++) {
-                            data.shift();
-                            data.push(randomData());
-                        }
-
-                        myChart.setOption({
-                            series: [{
-                                data: data
-                            }]
-                        });
-                    }, 1000);;
-                    if (option && typeof option === "object") {
-                        myChart.setOption(option, true);
-                    }
-
-                    //demo2
-                    var dom = document.getElementById("demo2");
-                    var myChart = echarts.init(dom);
-                    var app = {};
-                    option = null;
-                    option = {
-                        tooltip: {
-                            trigger: 'axis'
-                        },
-                        grid: {
-                            left: '3%',
-                            right: '4%',
-                            bottom: '3%',
-                            containLabel: true
-                        },
-                        xAxis: {
-                            type: 'category',
-                            boundaryGap: false,
-                            data: ['周一','周二','周三','周四','周五','周六','周日']
-                        },
-                        yAxis: {
-                            type: 'value'
-                        },
-                        series: [
-                            {
-                                name:'邮件营销',
-                                type:'line',
-                                stack: '总量',
-                                data:[120, 132, 101, 134, 90, 230, 210]
-                            },
-                            {
-                                name:'联盟广告',
-                                type:'line',
-                                stack: '总量',
-                                data:[220, 182, 191, 234, 290, 330, 310]
-                            },
-                            {
-                                name:'视频广告',
-                                type:'line',
-                                stack: '总量',
-                                data:[150, 232, 201, 154, 190, 330, 410]
-                            },
-                            {
-                                name:'直接访问',
-                                type:'line',
-                                stack: '总量',
-                                data:[320, 332, 301, 334, 390, 330, 320]
-                            },
-                            {
-                                name:'搜索引擎',
-                                type:'line',
-                                stack: '总量',
-                                data:[820, 932, 901, 934, 1290, 1330, 1320]
-                            }
-                        ]
-                    };
-                    ;
-                    if (option && typeof option === "object") {
-                        myChart.setOption(option, true);
-                    }
-                </script> -->
-				<!--开始::结束-->
 		</main>
 		<footer class="btm-ft">
 			<p class="clear">

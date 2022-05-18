@@ -134,10 +134,17 @@
 							</ul>
 						</li>
 					</ul>
-					<div class="other-option">
-						<a href="http://localhost:8080/com_hnist_war_exploded/toregister" class="signup-btn">注册&nbsp;</a>
-						<a href="http://localhost:8080/com_hnist_war_exploded/tocommonlogin" class="signin-btn">登录</a>
-					</div>
+					<c:if test="${message==null}">
+						<div class="other-option">
+							<a href="http://localhost:8080/com_hnist_war_exploded/toregister" class="signup-btn">注册&nbsp;</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/tocommonlogin" class="signin-btn">登录</a>
+						</div>
+					</c:if>
+					<c:if test="${message==1}">
+						<div class="other-option">
+							<a>WelCome:  ${username}</a>
+						</div>
+					</c:if>
 				</div>
 			</nav>
 		</div>
