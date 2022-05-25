@@ -1,6 +1,7 @@
 package controller;
 
 import modle.CommonUser;
+import modle.PersonMg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,4 +48,21 @@ public class CommonUserController {
     {
       return commonUserService.SelectComUser(user, model, session);
     }
+
+    @RequestMapping("/Account")
+
+    public String Account(@ModelAttribute PersonMg personMg, Model model, HttpSession session,String email)
+    {
+        return commonUserService.SelectPerSonMG(personMg, model, session, email);
+    }
+    @RequestMapping("/SaveAccount")
+
+    public String SaveAccount(@ModelAttribute PersonMg personMg, Model model, HttpSession session)
+    {
+        return commonUserService.updataPerSonMG(personMg, model, session);
+    }
+
+
+
+
 }

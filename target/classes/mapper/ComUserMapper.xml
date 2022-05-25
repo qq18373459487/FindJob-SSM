@@ -7,11 +7,19 @@
         <result property="com_user" column="com_user" jdbcType="VARCHAR"/>
         <result property="com_pwd" column="com_pwd" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
-
+    </resultMap>
+    <resultMap id="ResultPerson" type="modle.PersonMg">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="experience" column="experience" jdbcType="VARCHAR"/>
+        <result property="identity" column="identity" jdbcType="VARCHAR"/>
     </resultMap>
 
 <select id="selectBycom_user" parameterType="Map" resultMap="ResultUser">
-    select * from commonuser where com_user=#{com_user}
+    select * from commonuser where com_user=#{com_user} and com_pwd=#{com_pwd}
 </select>
 
     <update id="updateBycom_user">
@@ -26,4 +34,13 @@ delete from commonuser where com_user=#{com_user}
        insert into commonuser(com_user,com_pwd,email)
        values (#{com_user},#{com_pwd},#{email})
     </insert>
+
+    <select id="selectByPersonId" parameterType="string" resultMap="ResultPerson">
+        select * from person where email=#{email}
+    </select>
+
+    <update id="updapePerson" parameterType="modle.PersonMg">
+        update person SET username=#{username}, email=#{email},age=#{age},city=#{city} ,experience=#{experience}
+        where email=#{email}
+    </update>
 </mapper>

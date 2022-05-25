@@ -3,6 +3,7 @@ package services.Impl;
 import ResponseMessage.ReturnObject;
 import mapper.ComUserMapper;
 import modle.CommonUser;
+import modle.PersonMg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,14 +53,27 @@ public class CommonUserServiceImpl implements CommonUserService {
         {
             //登录账号或密码错误
             session.setAttribute("message",null);
-            System.out.println("一直存在于登录页面");
             return "/sign-in";
         }
         else
         {
             session.setAttribute("message","1");
             session.setAttribute("username",commonUser.getCom_user());
+            session.setAttribute("email",commonUser.getEmail());
             return "/default";
         }
+    }
+
+    @Override
+    public String SelectPerSonMG(PersonMg personMg, Model model, HttpSession session,String email) {
+        personMg=commonUserMapper.selectByPersonId(email);
+        model.addAttribute("person",personMg);
+        return "/account";
+    }
+
+    @Override
+    public String updataPerSonMG(PersonMg personMg, Model model, HttpSession session) {
+        commonUserMapper.updapePerson(personMg);
+        return "/account";
     }
 }

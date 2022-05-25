@@ -63,8 +63,13 @@ http://www.springframework.org/schema/util/spring-util.xsd">
                 LoginInterceptor的preHandler方法里面获取不拦截的请求uri地址了(优选) -->
             <mvc:exclude-mapping path="/user/index" />
             <mvc:exclude-mapping path="/user/login" />
-<!--            <mvc:exclude-mapping path="/user/login-sucess" />-->
             <bean class="ResponseMessage.LoginInterceptor"></bean>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/work/ToAddWork"/>
+            <mvc:mapping path="/Account"/>
+            <mvc:exclude-mapping path="/commonlogin"/>
+            <bean class="ResponseMessage.ComLoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 

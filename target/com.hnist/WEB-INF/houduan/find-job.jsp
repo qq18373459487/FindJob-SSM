@@ -101,12 +101,6 @@
 							<a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
 							<ul class="dropdown-menu">
 								<li class="nav-item">
-									<a href="../../qianduan/company.html" class="nav-link">公司</a>
-								</li>
-								<li class="nav-item">
-									<a href="../../qianduan/pricing.html" class="nav-link">价格&nbsp;</a>
-								</li>
-								<li class="nav-item">
 									<a href="#" class="nav-link dropdown-toggle">用户</a>
 									<ul class="dropdown-menu">
 										<li class="nav-item">
@@ -118,21 +112,21 @@
 									</ul>
 								</li>
 								<li class="nav-item">
-									<a href="http://localhost:8080/com_hnist_war_exploded/login" class="nav-link">后台</a>
+									<a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
 								</li>
 							</ul>
 						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link dropdown-toggle">博客</a>
-							<ul class="dropdown-menu">
-								<li class="nav-item">
-									<a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>
-								</li>
-								<li class="nav-item">
-									<a href="../../qianduan/blog-details.html" class="nav-link">详情</a>
-								</li>
-							</ul>
-						</li>
+						<%--<li class="nav-item">--%>
+						<%--<a href="#" class="nav-link dropdown-toggle">博客</a>--%>
+						<%--<ul class="dropdown-menu">--%>
+						<%--<li class="nav-item">--%>
+						<%--<a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>--%>
+						<%--</li>--%>
+						<%--<li class="nav-item">--%>
+						<%--<a href="../../qianduan/blog-details.html" class="nav-link">详情</a>--%>
+						<%--</li>--%>
+					</ul>
+					</li>
 					</ul>
 					<c:if test="${message==null}">
 						<div class="other-option">

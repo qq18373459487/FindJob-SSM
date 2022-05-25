@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import services.ExcelService;
 import services.UserService;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -160,19 +159,19 @@ public class UserController {
             response.reset(); //清除buffer缓存
             //Map<String,Object> map=new HashMap<String,Object>();
             // 指定下载的文件名
-            response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+//            response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+            response.setContentType("application/x-msdownload");
             response.setHeader("Content-Disposition","attachment;filename="+new String("用户表.xlsx".getBytes(),"iso-8859-1"));
             //将查到的数据用XSSFWorkbook保存并创建一个流
             workbook = excelService.exportExcelInfo();
-            System.out.println("controller");
-            System.out.println(workbook);
             output = response.getOutputStream();
             bufferedOutput = new BufferedOutputStream(output);
             bufferedOutput.flush();
             //最后通过流写进去
             workbook.write(bufferedOutput);
+            System.out.println(workbook);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }finally {
             try {
                 bufferedOutput.close();

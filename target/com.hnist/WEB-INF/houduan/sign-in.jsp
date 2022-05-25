@@ -1,5 +1,9 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -40,38 +44,41 @@
     </style>
 </head>
 <body>
-<script type="text/javascript">
-    function tocommonlogin()
-    {
+<%--<script type="text/javascript">--%>
+<%--    function tocommonlogin()--%>
+<%--    {--%>
 
-        var com_user=$.trim($("#com_user").val());
-        var com_pwd=$.trim($("#com_pwd").val());
-        if(com_user==null)
-        {
-            alert("用户名不能为空");
-            return ;
-        }else if(com_pwd==null)
-        {
-            alert("密码不能为空");
-            return ;
-        }
-        $.ajax(
-            {
-                url:'http://localhost:8080/com_hnist_war_exploded/commonlogin',
-                data: {
-                    com_user:com_user,
-                    com_pwd:com_pwd,
-                },
-                type:'post',
-                dataType:'json',
-            }
+<%--        var com_user=$.trim($("#com_user").val());--%>
+<%--        var com_pwd=$.trim($("#com_pwd").val());--%>
+<%--        if(com_user==null)--%>
+<%--        {--%>
+<%--            alert("用户名不能为空");--%>
+<%--            return ;--%>
+<%--        }else if(com_pwd==null)--%>
+<%--        {--%>
+<%--            alert("密码不能为空");--%>
+<%--            return ;--%>
+<%--        }--%>
+<%--        $.ajax(--%>
+<%--            {--%>
+<%--                url:'http://localhost:8080/com_hnist_war_exploded/commonlogin',--%>
+<%--                data: {--%>
+<%--                    com_user:com_user,--%>
+<%--                    com_pwd:com_pwd,--%>
+<%--                },--%>
+<%--                type:'post',--%>
+<%--                dataType:'json',--%>
+<%--                success(data){--%>
+<%--                    window.location.href="http://localhost:8080/com_hnist_war_exploded/default"--%>
+<%--                }--%>
+<%--            }--%>
 
-        )
+<%--        )--%>
 
 
-    }
+<%--    }--%>
 
-</script>
+<%--</script>--%>
 <div class="loader-content">
 <div class="d-table">
 <div class="d-table-cell">
@@ -112,7 +119,7 @@
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a href="/default" class="nav-link dropdown-toggle active">主页&nbsp;</a>
+                            <a href="#" class="nav-link dropdown-toggle active">主页&nbsp;</a>
                             <ul class="dropdown-menu">
                             </ul>
                         </li>
@@ -135,12 +142,6 @@
                             <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a href="../../qianduan/company.html" class="nav-link">公司</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../../qianduan/pricing.html" class="nav-link">价格&nbsp;</a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="#" class="nav-link dropdown-toggle">用户</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
@@ -152,21 +153,21 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="http://localhost:8080/com_hnist_war_exploded/login" class="nav-link">后台</a>
+                                    <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle">博客</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../../qianduan/blog-details.html" class="nav-link">详情</a>
-                                </li>
-                            </ul>
-                        </li>
+                        <%--<li class="nav-item">--%>
+                        <%--<a href="#" class="nav-link dropdown-toggle">博客</a>--%>
+                        <%--<ul class="dropdown-menu">--%>
+                        <%--<li class="nav-item">--%>
+                        <%--<a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>--%>
+                        <%--</li>--%>
+                        <%--<li class="nav-item">--%>
+                        <%--<a href="../../qianduan/blog-details.html" class="nav-link">详情</a>--%>
+                        <%--</li>--%>
+                    </ul>
+                    </li>
                     </ul>
                     <c:if test="${message==null}">
                         <div class="other-option">
@@ -176,7 +177,7 @@
                     </c:if>
                     <c:if test="${message==1}">
                         <div class="other-option">
-                            <h3>WelCome:  ${username}</h3>
+                            <a>WelCome:  ${username}</a>
                         </div>
                     </c:if>
                 </div>
@@ -210,21 +211,19 @@
 <div class="container">
 <div class="row">
 <div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3">
-<form class="signin-form">
+    <%--@elvariable id="CommonUser" type="modle.CommonUser"--%>
+    <form:form class="signin-form" action="http://localhost:8080/com_hnist_war_exploded/commonlogin" method="post" modelAttribute="CommonUser">
 <div class="form-group">
 <label>输入账号</label>
-<input type="email" class="form-control" placeholder="输入邮箱账号" required="" id="com_user">
+<input type="email" class="form-control" placeholder="输入邮箱账号" required="" id="com_user" name="com_user">
 </div>
 <div class="form-group">
 <label>输入密码</label>
-<input type="password" class="form-control" placeholder="输入密码" required="" id="com_pwd">
+<input type="password" class="form-control" placeholder="输入密码" required="" id="com_pwd" name="com_pwd">
 </div>
 <div class="signin-btn text-center">
-<button type="submit" onclick="tocommonlogin()">登录</button>
+<button type="submit">登录</button>
 </div>
-    <span id="msg" name="msg" class="span text-center">
-
-    </span>
 <div class="other-signin text-center">
 <span>或者使用其他账号</span>
 <ul>
@@ -258,7 +257,7 @@
 </a>
 </p>
 </div>
-</form>
+</form:form>
 </div>
 </div>
 </div>

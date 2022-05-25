@@ -152,6 +152,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td>
 							<a title="编辑" class="mr-5">编辑</a>
 							<a title="删除">删除</a>
+							<a title="批准">删除</a>
+							<a title="反对">删除</a>
 						</td>
 					</tr>
 					</tbody>
