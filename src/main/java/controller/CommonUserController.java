@@ -1,6 +1,7 @@
 package controller;
 
 import modle.CommonUser;
+import modle.Company;
 import modle.PersonMg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,9 +60,36 @@ public class CommonUserController {
 
     public String SaveAccount(@ModelAttribute PersonMg personMg, Model model, HttpSession session)
     {
-        return commonUserService.updataPerSonMG(personMg, model, session);
+        return commonUserService.updatePerSonMG(personMg, model, session);
     }
-
+    @RequestMapping("/resetpwd")
+    public @ResponseBody Object  resetpwd(String account, String oldpwd,String newpwd, Model model, HttpSession session)
+    {
+         return commonUserService.updatePwd(account,oldpwd, newpwd, model, session);
+    }
+    @RequestMapping("/Toresetpwd")
+    public String Toresetpwd()
+    {
+        return "reset-password";
+    }
+    @RequestMapping("/logout")
+    public String logout(HttpSession session)
+    {
+        session.removeAttribute("username");
+        session.removeAttribute("message");
+        session.removeAttribute("email");
+        return "/default";
+    }
+    @RequestMapping("Topostcompany")
+    public String Topostcompany()
+    {
+       return "post-company";
+    }
+    @RequestMapping("postcompany")
+    public @ResponseBody Object postcompany(@ModelAttribute Company company, Model model, HttpSession session)
+    {
+       return commonUserService.InsertPersonAndCompany(company, model, session);
+    }
 
 
 

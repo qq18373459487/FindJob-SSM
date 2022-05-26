@@ -2,6 +2,7 @@ package services;
 
 import ResponseMessage.ReturnObject;
 import modle.CommonUser;
+import modle.Company;
 import modle.PersonMg;
 import org.springframework.ui.Model;
 
@@ -12,5 +13,7 @@ public interface CommonUserService {
     ReturnObject InsertComUser(CommonUser user, Model model, HttpSession session);
     String SelectComUser(CommonUser user, Model model, HttpSession session);
     String SelectPerSonMG(PersonMg personMg, Model model, HttpSession session,String email);
-    String updataPerSonMG(PersonMg personMg, Model model, HttpSession session);
+    String updatePerSonMG(PersonMg personMg, Model model, HttpSession session);
+    ReturnObject updatePwd(String account,String OldPwd,String NewPwd,Model model,HttpSession session);
+    ReturnObject InsertPersonAndCompany(Company company, Model model, HttpSession session);
 }

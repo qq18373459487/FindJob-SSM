@@ -104,10 +104,10 @@
          <a href="#" class="nav-link dropdown-toggle">用户</a>
          <ul class="dropdown-menu">
           <li class="nav-item">
-           <a href="../../qianduan/account.html" class="nav-link">账号</a>
+           <a href="post-company.jsp" class="nav-link">账号</a>
 
           <li class="nav-item">
-           <a href="../../qianduan/reset-password.html" class="nav-link">修改密码</a>
+           <a href="reset-password.jsp" class="nav-link">修改密码</a>
           </li>
          </ul>
         </li>
@@ -219,7 +219,7 @@
       </a>
       </li> -->
       <li>
-       <a href="#">
+       <a href="http://localhost:8080/com_hnist_war_exploded/logout">
         <i class='bx bx-log-out'></i>
         退出</a>
       </li>
@@ -416,7 +416,7 @@ Subscribe
      <h3>求职者</h3>
      <ul>
       <li>
-       <a href="account.html">
+       <a href="post-company.jsp">
         <i class='bx bx-chevrons-right bx-tada'></i>
         账户
        </a>

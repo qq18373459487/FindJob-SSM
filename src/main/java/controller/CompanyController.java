@@ -28,4 +28,19 @@ public class CompanyController {
 
         return companyService.GetAllCompany(company,model,session,page);}
 
+
+    @RequestMapping("/cheak")
+    public String cheakCompany(String id, Model model, HttpSession session,String name)
+    //转发进入登陆页面
+    {
+
+      return companyService.cheakCompany(id, model, session, name);
     }
+
+    @RequestMapping("/delete")
+    public String deleteCompany(String id,Model model, HttpSession session)
+    {
+        return companyService.deleteCompany(id, model, session);
+    }
+
+}

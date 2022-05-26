@@ -10,4 +10,12 @@ public interface CompanyMapper {
 
     // 查询页数
     int queryPage();
+
+    String selectCompanyById(int id);
+
+    int insertCompany(Company company);
+
+    int updateCompanyState(@Param("id")int id,@Param("state")String state);
+
+    int deleteCompany(int id);
 }

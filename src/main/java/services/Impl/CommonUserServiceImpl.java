@@ -2,7 +2,10 @@ package services.Impl;
 
 import ResponseMessage.ReturnObject;
 import mapper.ComUserMapper;
+import mapper.CompanyMapper;
+import mapper.PersonMapper;
 import modle.CommonUser;
+import modle.Company;
 import modle.PersonMg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,12 @@ import java.util.Map;
 public class CommonUserServiceImpl implements CommonUserService {
     @Autowired
     private ComUserMapper commonUserMapper;
+
+    @Autowired
+    private CompanyMapper companyMapper;
+
+    @Autowired
+    private PersonMapper personMapper;
     @Override
     public ReturnObject InsertComUser(CommonUser user, Model model, HttpSession session)
     {
@@ -28,6 +37,7 @@ public class CommonUserServiceImpl implements CommonUserService {
         //调用service方法查询用户
         ReturnObject returnObject = new ReturnObject();
         int a = commonUserMapper.insertBycom_user(map);
+        personMapper.insertPerson_email(user.getEmail());
         if(a==1)
         {
             returnObject.setCode("1");
@@ -66,14 +76,49 @@ public class CommonUserServiceImpl implements CommonUserService {
 
     @Override
     public String SelectPerSonMG(PersonMg personMg, Model model, HttpSession session,String email) {
-        personMg=commonUserMapper.selectByPersonId(email);
+        personMg=personMapper.selectByPersonId(email);
         model.addAttribute("person",personMg);
         return "/account";
     }
 
     @Override
-    public String updataPerSonMG(PersonMg personMg, Model model, HttpSession session) {
-        commonUserMapper.updapePerson(personMg);
+    public String updatePerSonMG(PersonMg personMg, Model model, HttpSession session) {
+        personMapper.updatePerson(personMg);
         return "/account";
+    }
+
+    @Override
+    public ReturnObject updatePwd(String account,String OldPwd, String NewPwd, Model model, HttpSession session)
+    {
+        Map<String,Object> map=new HashMap<>();
+        map.put("oldpwd",OldPwd);
+        map.put("newpwd",NewPwd);
+        map.put("account",account);
+     int i= commonUserMapper.updateBycom_user(map);
+     ReturnObject returnObject=new ReturnObject();
+     if(i==0)
+     {
+         returnObject.setMessage("修改失败");
+     }
+     else
+     {
+         returnObject.setMessage("修改成功");
+     }
+     return returnObject;
+    }
+
+    @Override
+    public ReturnObject InsertPersonAndCompany(Company company, Model model, HttpSession session)
+    {
+        ReturnObject returnObject=new ReturnObject();
+       int i= companyMapper.insertCompany(company);
+        if (i==0)
+        {
+            returnObject.setMessage("入驻失败，重新输入");
+        }else
+        {
+            returnObject.setMessage("入驻成功");
+        }
+        return returnObject;
     }
 }

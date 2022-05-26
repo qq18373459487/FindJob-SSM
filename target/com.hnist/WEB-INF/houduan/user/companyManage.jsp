@@ -5,7 +5,6 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,28 +129,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<table class="table table-bordered table-striped table-hover">
 					<thead>
 					<tr>
-						<th>id</th>
+						<td>id</td>
 						<th>公司名称</th>
 						<th>招聘总人数</th>
 						<th>公司地址</th>
 						<th>公司邮箱</th>
 						<th>资质</th>
+						<th>状态</th>
 						<th>操作</th>
 					</tr>
 					</thead>
 <c:forEach items="${list}" var="company">
-
 					<tbody>
 					<tr class="cen">
-						<td>${company.getCompanyId()}</td>
-						<td class="lt"><a href="#">${company.getCompanyName()}</a></td>
+						<td>${company.getId()}</td>
+						<td>${company.getCompanyName()}</td>
 						<td>${company.getCompanyData()}</td>
 						<td>${company.getCompanyAddress()}</td>
 						<td>${company.getCompanyEmail()}</td>
 						<td>${company.getCompanyQualification()}</td>
+						<td>${company.getState()}</td>
 						<td>
 							<a title="编辑" class="mr-5">编辑</a>
-							<a title="删除">删除</a>
+							<a title="删除" onclick="deleteCompany(${company.getId()})">删除</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/company/cheak?name=审核通过&&id=${company.getId()}">通过</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/company/cheak?name=审核不通过&&id=${company.getId()}">不通过</a>
 						</td>
 					</tr>
 					</tbody>
@@ -191,5 +193,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			window.location.href="http://localhost:8080/com_hnist_war_exploded/company/GetAllCompany?page="+p;
 		}
 	});
+</script>
+<script type="text/javascript">
+	function deleteCompany(id)
+	{
+		alert("确定要删除吗？");
+		window.location.href="http://localhost:8080/com_hnist_war_exploded/company/delete?id="+id;
+	}
 </script>
 </html>

@@ -17,4 +17,8 @@ public interface CompanyService {
 
     String GetAllCompany(Company company, Model model, HttpSession session, String page);
 
+    String cheakCompany(String id, Model model, HttpSession session, String name);
+
+    String deleteCompany(String id,Model model,HttpSession session);
+
 }

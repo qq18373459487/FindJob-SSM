@@ -2,6 +2,7 @@ package controller;
 
 import modle.FileModle;
 import modle.User;
+import modle.WorkList;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import services.ExcelService;
 import services.UserService;
+import services.WorkService;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,6 +35,9 @@ public class UserController {
 
     @Autowired
     private ExcelService excelService;
+
+    @Autowired
+    private WorkService workService;
 
     @RequestMapping("/login")
     public String login()
@@ -64,6 +70,13 @@ public class UserController {
     {
         return "/404";
     }
+
+    @RequestMapping("/workList")
+    public String workList(@ModelAttribute WorkList workList, Model model, HttpSession session, String page)
+    {
+        return workService.GetUserWork(workList, model, session, page);
+    }
+
 
     @RequestMapping("/file")
     public String file(Model model,HttpSession session)

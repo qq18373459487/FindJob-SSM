@@ -104,7 +104,7 @@
 <a href="http://localhost:8080/com_hnist_war_exploded/Account?email=${email}" class="nav-link">账号</a>
 
 <li class="nav-item">
-<a href="../../qianduan/reset-password.html" class="nav-link">修改密码</a>
+<a href="http://localhost:8080/com_hnist_war_exploded/Toresetpwd" class="nav-link">修改密码</a>
 </li>
 </ul>
 </li>
@@ -113,15 +113,15 @@
 </li>
 </ul>
 </li>
-<%--<li class="nav-item">--%>
-<%--<a href="#" class="nav-link dropdown-toggle">博客</a>--%>
-<%--<ul class="dropdown-menu">--%>
+<li class="nav-item">
+<a href="#" class="nav-link dropdown-toggle">公司</a>
+<ul class="dropdown-menu">
 <%--<li class="nav-item">--%>
 <%--<a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>--%>
 <%--</li>--%>
-<%--<li class="nav-item">--%>
-<%--<a href="../../qianduan/blog-details.html" class="nav-link">详情</a>--%>
-<%--</li>--%>
+<li class="nav-item">
+<a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -173,7 +173,7 @@
 </div>
 </form>
 <ul class="keyword">
-  <li>热门关键词： 汽车 教育 健康 和 护理工程<br>
+  <li>热门关键词： 新能源汽车 教育 健康 和 互联网<br>
   </li>
 </ul>
 </div>
@@ -206,7 +206,7 @@
 <h3>求职者</h3>
 <ul>
 <li>
-<a href="../../qianduan/account.html">
+<a href="post-company.jsp">
 <i class='bx bx-chevrons-right bx-tada'></i>
 账户
 </a>

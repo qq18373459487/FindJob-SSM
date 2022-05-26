@@ -83,6 +83,12 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
+    public String GetUserWork(WorkList workList, Model model, HttpSession session, String page) {
+        GetAllWork(workList, model, session, page);
+        return "user/worklist";
+    }
+
+    @Override
     public String SelectWorkByNameAndType(WorkList workList, Model model, HttpSession session)
     {
 

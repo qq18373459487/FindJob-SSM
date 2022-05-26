@@ -260,7 +260,7 @@
 <h3>求职者</h3>
 <ul>
 <li>
-<a href="qianduan/account.html">
+<a href="account.html">
 <i class='bx bx-chevrons-right bx-tada'></i>
 账户
 </a>
@@ -382,8 +382,7 @@ Address:
                 {
                     if(data.code==="1")
                     {
-                        window.location.href('http://localhost:8080/com_hnist_war_exploded/tocommonlogin');
-
+                        $("#msg").html("注册成功");
                     }else if(data.code=="2")
                     {
                         $("#msg").html("注册失败");

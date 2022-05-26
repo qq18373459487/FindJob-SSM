@@ -9,4 +9,21 @@
     <select id="queryPage" resultType="java.lang.Integer">
         select count(id) from company;
     </select>
+
+    <select id="selectCompanyById" parameterType="int" resultType="string">
+        select useremail from company where id=#{id};
+    </select>
+
+    <insert id="insertCompany" parameterType="modle.Company" >
+        insert into company(companyname,companyaddress,companyemail,useremail)
+        values (#{CompanyName},#{CompanyAddress},#{CompanyEmail},#{userEmail})
+    </insert>
+
+<update id="updateCompanyState">
+    update company SET state=#{state} where id=#{id}
+</update>
+
+    <delete id="deleteCompany" parameterType="int">
+        delete from company where id=#{id}
+    </delete>
 </mapper>

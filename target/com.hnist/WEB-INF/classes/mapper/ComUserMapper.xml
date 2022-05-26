@@ -22,8 +22,8 @@
     select * from commonuser where com_user=#{com_user} and com_pwd=#{com_pwd}
 </select>
 
-    <update id="updateBycom_user">
-update commonuser SET com_pwd=#{com_pwd}  where com_user=#{com_user}
+    <update id="updateBycom_user" parameterType="Map">
+update commonuser SET com_pwd=#{newpwd}  where com_pwd=#{oldpwd} and com_user=#{account}
     </update>
 
     <delete id="deleteBycom_user">
@@ -35,12 +35,7 @@ delete from commonuser where com_user=#{com_user}
        values (#{com_user},#{com_pwd},#{email})
     </insert>
 
-    <select id="selectByPersonId" parameterType="string" resultMap="ResultPerson">
-        select * from person where email=#{email}
-    </select>
 
-    <update id="updapePerson" parameterType="modle.PersonMg">
-        update person SET username=#{username}, email=#{email},age=#{age},city=#{city} ,experience=#{experience}
-        where email=#{email}
-    </update>
+
+
 </mapper>

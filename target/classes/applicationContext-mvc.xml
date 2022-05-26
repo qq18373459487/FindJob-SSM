@@ -68,6 +68,8 @@ http://www.springframework.org/schema/util/spring-util.xsd">
         <mvc:interceptor>
             <mvc:mapping path="/work/ToAddWork"/>
             <mvc:mapping path="/Account"/>
+            <mvc:mapping path="/resetpwd"/>
+            <mvc:mapping path="/Toresetpwd"/>
             <mvc:exclude-mapping path="/commonlogin"/>
             <bean class="ResponseMessage.ComLoginInterceptor"></bean>
         </mvc:interceptor>

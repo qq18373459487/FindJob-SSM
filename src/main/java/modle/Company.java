@@ -5,8 +5,28 @@ public class Company {
     String CompanyAddress;
     String CompanyEmail;
     String CompanyData;
-    int CompanyId;
+    int id;
     String CompanyQualification;
+    String state;
+    String userEmail;
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+
 
     public String getCompanyQualification() {
         return CompanyQualification;
@@ -16,9 +36,9 @@ public class Company {
         CompanyQualification = companyQualification;
     }
 
-    public int getCompanyId() {return CompanyId;}
+    public int getCompanyId() {return id;}
 
-    public void setCompanyId(int companyId) {CompanyId = companyId;}
+    public void setCompanyId(int companyId) {id = companyId;}
 
     public String getCompanyName() {
         return CompanyName;
@@ -52,6 +72,8 @@ public class Company {
         CompanyData = companyData;
     }
 
+    public String getId(){return String.valueOf(id);}
+
     @Override
     public String toString() {
         return "Company{" +
@@ -59,7 +81,7 @@ public class Company {
                 ", CompanyAddress='" + CompanyAddress + '\'' +
                 ", CompanyEmail='" + CompanyEmail + '\'' +
                 ", CompanyData='" + CompanyData + '\'' +
-                ", CompanyId='" + CompanyId + '\'' +
+                ", CompanyId='" + id + '\'' +
                 '}';
     }
 

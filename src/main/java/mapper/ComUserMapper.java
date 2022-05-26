@@ -2,6 +2,7 @@ package mapper;
 
 
 import modle.CommonUser;
+import modle.Company;
 import modle.PersonMg;
 import java.util.Map;
 
@@ -14,7 +15,8 @@ public interface ComUserMapper {
     int deleteBycom_user(Map<String,Object> map);
 
     int insertBycom_user(Map<String,Object> map);
-    PersonMg selectByPersonId(String email);
-    int updapePerson(PersonMg personMg);
+
+
+
 
 }

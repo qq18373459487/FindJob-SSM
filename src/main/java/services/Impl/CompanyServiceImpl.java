@@ -1,8 +1,8 @@
 package services.Impl;
 
 import mapper.CompanyMapper;
+import mapper.PersonMapper;
 import modle.Company;
-import modle.WorkList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -15,7 +15,10 @@ public class CompanyServiceImpl implements CompanyService {
    int num=5;
 
    @Autowired
-   CompanyMapper companyMapper;
+  private CompanyMapper companyMapper;
+
+   @Autowired
+   private PersonMapper personMapper;
     @Override
     public List<Company> queryWorkListPage(int page) {
         int n = this.num;
@@ -68,5 +71,31 @@ public class CompanyServiceImpl implements CompanyService {
         //绑定当前的页码
         model.addAttribute("page", ReturnPage);
         return "/user/companyManage";
+    }
+
+    @Override
+    public String cheakCompany(String id, Model model, HttpSession session, String name) {
+        int ID= Integer.parseInt(id);
+        if(name.equals("审核通过"))
+        {
+         String email= companyMapper.selectCompanyById(ID);
+         companyMapper.updateCompanyState(ID,"审核通过");
+         personMapper.updatePerson_identityByEmail(email,"HR");
+
+        }else
+        {
+            String email= companyMapper.selectCompanyById(ID);
+            companyMapper.updateCompanyState(ID,"审核不通过");
+
+        }
+        Company company=null;
+        return GetAllCompany(company,model,session,null);
+    }
+
+    @Override
+    public String deleteCompany(String id, Model model, HttpSession session) {
+        companyMapper.deleteCompany(Integer.valueOf(id));
+        Company company=null;
+        return GetAllCompany(company,model,session,null);
     }
 }

@@ -57,23 +57,7 @@
 							<a href="companyManage.jsp">用户列表</a>
 						</dd>
 						<dd>
-							<a href="companyManage.jsp">工作岗位列表</a>
-						</dd>
-						<dd>
-							<a href="companyManage.jsp">个人列表</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-inbox"></i>文章管理<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="companyManage.jsp">文章发布</a>
-						</dd>
-						<dd>
-							<a href="companyManage.jsp">文章审核</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/user/workList">工作岗位列表</a>
 						</dd>
 					</dl>
 				</li>

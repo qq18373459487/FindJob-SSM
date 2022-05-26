@@ -18,6 +18,7 @@ public interface WorkService
     int queryPage();
 
     String GetAllWork(WorkList workList, Model model, HttpSession session,String page);
+    String GetUserWork(WorkList workList, Model model, HttpSession session,String page);
 
     //实现查找工作的功能
 
