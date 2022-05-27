@@ -113,7 +113,7 @@
            <a href="http://localhost:8080/com_hnist_war_exploded/Account?email=${email}" class="nav-link">账号</a>
 
           <li class="nav-item">
-           <a href="reset-password.jsp" class="nav-link">修改密码</a>
+           <a href="http://localhost:8080/com_hnist_war_exploded/Toresetpwd" class="nav-link">修改密码</a>
           </li>
          </ul>
         </li>
@@ -125,11 +125,8 @@
       <li class="nav-item">
        <a href="#" class="nav-link dropdown-toggle">公司</a>
        <ul class="dropdown-menu">
-        <%--<li class="nav-item">--%>
-        <%--<a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>--%>
-        <%--</li>--%>
         <li class="nav-item">
-         <a href="../../qianduan/blog-details.html" class="nav-link">公司入驻</a>
+         <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
         </li>
        </ul>
       </li>

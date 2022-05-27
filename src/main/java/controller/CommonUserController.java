@@ -80,16 +80,41 @@ public class CommonUserController {
         session.removeAttribute("email");
         return "/default";
     }
+
     @RequestMapping("Topostcompany")
     public String Topostcompany()
     {
        return "post-company";
     }
+
     @RequestMapping("postcompany")
     public @ResponseBody Object postcompany(@ModelAttribute Company company, Model model, HttpSession session)
     {
        return commonUserService.InsertPersonAndCompany(company, model, session);
     }
+
+    @RequestMapping("deleteCommonUser")
+    public String deleteCommonUser(String id, Model model, HttpSession session)
+    {
+        return commonUserService.deleteCommonUser(id, model, session);
+    }
+    @RequestMapping("/insertUser")
+    public String uinsertUser(@ModelAttribute CommonUser user, Model model, HttpSession session)
+    {
+        return commonUserService.insertUser(user,model,session);
+    }
+    @RequestMapping("/user")
+    public String user(Model model, HttpSession session, String page)
+    {
+        return commonUserService.GetAllUser(model,session,page);
+    }
+    @RequestMapping("/updateCommonUser")
+    public String updateCommonUser(@ModelAttribute CommonUser commonUser,Model model, HttpSession session)
+    {
+        return commonUserService.updateUser(commonUser, model, session);
+    }
+
+
 
 
 

@@ -81,11 +81,11 @@ public class CompanyServiceImpl implements CompanyService {
          String email= companyMapper.selectCompanyById(ID);
          companyMapper.updateCompanyState(ID,"审核通过");
          personMapper.updatePerson_identityByEmail(email,"HR");
-
         }else
         {
             String email= companyMapper.selectCompanyById(ID);
             companyMapper.updateCompanyState(ID,"审核不通过");
+            personMapper.updatePerson_identityByEmail(email,"普通用户");
 
         }
         Company company=null;
@@ -96,6 +96,20 @@ public class CompanyServiceImpl implements CompanyService {
     public String deleteCompany(String id, Model model, HttpSession session) {
         companyMapper.deleteCompany(Integer.valueOf(id));
         Company company=null;
+        return GetAllCompany(company,model,session,null);
+    }
+
+    @Override
+    public String insetCompanyByUser(Company company, Model model, HttpSession session) {
+        companyMapper.insertCompanyByUser(company);
+        return GetAllCompany(company,model,session,null);
+    }
+
+    @Override
+    public String updateCompanyByUser(Company company, Model model, HttpSession session) {
+
+        companyMapper.updateCompanyByUser(company);
+
         return GetAllCompany(company,model,session,null);
     }
 }

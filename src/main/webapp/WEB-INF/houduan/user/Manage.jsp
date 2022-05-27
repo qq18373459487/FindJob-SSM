@@ -1,9 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +30,34 @@
     <script src="javascript/plug-ins/pagination.js"></script>
     <script src="javascript/public.js"></script>
 </head>
+<style>
+    .hide{
+        display: none;
+    }
+    .c1{
+        position: fixed;
+        top:0;
+        bottom: 0;
+        left:0;
+        right: 0;
+        background: rgba(0,0,0,.5);
+        z-index: 2;
+    }
+    .c2{
+        background-color: white;
+        position: fixed;
+        /*width: 400px;*/
+        /*height: 500px;*/
+        top:50%;
+        left: 50%;
+        z-index: 3;
+        margin-top: -150px;
+        margin-left: -200px;
+    }
+    #modal p {
+        margin-left:80px;
+    }
+</style>
 <body>
 <div class="main-wrap">
     <div class="side-nav">
@@ -81,6 +113,7 @@
         </nav>
         <footer class="side-footer">© DeathGhost 版权所有</footer>
 
+
     </div>
     <div class="content-wrap">
         <header class="top-hd">
@@ -108,17 +141,67 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
-            <div class="form-group">
-                <label for="upfile">上传表格(仅支持Excel)</label>
-                <input id="upfile" type="file" class="file" accept=".xls,.xlsx" name="upfile"/>
-            </div>
-            <div class="form-group">
-                <input type="button" class="form-control btn btn-success btn-sm" value="导入" id="importExcel">
-            </div>
-            <div class="form-group">
-                <input class="form-control btn btn-success btn-sm" type="button" value="导出" id="downloadExcel">
-            </div>
+            <div class="page-wrap">
+                <button class="btn btn-secondary JopenMaskPanel_addStudent mr-10" style="margin-bottom: 20px; margin-left: 20px;" onclick="Show()">添加</button>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <td>id</td>
+                        <th>账号</th>
+                        <th>身份</th>
+                        <th>操作</th>
 
+                    </tr>
+                    </thead>
+                    <c:forEach items="${list}" var="user">
+                        <tbody>
+                        <tr class="cen">
+                            <td>${user.getId()}</td>
+                            <td>${user.getUsername()}</td>
+                            <td>${user.getRealname()}</td>
+                            <td>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/updateUser?id=${user.getId()}&&rename=2">锁定账号</a>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/updateUser?id=${user.getId()}&&rename=1">锁定解除</a>
+                                <a title="删除" onclick="deleteCompany(${user.getId()})">删除</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </c:forEach>
+                </table>
+                <!--开始::结束-->
+
+                <%--这里是隐藏的弹窗--%>
+
+                <%--这里是修改弹窗开始--%>
+                <div id="shade" class="c1 hide"></div>
+                <%--这里是添加弹窗开始--%>
+                <div id="shade" class="c1 hide"></div>
+                <%--@elvariable id="User" type="modle.User"--%>
+                <form:form id="modal" class="c2 hide panel-bd"
+                           action="http://localhost:8080/com_hnist_war_exploded/user/insertUser" modelAttribute="User">
+                    <div class="panel panel-primary">
+                        <div class="panel-hd">管理员添加</div>
+                        <div class="panel-bd">
+                            <p>账号：<input type="text"  name="username"/></p>
+                            <br/>
+                            <p>密码：<input type="text"  name="password"/></p>
+                            <br/>
+                            <p>身份：<input type="text"  name="realname"/></p>
+                            <br/>
+                            <p>
+                                <input type="submit" class="btn btn-primary" value="确定">
+                                <input type="button" class="btn btn-primary" value="取消" onclick="Hide();">
+                            </p>
+                        </div>
+                    </div>
+                </form:form>
+                <%--添加弹窗结束--%>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-bd">
+                    <div class="pagination"></div>
+                </div>
+            </div>
         </main>
         <footer class="btm-ft">
             <p class="clear">
@@ -138,48 +221,48 @@
     </div>
 </div>
 </body>
+<%--这里是控制JS弹窗的--%>
+<script type="text/javascript">
+    function Show(){
+        document.getElementById('shade').classList.remove('hide');
+        document.getElementById('modal').classList.remove('hide');
+    }
+    function Hide(){
+        document.getElementById('shade').classList.add('hide');
+        document.getElementById('modal').classList.add('hide');
+    }
+
+    // function Hide1(){
+    //     document.getElementById('shade').classList.add('hide');
+    //     document.getElementById('modal1').classList.add('hide');
+    // }
+    // function Show1(id){
+    //     document.getElementById('shade').classList.remove('hide');
+    //     document.getElementById('modal1').classList.remove('hide');
+    //     $('#user_id').val(id);
+    //     // $('#company-address').val(address);
+    //     // $('#company-email').val(email);
+    //     // $('#company-companyqualification').val(cq);
+    //     // $('#company-name').val(name);
+    //     // $('#company-number').val(number);
+    // }
+
+</script>
 <script>
-    $("#importExcel").on("click",function (){
-        var formData = new FormData()
-        //检验导入的文件是否为Excel文件
-        var uploadFile = $('#upfile').val()
-        formData.append("upfile",$("#upfile")[0].files[0])
-        formData.append("name",uploadFile)
-        if(uploadFile == null || uploadFile == ''){
-            alert("请选择要上传的Excel文件")
-            return false;
-        }else{
-            var fileExtend = uploadFile.substring(uploadFile.lastIndexOf('.')).toLowerCase();
-            if(fileExtend == '.xls' || fileExtend == '.xlsx'){
-                $.ajax({
-                    url:"http://localhost:8080/com_hnist_war_exploded/user/ajaxUpload",
-                    type:"POST",
-                    data:formData,
-                    processData:false,
-                    contentType:false,
-                    success:function (data) {
-                        if (data == '1'){
-                            alert("导入成功")
-                        }else{
-                            alert("导入失败,日志有错误信息")
-                        }
-                    }
-
-                })
-                return true
-            }else{
-                alert("文件格式需为.xls格式或者.xlsx格式");
-                return false
-            }
+    $(".pagination").createPage({
+        pageCount:${maxPage},
+        current:${page},
+        backFn:function(p)
+        {
+            window.location.href="http://localhost:8080/com_hnist_war_exploded/user/manageList?page="+p;
         }
-    })
-
-    $("#downloadExcel").on("click",function (){
-        //弹出对话框
-        var result = confirm("是否导出Excel？")
-        if (result) {
-            $.post('http://localhost:8080/com_hnist_war_exploded/user/downloadExcel')//直接发出请求不需要参数啥的
-        }
-    })
+    });
+</script>
+<script type="text/javascript">
+    function deleteCompany(id)
+    {
+        alert("确定要删除吗？");
+        window.location.href="http://localhost:8080/com_hnist_war_exploded/user/deleteUser?id="+id;
+    }
 </script>
 </html>

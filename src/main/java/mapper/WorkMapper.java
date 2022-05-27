@@ -18,4 +18,10 @@ public interface WorkMapper
     List<WorkList> queryConditional(WorkList workList);
 
     WorkList queryWorkListById(String id);
+
+    int deleteByid(int id);
+
+    int InsertWorkByUser(WorkList list);
+
+    int updateWorkByUser(WorkList list);
 }

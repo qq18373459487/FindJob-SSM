@@ -34,4 +34,18 @@
     <select id="queryWorkListById" parameterType="string" resultType="modle.WorkList">
         select * from worklist where id=#{id};
     </select>
+
+    <delete id="deleteByid">
+        delete from worklist where id=#{id}
+    </delete>
+
+    <insert id="InsertWorkByUser" parameterType="modle.WorkList" >
+        insert into worklist(workname,postcompany,experince,location,salary,worktime,worktype)
+        values (#{WorkName},#{PostCompany},#{Experince},
+                #{Location},#{Salary},#{WorkTime},#{WorkType})
+    </insert>
+    <update id="updateWorkByUser">
+        update worklist SET workname=#{WorkName},postcompany=#{PostCompany},experince=#{Experince},
+        location=#{Location},salary=#{Salary},worktime=#{WorkTime},worktype=#{WorkType} where id=#{id}
+    </update>
 </mapper>

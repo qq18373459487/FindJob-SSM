@@ -45,9 +45,9 @@ public class WorkController {
     }
 
     @RequestMapping("/DeleteWork")
-    public void DeleteWork(@ModelAttribute WorkList workList,Model model,HttpSession session)
+    public String DeleteWork(String id,Model model,HttpSession session)
     {
-        return ;
+        return workService.deleteWork(id, model, session);
     }
     @RequestMapping("/UpdateWork")
     public void UpdateWork(@ModelAttribute WorkList workList,Model model,HttpSession session)
@@ -65,7 +65,21 @@ public class WorkController {
     //查询这里也需要用到到分页
     public String SelectWorkDetail(@ModelAttribute WorkList workList,Model model,HttpSession session,String id)
     {
-        System.out.println("id"+id);
         return workService.SelectWorkById(workList, model, session,id);
+    }
+    @RequestMapping("/workList")
+    public String workList(@ModelAttribute WorkList workList, Model model, HttpSession session, String page)
+    {
+        return workService.GetUserWork(workList, model, session, page);
+    }
+    @RequestMapping("/insertWorkByUser")
+    public String insertWorkByUser(@ModelAttribute WorkList workList, Model model, HttpSession session)
+    {
+        return workService.insertWorkByUser(workList, model, session);
+    }
+    @RequestMapping("/updateWorkByUser")
+    public String updateWorkByUser(@ModelAttribute WorkList workList, Model model, HttpSession session)
+    {
+        return workService.updateWorkByUser(workList, model, session);
     }
 }

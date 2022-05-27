@@ -27,7 +27,7 @@ update commonuser SET com_pwd=#{newpwd}  where com_pwd=#{oldpwd} and com_user=#{
     </update>
 
     <delete id="deleteBycom_user">
-delete from commonuser where com_user=#{com_user}
+delete from commonuser where id=#{id}
     </delete>
 
     <insert id="insertBycom_user" parameterType="Map" >
@@ -35,7 +35,22 @@ delete from commonuser where com_user=#{com_user}
        values (#{com_user},#{com_pwd},#{email})
     </insert>
 
+    <insert id="insertUser" parameterType="modle.CommonUser" >
+        insert into commonuser(com_user,com_pwd,email)
+        values (#{com_user},#{com_pwd},#{email})
+    </insert>
 
+    <select id="queryUserList" resultType="modle.CommonUser">
+        select * from commonuser order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryPage" resultType="java.lang.Integer">
+        select count(id) from commonuser;
+    </select>
+
+    <update id="updateUser" parameterType="modle.CommonUser">
+        update commonuser SET com_user=#{com_user},email=#{email}  where id=#{id}
+    </update>
 
 
 </mapper>

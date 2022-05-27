@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%
 String path = request.getContextPath();
@@ -27,6 +30,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="javascript/plug-ins/pagination.js"></script>
 	<script src="javascript/public.js"></script>
 </head>
+<style>
+	.hide{
+		display: none;
+	}
+	.c1{
+		position: fixed;
+		top:0;
+		bottom: 0;
+		left:0;
+		right: 0;
+		background: rgba(0,0,0,.5);
+		z-index: 2;
+	}
+	.c2{
+		background-color: white;
+		position: fixed;
+		/*width: 400px;*/
+		/*height: 500px;*/
+		top:50%;
+		left: 50%;
+		z-index: 3;
+		margin-top: -150px;
+		margin-left: -200px;
+	}
+	#modal p {
+		margin-left:80px;
+	}
+</style>
 <body>
 <div class="main-wrap">
 	<div class="side-nav">
@@ -43,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
 			<h2>
-				<a href="index.jsp" class="InitialPage"><i class="icon-dashboard"></i>主页</a>
+				<a href="http://localhost:8080/com_hnist_war_exploded/user/login-sucess" class="InitialPage"><i class="icon-dashboard"></i>主页</a>
 			</h2>
 			<ul>
 				<li>
@@ -52,29 +83,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<i class="icon-columns"></i>数据列表<i class="icon-angle-right"></i>
 						</dt>
 						<dd>
-							<a href="companyManage.jsp">公司列表</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/company/GetAllCompany">公司列表</a>
 						</dd>
 						<dd>
-							<a href="companyManage.jsp">用户列表</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/user">用户列表</a>
 						</dd>
 						<dd>
-							<a href="companyManage.jsp">工作岗位列表</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/work/workList">工作岗位列表</a>
 						</dd>
 						<dd>
-							<a href="companyManage.jsp">个人列表</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-inbox"></i>文章管理<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="companyManage.jsp">文章发布</a>
-						</dd>
-						<dd>
-							<a href="companyManage.jsp">文章审核</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/user/manageList">管理员列表</a>
 						</dd>
 					</dl>
 				</li>
@@ -84,17 +102,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<i class="icon-inbox"></i>文件管理<i class="icon-angle-right"></i>
 						</dt>
 						<dd>
-							<a href="companyManage.jsp">文件下载</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/user/file">文件下载</a>
 						</dd>
 						<dd>
-							<a href="companyManage.jsp">数据导入导出</a>
+							<a href="http://localhost:8080/com_hnist_war_exploded/user/excel">数据导入导出</a>
 						</dd>
 					</dl>
 				</li>
-
 			</ul>
 		</nav>
-
 		<footer class="side-footer">© DeathGhost 版权所有</footer>
 
 	</div>
@@ -106,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="hd-rt">
 				<ul>
 					<li>
-						<a href="#" target="_blank"><i class="icon-home"></i>前台访问</a>
+						<a href="http://localhost:8080/com_hnist_war_exploded/default" target="_blank"><i class="icon-home"></i>前台访问</a>
 					</li>
 					<li>
 						<a><i class="icon-random"></i>清除缓存</a>
@@ -118,14 +134,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a><i class="icon-bell-alt"></i>系统消息</a>
 					</li>
 					<li>
-						<a href="javascript:void(0)" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
+						<a href="http://localhost:8080/com_hnist_war_exploded/user/login" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
 					</li>
 				</ul>
 			</div>
 		</header>
 		<main class="main-cont content mCustomScrollbar">
 			<div class="page-wrap">
-				<button class="btn btn-secondary JopenMaskPanel_addStudent mr-10" style="margin-bottom: 20px; margin-left: 20px;">添加</button>
+				<button onclick="Show()" class="btn btn-secondary JopenMaskPanel_addStudent mr-10" style="margin-bottom: 20px; margin-left: 20px;">添加</button>
 				<table class="table table-bordered table-striped table-hover">
 					<thead>
 					<tr>
@@ -142,15 +158,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <c:forEach items="${list}" var="company">
 					<tbody>
 					<tr class="cen">
-						<td>${company.getId()}</td>
-						<td>${company.getCompanyName()}</td>
-						<td>${company.getCompanyData()}</td>
-						<td>${company.getCompanyAddress()}</td>
-						<td>${company.getCompanyEmail()}</td>
-						<td>${company.getCompanyQualification()}</td>
+						<td >${company.getId()}</td>
+						<td >${company.getCompanyName()}</td>
+						<td >${company.getCompanyData()}</td>
+						<td >${company.getCompanyAddress()}</td>
+						<td >${company.getCompanyEmail()}</td>
+						<td >${company.getCompanyQualification()}</td>
 						<td>${company.getState()}</td>
 						<td>
-							<a title="编辑" class="mr-5">编辑</a>
+							<a title="编辑" onclick="Show1(${company.getId()})">编辑</a>
 							<a title="删除" onclick="deleteCompany(${company.getId()})">删除</a>
 							<a href="http://localhost:8080/com_hnist_war_exploded/company/cheak?name=审核通过&&id=${company.getId()}">通过</a>
 							<a href="http://localhost:8080/com_hnist_war_exploded/company/cheak?name=审核不通过&&id=${company.getId()}">不通过</a>
@@ -161,6 +177,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</table>
 				<!--开始::结束-->
 			</div>
+
+			<%--这里是隐藏的弹窗--%>
+<%--这里是添加弹窗开始--%>
+			<div id="shade" class="c1 hide"></div>
+					<%--@elvariable id="Company" type="modle.Company"--%>
+					<form:form id="modal" class="c2 hide panel-bd"
+							   action="http://localhost:8080/com_hnist_war_exploded/company/insertCompanyByUser" modelAttribute="Company">
+						<div class="panel panel-primary">
+							<div class="panel-hd">公司添加</div>
+							<div class="panel-bd">
+								<p>公司名称：<input type="text"  name="CompanyName"/></p>
+								<br/>
+								<p>招聘总人数：<input type="text"  name="CompanyData"/></p>
+								<br/>
+								<p>公司地址：<input type="text"  name="CompanyAddress"/></p>
+								<br/>
+								<p>公司邮箱：<input type="text"   name="CompanyEmail"/></p>
+								<br/>
+								<p>资质：<input type="text"  name="CompanyQualification" /></p>
+								<br/>
+								<p>HR：<input type="text"  name="userEmail" /></p>
+								<br/>
+								<p>
+									<input type="submit" class="btn btn-primary" value="确定">
+									<input type="button" class="btn btn-primary" value="取消" onclick="Hide();">
+								</p>
+							</div>
+、					</div>
+			</form:form>
+<%--添加弹窗结束--%>
+
+
+<%--修改弹窗开始--%>
+			<form:form id="modal1" class="c2 hide panel-bd"
+					   action="http://localhost:8080/com_hnist_war_exploded/company/updateCompanyByUser" modelAttribute="Company">
+				<div class="panel panel-primary">
+					<div class="panel-hd">修改信息</div>
+					<div class="panel-bd">
+						<p>id：<input type="text" id="company-id" name="id" readonly="readonly"/></p>
+						<br/>
+						<p>公司名称：<input type="text" id="company-name" name="CompanyName"/></p>
+						<br/>
+						<p>招聘总人数：<input type="text" id="company-number" name="CompanyData"/></p>
+						<br/>
+						<p>公司地址：<input type="text" id="company-address" name="CompanyAddress"/></p>
+						<br/>
+						<p>公司邮箱：<input type="text" id="company-email" name="CompanyEmail"/></p>
+						<br/>
+						<p>资质：<input type="text" id="company-companyqualification" name="CompanyQualification" /></p>
+						<br/>
+						<p>
+							<input type="submit" class="btn btn-primary" value="确定">
+							<input type="button" class="btn btn-primary" value="取消" onclick="Hide1();">
+						</p>
+					</div>
+					、					</div>
+			</form:form>
+<%--编辑弹窗结束--%>
 			<div class="panel panel-default">
 				<div class="panel-bd">
 					<div class="pagination"></div>
@@ -184,12 +258,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</footer>
 	</div>
 </div>
+
 </body>
+<%--这里是控制JS弹窗的--%>
+<script type="text/javascript">
+	function Show(){
+		document.getElementById('shade').classList.remove('hide');
+		document.getElementById('modal').classList.remove('hide');
+	}
+	function Hide(){
+		document.getElementById('shade').classList.add('hide');
+		document.getElementById('modal').classList.add('hide');
+	}
+
+	function Hide1(){
+		document.getElementById('shade').classList.add('hide');
+		document.getElementById('modal1').classList.add('hide');
+	}
+	function Show1(id){
+		document.getElementById('shade').classList.remove('hide');
+		document.getElementById('modal1').classList.remove('hide');
+		$('#company-id').val(id);
+		// $('#company-address').val(address);
+		// $('#company-email').val(email);
+		// $('#company-companyqualification').val(cq);
+		// $('#company-name').val(name);
+		// $('#company-number').val(number);
+	}
+
+</script>
+<%--这下面是删除和分页--%>
 <script>
 	$(".pagination").createPage({
 		pageCount:${maxPage},
 		current:${page},
-		backFn:function(p){
+		backFn:function(p)
+		{
 			window.location.href="http://localhost:8080/com_hnist_war_exploded/company/GetAllCompany?page="+p;
 		}
 	});
@@ -200,5 +304,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		alert("确定要删除吗？");
 		window.location.href="http://localhost:8080/com_hnist_war_exploded/company/delete?id="+id;
 	}
+
 </script>
 </html>

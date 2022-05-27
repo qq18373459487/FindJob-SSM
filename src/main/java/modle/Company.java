@@ -9,7 +9,23 @@ public class Company {
     String CompanyQualification;
     String state;
     String userEmail;
+    String c_id;
+    public String getC_id() {
+        return c_id;
+    }
 
+    public void setC_id(String c_id) {
+        this.c_id = c_id;
+    }
+
+
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getUserEmail() {
         return userEmail;
     }
@@ -36,9 +52,6 @@ public class Company {
         CompanyQualification = companyQualification;
     }
 
-    public int getCompanyId() {return id;}
-
-    public void setCompanyId(int companyId) {id = companyId;}
 
     public String getCompanyName() {
         return CompanyName;
@@ -72,7 +85,6 @@ public class Company {
         CompanyData = companyData;
     }
 
-    public String getId(){return String.valueOf(id);}
 
     @Override
     public String toString() {

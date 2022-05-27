@@ -4,7 +4,7 @@ public class WorkList {
 
 
 
-    String Id;
+    int Id;
     String WorkName;
     int WorkNumber;
     String PostCompany;
@@ -14,13 +14,15 @@ public class WorkList {
     String WorkTime;
     String WorkType;
     String WorkDetail;
-    public String getId() {
+
+    public int getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         Id = id;
     }
+
     public String getWorkDetail() {
         return WorkDetail;
     }

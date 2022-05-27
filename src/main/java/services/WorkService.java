@@ -26,4 +26,10 @@ public interface WorkService
 
     String SelectWorkById(WorkList workList, Model model, HttpSession session,String id);
 
+    String deleteWork(String id,Model model,HttpSession session);
+
+    String insertWorkByUser(WorkList workList, Model model, HttpSession session);
+
+    String updateWorkByUser(WorkList workList, Model model, HttpSession session);
+
 }

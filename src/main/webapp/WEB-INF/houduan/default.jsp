@@ -87,7 +87,7 @@
 <a href="http://localhost:8080/com_hnist_war_exploded/work/ToSelectWork" class="nav-link">搜索工作</a>
 </li>
 <li class="nav-item">
-<a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
+<a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作(仅HR可用)</a>
 </li>
 <li class="nav-item">
 <a href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork" class="nav-link">工作列表</a>
@@ -116,9 +116,6 @@
 <li class="nav-item">
 <a href="#" class="nav-link dropdown-toggle">公司</a>
 <ul class="dropdown-menu">
-<%--<li class="nav-item">--%>
-<%--<a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>--%>
-<%--</li>--%>
 <li class="nav-item">
 <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
 </li>

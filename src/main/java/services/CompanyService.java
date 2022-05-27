@@ -21,4 +21,8 @@ public interface CompanyService {
 
     String deleteCompany(String id,Model model,HttpSession session);
 
+    String insetCompanyByUser(Company company, Model model, HttpSession session);
+
+    String updateCompanyByUser(Company company, Model model, HttpSession session);
+
 }

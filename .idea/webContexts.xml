@@ -10,6 +10,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/houduan/job-list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/houduan" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/houduan/post-job.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/houduan" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/houduan/sign-up.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/houduan/user/worklist.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/houduan/user" />
       </map>
     </option>
   </component>

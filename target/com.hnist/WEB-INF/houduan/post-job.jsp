@@ -92,7 +92,7 @@
     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
      <ul class="navbar-nav m-auto">
       <li class="nav-item">
-       <a href="#" class="nav-link dropdown-toggle active">主页&nbsp;</a>
+       <a href="http://localhost:8080/com_hnist_war_exploded/default" class="nav-link dropdown-toggle active">主页&nbsp;</a>
        <ul class="dropdown-menu">
        </ul>
       </li>
@@ -118,10 +118,10 @@
          <a href="#" class="nav-link dropdown-toggle">用户</a>
          <ul class="dropdown-menu">
           <li class="nav-item">
-           <a href="post-company.jsp" class="nav-link">账号</a>
+           <a href="http://localhost:8080/com_hnist_war_exploded/Account?email=${email}" class="nav-link">账号</a>
 
           <li class="nav-item">
-           <a href="reset-password.jsp" class="nav-link">修改密码</a>
+           <a href="http://localhost:8080/com_hnist_war_exploded/Toresetpwd" class="nav-link">修改密码</a>
           </li>
          </ul>
         </li>
@@ -130,17 +130,14 @@
         </li>
        </ul>
       </li>
-      <%--<li class="nav-item">--%>
-      <%--<a href="#" class="nav-link dropdown-toggle">博客</a>--%>
-      <%--<ul class="dropdown-menu">--%>
-      <%--<li class="nav-item">--%>
-      <%--<a href="../../qianduan/blog.html" class="nav-link">博客主页&nbsp;</a>--%>
-      <%--</li>--%>
-      <%--<li class="nav-item">--%>
-      <%--<a href="../../qianduan/blog-details.html" class="nav-link">详情</a>--%>
-      <%--</li>--%>
-     </ul>
-     </li>
+      <li class="nav-item">
+       <a href="#" class="nav-link dropdown-toggle">公司</a>
+       <ul class="dropdown-menu">
+        <li class="nav-item">
+         <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
+        </li>
+       </ul>
+      </li>
      </ul>
      <c:if test="${message==null}">
       <div class="other-option">

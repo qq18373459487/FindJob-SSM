@@ -42,5 +42,15 @@ public class CompanyController {
     {
         return companyService.deleteCompany(id, model, session);
     }
+    @RequestMapping("/insertCompanyByUser")
+    public String insertCompanyByUser(@ModelAttribute Company company,Model model, HttpSession session)
+    {
+        return companyService.insetCompanyByUser(company, model, session);
+    }
+    @RequestMapping("/updateCompanyByUser")
+    public String updateCompanyByUser(@ModelAttribute Company company,Model model, HttpSession session)
+    {
+        return companyService.updateCompanyByUser(company, model, session);
+    }
 
 }

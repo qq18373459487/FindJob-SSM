@@ -1,5 +1,6 @@
 package controller;
 
+import modle.CommonUser;
 import modle.FileModle;
 import modle.User;
 import modle.WorkList;
@@ -11,9 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import services.ExcelService;
-import services.UserService;
-import services.WorkService;
+import services.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +36,7 @@ public class UserController {
     private ExcelService excelService;
 
     @Autowired
-    private WorkService workService;
+    private CommonUserService commonUserService;
 
     @RequestMapping("/login")
     public String login()
@@ -59,23 +58,34 @@ public class UserController {
         return "user/index";
     }
 
-    @RequestMapping("/user/company")
-    public String companyManage()
+    @RequestMapping("/manageList")
+    public String manageList(@ModelAttribute User user, Model model, HttpSession session,String page)
     {
-        return "/user/companyManage";
+        return userService.GetAllUser(user, model, session, page);
     }
-
+    @RequestMapping("/deleteUser")
+    public String deleteUser(String id,Model model, HttpSession session)
+    {
+        return userService.deleteUserById(id,model,session);
+    }
+    @RequestMapping("/updateUser")
+    public String updateUserRe(String id,Model model, HttpSession session,String rename)
+    {
+        return userService.updateUserReById(id, model, session, rename);
+    }
+    @RequestMapping("/insertUser")
+    public String updateUserRe(@ModelAttribute User user,Model model, HttpSession session)
+    {
+        return userService.insertUser(user, model, session);
+    }
     @RequestMapping("/error")
     public String error()
     {
         return "/404";
     }
 
-    @RequestMapping("/workList")
-    public String workList(@ModelAttribute WorkList workList, Model model, HttpSession session, String page)
-    {
-        return workService.GetUserWork(workList, model, session, page);
-    }
+
+
 
 
     @RequestMapping("/file")

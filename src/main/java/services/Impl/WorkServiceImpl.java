@@ -1,5 +1,6 @@
 package services.Impl;
 import mapper.WorkMapper;
+import modle.Company;
 import modle.WorkList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,5 +105,29 @@ public class WorkServiceImpl implements WorkService {
         System.out.println("result内容"+result);
         model.addAttribute("result",result);
         return "/job-details";
+    }
+
+    @Override
+    public String deleteWork(String id, Model model, HttpSession session) {
+        workMapper.deleteByid(Integer.valueOf(id));
+        WorkList workList=null;
+        GetAllWork(workList, model, session, null);
+        return "/user/worklist";
+    }
+
+    @Override
+    public String insertWorkByUser(WorkList workList, Model model, HttpSession session)
+    {
+        workMapper.InsertWorkByUser(workList);
+        GetAllWork(workList, model, session, null);
+        return "/user/worklist";
+    }
+
+    @Override
+    public String updateWorkByUser(WorkList workList, Model model, HttpSession session)
+    {
+        workMapper.updateWorkByUser(workList);
+        GetAllWork(workList, model, session, null);
+        return "/user/worklist";
     }
 }

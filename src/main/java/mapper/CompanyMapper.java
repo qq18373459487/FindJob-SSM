@@ -18,4 +18,8 @@ public interface CompanyMapper {
     int updateCompanyState(@Param("id")int id,@Param("state")String state);
 
     int deleteCompany(int id);
+
+    int insertCompanyByUser(Company company);
+
+    int updateCompanyByUser(Company company);
 }
