@@ -25,4 +25,6 @@ public interface CompanyService {
 
     String updateCompanyByUser(Company company, Model model, HttpSession session);
 
+    String GetCompanyByUser(Company company, Model model, HttpSession session,String id,String page);
+
 }

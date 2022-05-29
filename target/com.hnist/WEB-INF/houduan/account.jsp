@@ -232,25 +232,25 @@
        <div class="col-md-6">
         <div class="form-group">
          <label>名字</label>
-         <input type="text" class="form-control" placeholder="${person.getUsername()}" name="username">
+         <input type="text" class="form-control" placeholder="${person.getUsername()}" value="${person.getUsername()}"  name="username">
         </div>
        </div>
        <div class="col-md-6">
         <div class="form-group">
          <label>邮件</label>
-         <input type="email" class="form-control" placeholder="${email}" name="email">
+         <input type="email" class="form-control" placeholder="${email}"  value="${email}" id="email" name="email">
         </div>
        </div>
        <div class="col-md-6">
         <div class="form-group">
          <label>年龄</label>
-         <input type="number" class="form-control" placeholder="${person.getAge()}" name="age">
+         <input type="number" class="form-control" placeholder="${person.getAge()}"  value="${person.getAge()}" name="age">
         </div>
        </div>
        <div class="col-md-6">
         <div class="form-group">
          <label>工作经验</label>
-         <input type="text" class="form-control" placeholder="${person.getExperience()}" name="experience">
+         <input type="text" class="form-control" placeholder="${person.getExperience()}" value="${person.getExperience()}" name="experience">
         </div>
        </div>
        <div class="col-md-12">
@@ -270,13 +270,13 @@
        <div class="col-md-6">
         <div class="form-group">
          <label>城市</label>
-         <input type="text" class="form-control" placeholder="${person.getCity()}" name="city">
+         <input type="text" class="form-control" placeholder="${person.getCity()}" value="${person.getCity()}" name="city">
         </div>
        </div>
        <div class="col-md-6">
         <div class="form-group">
          <label>身份</label>
-         <input type="number" class="form-control" placeholder="${person.getIdentity()}" name="identity" disabled="disabled" >
+         <input type="number" class="form-control" placeholder="${person.getIdentity()}"  name="identity" disabled="disabled" >
         </div>
        </div>
 <%--       <div class="col-md-6">--%>
@@ -522,5 +522,6 @@ Subscribe
 <script src="newStatic/js/meanmenu.js"></script>
 
 <script src="newStatic/js/custom.js"></script>
+
 </body>
 </html>

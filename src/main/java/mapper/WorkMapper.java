@@ -24,4 +24,5 @@ public interface WorkMapper
     int InsertWorkByUser(WorkList list);
 
     int updateWorkByUser(WorkList list);
+
 }

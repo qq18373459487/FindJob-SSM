@@ -112,4 +112,12 @@ public class CompanyServiceImpl implements CompanyService {
 
         return GetAllCompany(company,model,session,null);
     }
+
+    @Override
+    public String GetCompanyByUser(Company company, Model model, HttpSession session,String id,String page) {
+      company=companyMapper.GetCompanyById(Integer.valueOf(id));
+      model.addAttribute("company1",company);
+        model.addAttribute("update","1");
+        return GetAllCompany(company,model,session,page);
+    }
 }

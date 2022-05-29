@@ -258,7 +258,6 @@
      </div>
      </div>
     </div>
-    <span class="span">${message}</span>
     <div class="col-md-12 text-center">
      <button type="submit" class="post-btn">
       发布工作</button>
@@ -407,4 +406,17 @@ Address:
 
 <script src="newStatic/js/custom.js"></script>
 </body>
+<script>
+ if(${post-job==null})
+ {
+
+ }
+ else if(${post-job==1})
+ {
+  alert("发布成功");
+ }else
+ {
+  alert("发布失败");
+ }
+</script>
 </html>

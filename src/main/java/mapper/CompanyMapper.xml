@@ -30,11 +30,16 @@
 
     <update id="updateCompanyByUser">
         update company SET companyname=#{CompanyName},companyaddress=#{CompanyAddress},companyemail=#{CompanyEmail}
-                         ,companyqualification=#{CompanyQualification}, companydata=#{CompanyData} where id=#{id}
+                         ,companyqualification=#{CompanyQualification}, companydata=#{CompanyData},useremail=#{userEmail} where id=#{id}
     </update>
 
 
     <delete id="deleteCompany" parameterType="int">
         delete from company where id=#{id}
     </delete>
+
+    <select id="GetCompanyById" parameterType="int" resultType="modle.Company">
+        select * from company where id=#{id};
+    </select>
+
 </mapper>

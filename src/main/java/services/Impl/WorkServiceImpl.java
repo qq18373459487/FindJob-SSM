@@ -20,12 +20,12 @@ public class WorkServiceImpl implements WorkService {
         int i=workMapper.InsertWork(workList);
         if(i==0)
         {
-            String result="插入失败";
-            model.addAttribute("message",result);
+
+            model.addAttribute("postJob",null);
         }else
         {
-            String result="插入成功";
-            model.addAttribute("message",result);
+
+            model.addAttribute("postJob","1");
         }
         return "/post-job";
     }
@@ -127,6 +127,15 @@ public class WorkServiceImpl implements WorkService {
     public String updateWorkByUser(WorkList workList, Model model, HttpSession session)
     {
         workMapper.updateWorkByUser(workList);
+        GetAllWork(workList, model, session, null);
+        return "/user/worklist";
+    }
+
+    @Override
+    public String GetWorkByUser(WorkList workList, Model model, HttpSession session, String id) {
+        workList= workMapper.queryWorkListById(id);
+        model.addAttribute("com",workList);
+        model.addAttribute("update","1");
         GetAllWork(workList, model, session, null);
         return "/user/worklist";
     }

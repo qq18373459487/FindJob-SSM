@@ -52,5 +52,10 @@ public class CompanyController {
     {
         return companyService.updateCompanyByUser(company, model, session);
     }
+    @RequestMapping("/GetCompanyByUser")
+    public String GetCompanyByUser(@ModelAttribute Company company,Model model, HttpSession session,String id,String page)
+    {
+        return companyService.GetCompanyByUser(company, model, session,id,page);
+    }
 
 }

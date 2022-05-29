@@ -62,11 +62,17 @@ public class CommonUserServiceImpl implements CommonUserService {
 
         //调用service方法查询用户
         CommonUser commonUser= commonUserMapper.selectBycom_user(map);
-        PersonMg personMg=personMapper.selectByPersonId(commonUser.getEmail());
-        if(personMg.getIdentity().equals("HR"))
+        try {
+            PersonMg personMg=personMapper.selectByPersonId(commonUser.getEmail());
+            if(personMg.getIdentity().equals("HR"))
+            {
+                session.setAttribute("HR",personMg.getIdentity());
+            }
+        }catch (Exception e)
         {
-            session.setAttribute("HR",personMg.getIdentity());
+            e.printStackTrace();
         }
+
         if(commonUser==null)
         {
             //登录账号或密码错误
@@ -92,7 +98,7 @@ public class CommonUserServiceImpl implements CommonUserService {
     @Override
     public String updatePerSonMG(PersonMg personMg, Model model, HttpSession session) {
         personMapper.updatePerson(personMg);
-        return "/account";
+        return  SelectPerSonMG(personMg,model,session,personMg.getEmail());
     }
 
     @Override

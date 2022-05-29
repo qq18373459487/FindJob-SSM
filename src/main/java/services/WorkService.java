@@ -32,4 +32,6 @@ public interface WorkService
 
     String updateWorkByUser(WorkList workList, Model model, HttpSession session);
 
+    String GetWorkByUser (WorkList workList, Model model, HttpSession session,String id);
+
 }

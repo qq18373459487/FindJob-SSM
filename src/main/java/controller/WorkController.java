@@ -82,4 +82,9 @@ public class WorkController {
     {
         return workService.updateWorkByUser(workList, model, session);
     }
+    @RequestMapping("/GetWorkByUser")
+    public String updateWorkByUser(@ModelAttribute WorkList workList, Model model, HttpSession session,String id)
+    {
+        return workService.GetWorkByUser(workList, model, session,id);
+    }
 }

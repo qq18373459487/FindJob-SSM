@@ -150,6 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<th>招聘总人数</th>
 						<th>公司地址</th>
 						<th>公司邮箱</th>
+						<th>HR</th>
 						<th>资质</th>
 						<th>状态</th>
 						<th>操作</th>
@@ -163,6 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td >${company.getCompanyData()}</td>
 						<td >${company.getCompanyAddress()}</td>
 						<td >${company.getCompanyEmail()}</td>
+						<td >${company.getUserEmail()}</td>
 						<td >${company.getCompanyQualification()}</td>
 						<td>${company.getState()}</td>
 						<td>
@@ -173,6 +175,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 					</tr>
 					</tbody>
+
 </c:forEach>
 				</table>
 				<!--开始::结束-->
@@ -207,34 +210,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 、					</div>
 			</form:form>
 <%--添加弹窗结束--%>
-
-
-<%--修改弹窗开始--%>
-			<form:form id="modal1" class="c2 hide panel-bd"
+			<%--修改弹窗开始--%>
+			<%--@elvariable id="Company" type="modle.Company"--%>
+			 <c:if test="${update==1}">
+			<%--@elvariable id="Company" type="modle.Company"--%>
+			<form:form id="modal1" class="c2  panel-bd"
 					   action="http://localhost:8080/com_hnist_war_exploded/company/updateCompanyByUser" modelAttribute="Company">
 				<div class="panel panel-primary">
 					<div class="panel-hd">修改信息</div>
 					<div class="panel-bd">
-						<p>id：<input type="text" id="company-id" name="id" readonly="readonly"/></p>
+						<p>id：<input type="text"  name="id" value="${company1.getId()}" readonly="readonly"/></p>
 						<br/>
-						<p>公司名称：<input type="text" id="company-name" name="CompanyName"/></p>
+						<p>公司名称：<input type="text"  value="${company1.getCompanyName()}" name="CompanyName"/></p>
 						<br/>
-						<p>招聘总人数：<input type="text" id="company-number" name="CompanyData"/></p>
+						<p>招聘总人数：<input type="text"  value="${company1.getCompanyData()}" name="CompanyData"/></p>
 						<br/>
-						<p>公司地址：<input type="text" id="company-address" name="CompanyAddress"/></p>
+						<p>公司地址：<input type="text"  value="${company1.getCompanyAddress()}" name="CompanyAddress"/></p>
 						<br/>
-						<p>公司邮箱：<input type="text" id="company-email" name="CompanyEmail"/></p>
+						<p>公司邮箱：<input type="text"  value="${company1.getCompanyEmail()}" name="CompanyEmail"/></p>
 						<br/>
-						<p>资质：<input type="text" id="company-companyqualification" name="CompanyQualification" /></p>
+						<p>HR：<input type="text"  value="${company1.getUserEmail()}" name="userEmail"/></p>
+						<br/>
+						<p>资质：<input type="text"  value="${company1.getCompanyQualification()}" name="CompanyQualification" /></p>
 						<br/>
 						<p>
 							<input type="submit" class="btn btn-primary" value="确定">
 							<input type="button" class="btn btn-primary" value="取消" onclick="Hide1();">
 						</p>
 					</div>
-					、					</div>
+				</div>
 			</form:form>
-<%--编辑弹窗结束--%>
+			 </c:if>
+			<c:if test="${update==null}">
+				<%--@elvariable id="Company" type="modle.Company"--%>
+				<form:form id="modal1" class="c2 hide panel-bd"
+						   action="http://localhost:8080/com_hnist_war_exploded/company/updateCompanyByUser" modelAttribute="Company">
+					<div class="panel panel-primary">
+						<div class="panel-hd">修改信息</div>
+						<div class="panel-bd">
+							<p>id：<input type="text" id="company-id" name="id" value="${company1.getId()}" readonly="readonly"/></p>
+							<br/>
+							<p>公司名称：<input type="text" id="company-name" value="${company1.getCompanyName()}" name="CompanyName"/></p>
+							<br/>
+							<p>招聘总人数：<input type="text" id="company-number" value="${company1.getCompanyData()}" name="CompanyData"/></p>
+							<br/>
+							<p>公司地址：<input type="text" id="company-address" value="${company1.getCompanyAddress()}" name="CompanyAddress"/></p>
+							<br/>
+							<p>公司邮箱：<input type="text" id="company-email" value="${company1.getCompanyEmail()}" name="CompanyEmail"/></p>
+							<br/>
+							<p>HR：<input type="text" id="company-HR" value="${company1.getUserEmail()}" name="userEmail"/></p>
+							<br/>
+							<p>资质：<input type="text" id="company-companyqualification" value="${company1.getCompanyQualification()}" name="CompanyQualification" /></p>
+							<br/>
+							<p>
+								<input type="submit" class="btn btn-primary" value="确定">
+								<input type="button" class="btn btn-primary" value="取消" onclick="Hide1();">
+							</p>
+						</div>
+					</div>
+				</form:form>
+			</c:if>
+			<%--编辑弹窗结束--%>
+
+
 			<div class="panel panel-default">
 				<div class="panel-bd">
 					<div class="pagination"></div>
@@ -276,14 +314,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		document.getElementById('modal1').classList.add('hide');
 	}
 	function Show1(id){
-		document.getElementById('shade').classList.remove('hide');
-		document.getElementById('modal1').classList.remove('hide');
-		$('#company-id').val(id);
-		// $('#company-address').val(address);
-		// $('#company-email').val(email);
-		// $('#company-companyqualification').val(cq);
-		// $('#company-name').val(name);
-		// $('#company-number').val(number);
+		window.location.href='http://localhost:8080/com_hnist_war_exploded/company/GetCompanyByUser?id='+id;
 	}
 
 </script>

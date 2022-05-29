@@ -22,4 +22,6 @@ public interface CompanyMapper {
     int insertCompanyByUser(Company company);
 
     int updateCompanyByUser(Company company);
+
+    Company GetCompanyById(int id);
 }
