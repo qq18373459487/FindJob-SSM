@@ -69,6 +69,16 @@ delete from commonuser where id=#{id}
         select count(id) from article where state="审核通过";
     </select>
 
+    <insert id="insertComment" parameterType="modle.Comment" >
+        insert into comment(comment_name,article_id,comment_text,comment_email,state)
+        values (#{comment_name},#{article_id},#{comment_text},#{comment_email},#{state})
+    </insert>
+
+<!--    评论-->
+
+    <select id="getCommentByArticle_id" resultType="modle.Comment">
+        select * from comment where state="审核通过" and article_id=#{article_id};
+    </select>
 
 
 </mapper>

@@ -1,11 +1,8 @@
 package services.Impl;
 
-import modle.Article;
-import modle.CurriculumVitae;
+import modle.*;
 import tool.ReturnObject;
 import mapper.UserMapper;
-import modle.FileModle;
-import modle.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -304,5 +301,84 @@ public class UserServiceImpl implements UserService {
     }
         userMapper.updateArticleState(id,state);
         return GetAllArticle(null,model,session,null);
+    }
+
+    @Override
+    public String GetAllComment(Comment comment, Model model, HttpSession session, String page) {
+        int max=queryCommentPage();
+        int ReturnPage=0;
+        try {
+            ReturnPage=Integer.valueOf(page);
+        }catch (Exception e)
+        {
+            ReturnPage=1;
+        }
+
+        //当传过来是空的时候,默认第一页
+        if (page == null) {
+            ReturnPage = 1;
+        } else if (ReturnPage < 1){
+            //不能小于第一页
+            ReturnPage = 1;
+        } else if (ReturnPage > max) {
+            //不能大于最大页
+            ReturnPage = max;
+        }
+
+        //绑定最大页数
+        model.addAttribute("maxPage", max);
+        //调用service层查询第几页的数据
+        List<Comment> list= queryCommentList(ReturnPage);
+        //绑定查询的结果到列表
+        model.addAttribute("list",list);
+        //绑定当前的页码
+        model.addAttribute("page", ReturnPage);
+        return "/user/commentManage";
+    }
+
+    @Override
+    public List<Comment> queryCommentList(int page) {
+        int n = this.num_article;
+        int m = n * (page -1);
+        return userMapper.queryCommentList(m,n);
+    }
+
+    @Override
+    public int queryCommentPage() {
+        int count = userMapper.queryCommentPage();
+        int page;
+        if (count%this.num_article==0) {
+            page = count/this.num_article;
+        } else {
+            page = count/this.num_article + 1;
+        }
+        return page;
+    }
+
+    @Override
+    public String deleteComment(String id, Model model, HttpSession session) {
+        int i= userMapper.deleteCommentById(id);
+        if(i==1)
+        {
+            return GetAllComment(null,model,session,null);
+        }else
+        {
+            return "error";
+        }
+    }
+
+    @Override
+    public String updateCommentState(String id, String state, Model model, HttpSession session) {
+
+        if(state.equals("1"))
+        {
+            state="审核通过";
+        }else   if(state.equals("0"))
+
+        {
+            state="未审核通过";
+        }
+        userMapper.updateCommentState(id,state);
+        return GetAllComment(null,model,session,null);
     }
 }

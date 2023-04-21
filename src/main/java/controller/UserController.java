@@ -137,11 +137,24 @@ public class UserController {
         return userService.updateArticleState(id,state,model,session);
     }
 
+    @RequestMapping("/getComment")
 
+    public String getComment(@ModelAttribute Comment comment, Model model, HttpSession session,String page)
+    {
+        return userService.GetAllComment(comment,model,session,page);
+    }
 
+    @RequestMapping("deleteComment")
+    public String deleteComment(String id, Model model, HttpSession session)
+    {
+        return userService.deleteComment(id,model,session);
+    }
 
-
-
+    @RequestMapping("updateCommentState")
+    public String updateCommentState(String id,String state, Model model, HttpSession session)
+    {
+        return userService.updateCommentState(id,state,model,session);
+    }
 
 
 

@@ -2,7 +2,7 @@ package services.Impl;
 
 
 import mapper.UserMapper;
-import modle.Article;
+import modle.*;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,9 +11,6 @@ import tool.ReturnObject;
 import mapper.ComUserMapper;
 import mapper.CompanyMapper;
 import mapper.PersonMapper;
-import modle.CommonUser;
-import modle.Company;
-import modle.PersonMg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -332,7 +329,7 @@ public class CommonUserServiceImpl implements CommonUserService {
 
     @Override
     public List<Article> queryArticleList(int page) {
-        int n = this.num;
+        int n = this.num_article;
         int m = n * (page -1);
         return commonUserMapper.queryArticleList(m,n);
     }
@@ -385,8 +382,22 @@ public class CommonUserServiceImpl implements CommonUserService {
     @Override
     public String getBlogDetail(String id, Model model, HttpSession session) {
        Article article= userMapper.selectArticleById(id);
+     List<Comment> comment=commonUserMapper.getCommentByArticle_id(id);
         model.addAttribute("article",article);
+        model.addAttribute("list",comment);
         return "blog-details";
+    }
+
+    @Override
+    public ReturnObject postComment(Comment comment, Model model, HttpSession session) {
+        ReturnObject returnObject=new ReturnObject();
+        comment.setComment_name(String.valueOf(session.getAttribute("username")));
+        comment.setState("未审核");
+        comment.setComment_email(String.valueOf(session.getAttribute("email")));
+        int i=commonUserMapper.insertComment(comment);
+        if(i==1) returnObject.setCode("1");
+        else  returnObject.setCode("0");
+        return returnObject;
     }
 
 

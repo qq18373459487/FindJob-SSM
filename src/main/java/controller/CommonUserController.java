@@ -1,6 +1,7 @@
 package controller;
 
 import mapper.UserMapper;
+import modle.Comment;
 import modle.CommonUser;
 import modle.Company;
 import modle.PersonMg;
@@ -169,6 +170,14 @@ public ReturnObject findPassword(@ModelAttribute CommonUser user,HttpSession ses
     public String blogDetail(String id,HttpSession session,Model model)
     {
         return commonUserService.getBlogDetail(id,model,session);
+
+    }
+
+    @RequestMapping("postComment")
+    @ResponseBody
+    public ReturnObject  postComment(Comment comment, HttpSession session, Model model)
+    {
+        return commonUserService.postComment(comment,model,session);
 
     }
 

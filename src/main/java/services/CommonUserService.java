@@ -1,10 +1,7 @@
 package services;
 
-import modle.Article;
+import modle.*;
 import tool.ReturnObject;
-import modle.CommonUser;
-import modle.Company;
-import modle.PersonMg;
 import org.springframework.ui.Model;
 
 
@@ -51,6 +48,8 @@ public interface CommonUserService {
     String getBlog(Model model, HttpSession session,String page);
 
     String getBlogDetail(String id,Model model,HttpSession session);
+
+    ReturnObject postComment(Comment comment, Model model, HttpSession session);
 
 
 }

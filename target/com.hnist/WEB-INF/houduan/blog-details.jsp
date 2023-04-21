@@ -100,7 +100,19 @@
         </li>
        </ul>
       </li>
+
       <c:if test="${message!=null}">
+      <li class="nav-item">
+       <a href="#" class="nav-link dropdown-toggle">博客</a>
+       <ul class="dropdown-menu">
+
+        <li class="nav-item">
+         <a href="http://localhost:8080/com_hnist_war_exploded/blog" class="nav-link">文章列表</a>
+        </li>
+
+
+       </ul>
+      </li>
       <li class="nav-item">
        <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
        <ul class="dropdown-menu">
@@ -136,10 +148,10 @@
          <li class="nav-item">
           <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
          </li>
-
         </ul>
        </li>
       </c:if>
+
      </ul>
      <c:if test="${message==null}">
       <div class="other-option">
@@ -157,6 +169,7 @@
   </div>
  </div>
 </div>
+
 
 
 
@@ -247,149 +260,54 @@ Economy Growth is Being Increased by IT Sectors
 </div>
 </article>
 </div>
-<div class="blog-widget blog-category">
-<h3>Category</h3>
-<ul>
-<li>
-<a href="#">Web Design</a>
-<span>(10)</span>
-</li>
-<li>
-<a href="#">Job Tips</a>
-<span>(5)</span>
-</li>
-<li>
-<a href="#">UX Design</a>
-<span>(8)</span>
-</li>
-<li>
-<a href="#">Tips & Tricks</a>
-<span>(4)</span>
-</li>
-<li>
-<a href="#">Writting</a>
-<span>(12)</span>
-</li>
-<li>
-<a href="#">Business</a>
-<span>(7)</span>
-</li>
-</ul>
-</div>
-<div class="blog-widget blog-tags">
-<h3>Tags</h3>
-<ul>
-<li>
-<a href="#">Web Design</a>
-</li>
-<li>
-<a href="#">Job Tips</a>
-</li>
-<li>
-<a href="#">UX Design</a>
-</li>
-<li>
-<a href="#">Tips & Tricks</a>
-</li>
-<li>
-<a href="#">Writting</a>
-</li>
-<li>
-<a href="#">Business</a>
-</li>
-<li>
-<a href="#">Resume</a>
-</li>
-</ul>
-</div>
+
 </div>
 <div class="col-lg-8">
 <div class="blog-dedails-text">
-<div class="blog-details-img">
-<img src="newStatic/picture/blog-details.jpg" alt="blog details image">
-</div>
+
 <div class="blog-meta">
 <ul>
 <li>
 <i class='bx bxs-user'></i>
- ${article.getAuthor()}
+ 作者:  ${article.getAuthor()}
 </li>
 <li>
 <i class='bx bx-calendar'></i>
- ${article.getPost_time()}
+ 发布时间:  ${article.getPost_time()}
 </li>
 </ul>
 </div>
-<h3 class="post-title">Tips for Making Your Resume Stand Out</h3>
+<h3 class="post-title">${article.getTitle()}</h3>
  <p>  ${article.getAuthor_text()}</p>
-<div class="details-tag">
-<ul>
-<li>Tags:</li>
-<li>
-<a href="#">Business</a>
-</li>
-<li>
-<a href="#">Resume</a>
-</li>
-<li>
-<a href="#">Develpment</a>
-</li>
-</ul>
-</div>
-<form class="comment-form">
-<h3>Leave a Reply</h3>
+
+<div class="comment-form">
+<h3>评论区</h3>
 <div class="row">
-<div class="col-md-6">
+ <c:forEach items="${list}" var="comment">
+ <div class="col-md-12">
 <div class="form-group">
-<label>Name</label>
-<input type="text" class="form-control" placeholder="Your Name">
+<p>${comment.getComment_name()}:  ${comment.getComment_text()}</p>
 </div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<label>Email</label>
-<input type="email" class="form-control" placeholder="Your Name">
-</div>
-</div>
+ </div>
+ </c:forEach>
 <div class="col-md-12">
 <div class="form-group">
-<label>Comment</label>
-<textarea class="form-control comment-box" cols="30" rows="6" placeholder="Your Comment"></textarea>
+<label>写下你的评论</label>
+<textarea class="form-control comment-box" cols="30" rows="6" placeholder="Your Comment" id="comment_text"></textarea>
 </div>
 </div>
 </div>
-<button type="submit" class="comment-btn">
-Post a Comment
+ <span id="msg" class=""></span>
+<button type="button" class="comment-btn" onclick="postComment(${article.getId()})">
+发布评论
 </button>
-</form>
+</div>
 </div>
 </div>
 </div>
 </div>
 </section>
 
-
-<section class="subscribe-section">
-<div class="container">
-<div class="row align-items-center">
-<div class="col-md-6">
-<div class="section-title">
-<h2>Get New Job Notifications</h2>
-<p>Subscribe & get all related jobs notification</p>
-</div>
-</div>
-<div class="col-md-6">
-<form class="newsletter-form" data-toggle="validator">
-<input type="email" class="form-control" placeholder="Enter your email" name="EMAIL" required="" autocomplete="off">
-<button class="default-btn sub-btn" type="submit">
-Subscribe
-</button>
-<div id="validator-newsletter" class="form-result"></div>
-</form>
-</div>
-</div>
-</div>
-</section>
 
 
 <footer class="footer-area pt-100 pb-70">
@@ -526,4 +444,33 @@ Subscribe
 
 <script src="newStatic/js/custom.js"></script>
 </body>
+
+<script>
+ function postComment(article_id) {
+  var comment_text = $.trim($("#comment_text").val());
+
+  $.ajax(
+          {
+           url: 'http://localhost:8080/com_hnist_war_exploded/postComment',
+           data: {
+            comment_text: comment_text,
+            article_id: article_id
+           },
+           type: 'post',
+           dataType: 'json',
+           success: function (data) {
+            if (data.code === "1") {
+
+             $("#msg").html("发布成功，待审核后可查看");
+             $("#comment_text").html("");
+
+            } else if (data.code === "0") {
+             $("#msg").html("发布失败");
+            }
+           }
+          }
+  )
+ }
+
+</script>
 </html>

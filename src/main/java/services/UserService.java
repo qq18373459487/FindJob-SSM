@@ -1,6 +1,7 @@
 package services;
 
 import modle.Article;
+import modle.Comment;
 import tool.ReturnObject;
 import modle.FileModle;
 import modle.User;
@@ -51,7 +52,17 @@ public interface UserService {
 
     String updateArticleState(String id, String state,Model model, HttpSession session);
 
+    //评论
+    String GetAllComment(Comment comment, Model model, HttpSession session, String page);
 
+    // 分页查询
+    List<Comment> queryCommentList(int page);
+    // 查询页数
+    int queryCommentPage();
+
+    String deleteComment(String id, Model model, HttpSession session);
+
+    String updateCommentState(String id, String state,Model model, HttpSession session);
 
 
 

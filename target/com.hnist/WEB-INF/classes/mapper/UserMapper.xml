@@ -108,4 +108,21 @@ from user  where username=#{username} and password=#{password}
         update article set state=#{state} where id=#{id}
     </update>
 
-    </mapper>
+    <select id="queryCommentList" resultType="modle.Comment">
+        select * from comment order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryCommentPage" resultType="java.lang.Integer">
+        select count(id) from comment;
+    </select>
+
+    <delete id="deleteCommentById" parameterType="string">
+        delete from comment where id=#{id}
+    </delete>
+
+    <update id="updateCommentState">
+        update comment set state=#{state} where id=#{id}
+    </update>
+
+
+</mapper>

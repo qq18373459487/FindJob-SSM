@@ -104,7 +104,19 @@
         </li>
        </ul>
       </li>
+
       <c:if test="${message!=null}">
+      <li class="nav-item">
+       <a href="#" class="nav-link dropdown-toggle">博客</a>
+       <ul class="dropdown-menu">
+
+        <li class="nav-item">
+         <a href="http://localhost:8080/com_hnist_war_exploded/blog" class="nav-link">文章列表</a>
+        </li>
+
+
+       </ul>
+      </li>
       <li class="nav-item">
        <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
        <ul class="dropdown-menu">
@@ -140,10 +152,10 @@
          <li class="nav-item">
           <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
          </li>
-
         </ul>
        </li>
       </c:if>
+
      </ul>
      <c:if test="${message==null}">
       <div class="other-option">
@@ -161,6 +173,7 @@
   </div>
  </div>
 </div>
+
 
 
 <section class="page-title title-bg24">

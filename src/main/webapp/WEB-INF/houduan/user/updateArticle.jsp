@@ -90,7 +90,7 @@
                 </li>
                 <li>
                     <dl>
-                        <c:if test="${role=='HR'}">
+                        <c:if test="${role!='HR'}">
                             <dt>
                                 <i class="icon-inbox"></i>文件管理<i class="icon-angle-right"></i>
                             </dt>
@@ -99,6 +99,24 @@
                             </dd>
                             <dd>
                                 <a href="http://localhost:8080/com_hnist_war_exploded/user/excel">数据导入导出</a>
+                            </dd>
+                        </c:if>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <c:if test="${role!='HR'}">
+                            <dt>
+                                <i class="icon-inbox"></i>博客管理<i class="icon-angle-right"></i>
+                            </dt>
+                            <dd>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/GOtoAddArticle">博客发布</a>
+                            </dd>
+                            <dd>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/getArticle">文章列表</a>
+                            </dd>
+                            <dd>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/getComment">评论列表</a>
                             </dd>
                         </c:if>
                     </dl>

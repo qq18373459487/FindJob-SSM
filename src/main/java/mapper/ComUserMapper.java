@@ -38,4 +38,8 @@ public interface ComUserMapper {
     // 查询页数
     int queryArticlePage();
 
+    int insertComment(Comment comment);
+
+    List<Comment> getCommentByArticle_id(@Param("article_id") String article_id);
+
 }

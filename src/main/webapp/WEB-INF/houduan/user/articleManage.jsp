@@ -83,6 +83,7 @@
                             <i class="icon-columns"></i>数据列表<i class="icon-angle-right"></i>
                         </dt>
                         <c:if test="${role=='管理员'}">
+
                             <dd>
                                 <a href="http://localhost:8080/com_hnist_war_exploded/company/GetAllCompany">公司列表</a>
                             </dd>
@@ -94,6 +95,14 @@
                             </dd>
                             <dd>
                                 <a href="http://localhost:8080/com_hnist_war_exploded/user/manageList">管理员列表</a>
+                            </dd>
+                        </c:if>
+                        <c:if test="${role=='HR'}">
+                            <dd>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/GotoCvManage">简历列表</a>
+                            </dd>
+                            <dd>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/work/workList_HR">工作列表</a>
                             </dd>
                         </c:if>
                     </dl>
@@ -109,6 +118,24 @@
                             </dd>
                             <dd>
                                 <a href="http://localhost:8080/com_hnist_war_exploded/user/excel">数据导入导出</a>
+                            </dd>
+                        </c:if>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <c:if test="${role!='HR'}">
+                            <dt>
+                                <i class="icon-inbox"></i>博客管理<i class="icon-angle-right"></i>
+                            </dt>
+                            <dd>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/GOtoAddArticle">博客发布</a>
+                            </dd>
+                            <dd>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/getArticle">文章列表</a>
+                            </dd>
+                            <dd>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/getComment">评论列表</a>
                             </dd>
                         </c:if>
                     </dl>
@@ -145,7 +172,6 @@
         </header>
         <main class="main-cont content mCustomScrollbar">
             <div class="page-wrap">
-                <button onclick="Show()" class="btn btn-secondary JopenMaskPanel_addStudent mr-10" style="margin-bottom: 20px; margin-left: 20px;">添加</button>
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
                     <tr>

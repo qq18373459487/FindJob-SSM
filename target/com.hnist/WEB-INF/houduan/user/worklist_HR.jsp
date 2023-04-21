@@ -71,7 +71,6 @@
         <strong>模块化后台管理模板</strong>
       </div>
     </div>
-
     <nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
       <h2>
         <a href="http://localhost:8080/com_hnist_war_exploded/user/login-sucess" class="InitialPage"><i class="icon-dashboard"></i>主页</a>
@@ -110,7 +109,6 @@
         <li>
           <dl>
             <c:if test="${role!='HR'}">
-
               <dt>
                 <i class="icon-inbox"></i>文件管理<i class="icon-angle-right"></i>
               </dt>
@@ -121,7 +119,24 @@
                 <a href="http://localhost:8080/com_hnist_war_exploded/user/excel">数据导入导出</a>
               </dd>
             </c:if>
-
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <c:if test="${role!='HR'}">
+              <dt>
+                <i class="icon-inbox"></i>博客管理<i class="icon-angle-right"></i>
+              </dt>
+              <dd>
+                <a href="http://localhost:8080/com_hnist_war_exploded/user/GOtoAddArticle">博客发布</a>
+              </dd>
+              <dd>
+                <a href="http://localhost:8080/com_hnist_war_exploded/user/getArticle">文章列表</a>
+              </dd>
+              <dd>
+                <a href="http://localhost:8080/com_hnist_war_exploded/user/getComment">评论列表</a>
+              </dd>
+            </c:if>
           </dl>
         </li>
       </ul>

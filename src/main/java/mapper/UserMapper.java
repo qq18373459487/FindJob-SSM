@@ -59,6 +59,19 @@ public interface UserMapper {
     int updateArticleState(@Param("id") String id,@Param("state") String state);
 
 
+    // 分页查询 @parame
+    List<Comment> queryCommentList(@Param("m")int m, @Param("n")int n);
+
+    // 查询页数
+    int queryCommentPage();
+
+    int deleteCommentById(@Param("id") String id);
+
+    int updateCommentState(@Param("id") String id,@Param("state") String state);
+
+
+
+
 
 
 
