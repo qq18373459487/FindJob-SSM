@@ -75,6 +75,7 @@
  </div>
 </div>
 
+
 <div class="navbar-area">
 
  <div class="mobile-nav">
@@ -103,19 +104,23 @@
         <li class="nav-item">
          <a href="http://localhost:8080/com_hnist_war_exploded/work/ToSelectWork" class="nav-link">搜索工作</a>
         </li>
-        <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
-        </li>
+        <c:if test="${role=='HR'}">
+         <li class="nav-item">
+          <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
+         </li>
+        </c:if>
         <li class="nav-item">
          <a href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork" class="nav-link">工作列表</a>
         </li>
        </ul>
       </li>
+      <c:if test="${message!=null}">
       <li class="nav-item">
        <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
        <ul class="dropdown-menu">
         <li class="nav-item">
          <a href="#" class="nav-link dropdown-toggle">用户</a>
+
          <ul class="dropdown-menu">
           <li class="nav-item">
            <a href="http://localhost:8080/com_hnist_war_exploded/Account?email=${email}" class="nav-link">账号</a>
@@ -124,20 +129,31 @@
            <a href="http://localhost:8080/com_hnist_war_exploded/Toresetpwd" class="nav-link">修改密码</a>
           </li>
          </ul>
+
         </li>
+        <c:if test="${role=='HR'}">
+         <li class="nav-item">
+          <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
+         </li>
+        </c:if>
         <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
+         <a href="http://localhost:8080/com_hnist_war_exploded/logout" class="nav-link">退出登录</a>
         </li>
        </ul>
+       </c:if>
       </li>
-      <li class="nav-item">
-       <a href="#" class="nav-link dropdown-toggle">公司</a>
-       <ul class="dropdown-menu">
-        <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
-        </li>
-       </ul>
-      </li>
+      <c:if test="${role!='HR'}">
+       <li class="nav-item">
+        <a href="#" class="nav-link dropdown-toggle">公司</a>
+        <ul class="dropdown-menu">
+
+         <li class="nav-item">
+          <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
+         </li>
+
+        </ul>
+       </li>
+      </c:if>
      </ul>
      <c:if test="${message==null}">
       <div class="other-option">
@@ -191,6 +207,12 @@
     </div>
     <div class="col-md-6">
      <div class="form-group">
+      <label>发布者</label>
+      <input type="text" class="form-control" id="post_people" placeholder="${email}" value="${email}" required="" name="post_people" readonly="true">
+     </div>
+    </div>
+    <div class="col-md-6">
+     <div class="form-group">
       <label>工作类型</label>
     <select class="category" name="WorkType" id="WorkType" >
        <option value="互联网">互联网</option>
@@ -205,7 +227,7 @@
     <div class="col-md-6">
      <div class="form-group">
       <label>公司名称</label>
-      <input type="text" class="form-control" id="PostCompany" placeholder="Company Name" required="" name="PostCompany">
+      <input type="text" class="form-control" id="PostCompany" placeholder="${company}" value="${company}" required="" name="PostCompany" readonly="true">
      </div>
     </div>
     <div class="col-md-6">
@@ -241,6 +263,20 @@
      <div class="form-group">
       <label>工作经验</label>
       <input type="text" class="form-control" id="Experince" placeholder="e.g. 1 year" required="" name="Experince">
+     </div>
+    </div>
+    <div class="col-md-12">
+     <div class="form-group">
+      <label >描述</label>
+       <%--      <textarea class="form-control description-area" id="WorkDetail" rows="6" placeholder="Job Description" required="" name="WorkDetail"></textarea>--%>
+      <div class="panel panel-default">
+       <div class="panel-hd">百度ueditor文本编辑器</div>
+       <div class="panel-bd">
+        <script id="container1" name="WorkRequest" type="text/plain"></script>
+        <script type="text/javascript"> var ue = UE.getEditor('container1'); </script>
+       </div>
+      </div>
+      <!--开始::结束-->
      </div>
     </div>
     <div class="col-md-12">
@@ -407,16 +443,13 @@ Address:
 <script src="newStatic/js/custom.js"></script>
 </body>
 <script>
- if(${post-job==null})
+ if(${postJob==null})
  {
 
  }
- else if(${post-job==1})
+ else if(${postJob==1})
  {
   alert("发布成功");
- }else
- {
-  alert("发布失败");
  }
 </script>
 </html>

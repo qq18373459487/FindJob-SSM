@@ -1,10 +1,10 @@
 package services;
 
-import ResponseMessage.ReturnObject;
+import modle.Article;
+import tool.ReturnObject;
 import modle.CommonUser;
 import modle.Company;
 import modle.PersonMg;
-import modle.User;
 import org.springframework.ui.Model;
 
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface CommonUserService {
 
-    ReturnObject InsertComUser(CommonUser user, Model model, HttpSession session);
+    ReturnObject InsertComUser(CommonUser user, Model model, HttpSession session,String code);
 
     String SelectComUser(CommonUser user, Model model, HttpSession session);
 
@@ -32,11 +32,25 @@ public interface CommonUserService {
     int queryPage();
 
     String GetAllUser(Model model, HttpSession session,String page);
-
     String deleteCommonUser(String id,Model model,HttpSession session);
 
     String insertUser(CommonUser user, Model model, HttpSession session);
     String updateUser(CommonUser user, Model model, HttpSession session);
+
+     //请求验证码
+    ReturnObject VerificationCode(String email,HttpSession session,Model model);
+    ReturnObject SignVerificationCode(String email,HttpSession session,Model model);
+    ReturnObject find_password(CommonUser commonUser,HttpSession session,Model model,String code);
+
+    //获得可查看文章
+    List<Article> queryArticleList(int page);
+
+    // 查询文章页数
+    int queryArticlePage();
+
+    String getBlog(Model model, HttpSession session,String page);
+
+    String getBlogDetail(String id,Model model,HttpSession session);
 
 
 }

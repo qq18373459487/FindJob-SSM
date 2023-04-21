@@ -45,4 +45,67 @@ from user  where username=#{username} and password=#{password}
     <update id="updateUserReById">
         update user set realname=#{realname} where id=#{id}
     </update>
+
+    <insert id="insertCv" parameterType="modle.CurriculumVitae">
+        insert into CV(post_man,re_man,file_Url,state,post_cv)
+        values (#{post_man},#{re_man},#{file_Url},#{state},#{post_cv})
+    </insert>
+
+    <select id="selectFileByFileName" resultType="modle.FileModle" parameterType="string">
+        select * from file where filename=#{filename};
+    </select>
+
+    <update id="updateFileState">
+        update file set type=#{type} where filename=#{filename}
+    </update>
+
+    <select id="getAllCvByre_man" resultType="modle.CurriculumVitae" parameterType="string">
+        select * from CV where re_man=#{re_man};
+    </select>
+
+    <delete id="deleteCvById" parameterType="string">
+        delete from CV where id=#{id}
+    </delete>
+
+    <insert id="insertArticle" parameterType="modle.Article">
+        insert into article(author,post_time,brief_introduction,author_text,state,title)
+        values (#{author},#{post_time},#{brief_introduction},#{author_text},#{state},#{title})
+    </insert>
+
+    <select id="queryArticleList" resultType="modle.Article">
+        select * from article order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryArticlePage" resultType="java.lang.Integer">
+        select count(id) from article;
+    </select>
+
+    <delete id="deleteArticleById" parameterType="string">
+        delete from article where id=#{id}
+    </delete>
+
+    <update id="updateArticleById" parameterType="modle.Article">
+        update article
+       <set>
+           <if test="title!=null and title!=''">
+               title=#{title},
+           </if>
+           <if test="brief_introduction!=null and brief_introduction!=''">
+              brief_introduction=#{brief_introduction},
+           </if>
+           <if test="author_text!=null and author_text!=''">
+              author_text=#{author_text}
+           </if>
+       </set>
+        where id=#{id}
+    </update>
+
+    <select id="selectArticleById" resultType="modle.Article">
+        select * from article where id=#{id};
+    </select>
+
+    <update id="updateArticleState">
+        update article set state=#{state} where id=#{id}
+    </update>
+
     </mapper>

@@ -1,4 +1,4 @@
-package ResponseMessage;
+package tool;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class WorkPost implements HandlerInterceptor {
+public class ComLoginInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
             throws Exception {
@@ -27,7 +27,7 @@ public class WorkPost implements HandlerInterceptor {
         HttpSession session = request.getSession();
         //String uri = request.getRequestURI(); // 获取登录的uri，这个是不进行拦截的
         //if(session.getAttribute("LOGIN_USER")!=null || uri.indexOf("system/login")!=-1) {// 说明登录成功 或者 执行登录功能
-        if(session.getAttribute("HR")!=null) {
+        if(session.getAttribute("username")!=null) {
             // 登录成功不拦截
             return true;
         }else {

@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%
     String path = request.getContextPath();
@@ -55,7 +58,8 @@
                         <dt>
                             <i class="icon-columns"></i>数据列表<i class="icon-angle-right"></i>
                         </dt>
-                        <dd>
+                       <c:if test="${role=='管理员'}">
+                       <dd>
                             <a href="http://localhost:8080/com_hnist_war_exploded/company/GetAllCompany">公司列表</a>
                         </dd>
                         <dd>
@@ -68,18 +72,21 @@
                     <dd>
                         <a href="http://localhost:8080/com_hnist_war_exploded/user/manageList">管理员列表</a>
                     </dd>
+                    </c:if>
                 </li>
                 <li>
                     <dl>
-                        <dt>
-                            <i class="icon-inbox"></i>文件管理<i class="icon-angle-right"></i>
-                        </dt>
-                        <dd>
-                            <a href="http://localhost:8080/com_hnist_war_exploded/user/file">文件下载</a>
-                        </dd>
-                        <dd>
-                            <a href="http://localhost:8080/com_hnist_war_exploded/user/excel">数据导入导出</a>
-                        </dd>
+                        <c:if test="${role!='HR'}">
+                            <dt>
+                                <i class="icon-inbox"></i>文件管理<i class="icon-angle-right"></i>
+                            </dt>
+                            <dd>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/file">文件下载</a>
+                            </dd>
+                            <dd>
+                                <a href="http://localhost:8080/com_hnist_war_exploded/user/excel">数据导入导出</a>
+                            </dd>
+                        </c:if>
                     </dl>
                 </li>
             </ul>
@@ -193,6 +200,7 @@
             dataType : 'text', //返回值类型 一般设置为json
             success : function(data, status) //服务器成功响应处理函数
             {
+
                 alert("文件上传成功");
                 window.location.href="http://localhost:8080/com_hnist_war_exploded/user/file"
             },

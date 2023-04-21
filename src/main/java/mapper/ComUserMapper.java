@@ -1,10 +1,7 @@
 package mapper;
 
 
-import modle.CommonUser;
-import modle.Company;
-import modle.PersonMg;
-import modle.User;
+import modle.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,7 +9,7 @@ import java.util.Map;
 
 public interface ComUserMapper {
 
-    CommonUser selectBycom_user(Map<String,Object> map);
+    CommonUser selectByCom_user(Map<String,Object> map);
 
     int updateBycom_user(Map<String,Object> map);
 
@@ -20,7 +17,7 @@ public interface ComUserMapper {
 
     int insertBycom_user(Map<String,Object> map);
 
-    // 分页查询 @parame
+    // 分页查询
     List<CommonUser> queryUserList(@Param("m")int m, @Param("n")int n);
 
     // 查询页数
@@ -30,5 +27,15 @@ public interface ComUserMapper {
 
     int updateUser(CommonUser user);
 
+    //查询email是否存在
+    CommonUser selectByEmail(@Param("email") String email);
+
+    int update_password(@Param("com_pwd") String com_pwd,@Param("email") String email);
+
+    // 分页查询
+    List<Article> queryArticleList(@Param("m")int m, @Param("n")int n);
+
+    // 查询页数
+    int queryArticlePage();
 
 }

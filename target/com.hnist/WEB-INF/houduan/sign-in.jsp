@@ -80,26 +80,25 @@
 
 <%--</script>--%>
 <div class="loader-content">
-<div class="d-table">
-<div class="d-table-cell">
-<div class="sk-circle">
-<div class="sk-circle1 sk-child"></div>
-<div class="sk-circle2 sk-child"></div>
-<div class="sk-circle3 sk-child"></div>
-<div class="sk-circle4 sk-child"></div>
-<div class="sk-circle5 sk-child"></div>
-<div class="sk-circle6 sk-child"></div>
-<div class="sk-circle7 sk-child"></div>
-<div class="sk-circle8 sk-child"></div>
-<div class="sk-circle9 sk-child"></div>
-<div class="sk-circle10 sk-child"></div>
-<div class="sk-circle11 sk-child"></div>
-<div class="sk-circle12 sk-child"></div>
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="sk-circle">
+                <div class="sk-circle1 sk-child"></div>
+                <div class="sk-circle2 sk-child"></div>
+                <div class="sk-circle3 sk-child"></div>
+                <div class="sk-circle4 sk-child"></div>
+                <div class="sk-circle5 sk-child"></div>
+                <div class="sk-circle6 sk-child"></div>
+                <div class="sk-circle7 sk-child"></div>
+                <div class="sk-circle8 sk-child"></div>
+                <div class="sk-circle9 sk-child"></div>
+                <div class="sk-circle10 sk-child"></div>
+                <div class="sk-circle11 sk-child"></div>
+                <div class="sk-circle12 sk-child"></div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
-
 
 
 <div class="navbar-area">
@@ -130,19 +129,23 @@
                                 <li class="nav-item">
                                     <a href="http://localhost:8080/com_hnist_war_exploded/work/ToSelectWork" class="nav-link">搜索工作</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
-                                </li>
+                                <c:if test="${role=='HR'}">
+                                    <li class="nav-item">
+                                        <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
+                                    </li>
+                                </c:if>
                                 <li class="nav-item">
                                     <a href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork" class="nav-link">工作列表</a>
                                 </li>
                             </ul>
                         </li>
+                        <c:if test="${message!=null}">
                         <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link dropdown-toggle">用户</a>
+
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a href="http://localhost:8080/com_hnist_war_exploded/Account?email=${email}" class="nav-link">账号</a>
@@ -151,20 +154,31 @@
                                             <a href="http://localhost:8080/com_hnist_war_exploded/Toresetpwd" class="nav-link">修改密码</a>
                                         </li>
                                     </ul>
+
                                 </li>
+                                <c:if test="${role=='HR'}">
+                                    <li class="nav-item">
+                                        <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
+                                    </li>
+                                </c:if>
                                 <li class="nav-item">
-                                    <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
+                                    <a href="http://localhost:8080/com_hnist_war_exploded/logout" class="nav-link">退出登录</a>
                                 </li>
                             </ul>
+                            </c:if>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle">公司</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
-                                </li>
-                            </ul>
-                        </li>
+                        <c:if test="${role!='HR'}">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">公司</a>
+                                <ul class="dropdown-menu">
+
+                                    <li class="nav-item">
+                                        <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </c:if>
                     </ul>
                     <c:if test="${message==null}">
                         <div class="other-option">
@@ -202,62 +216,70 @@
 </div>
 </section>
 
-
 <div class="signin-section ptb-100">
-<div class="container">
-<div class="row">
-<div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3">
-    <%--@elvariable id="CommonUser" type="modle.CommonUser"--%>
-    <form:form class="signin-form" action="http://localhost:8080/com_hnist_war_exploded/commonlogin" method="post" modelAttribute="CommonUser">
-<div class="form-group">
-<label>输入账号</label>
-<input type="email" class="form-control" placeholder="输入邮箱账号" required="" id="com_user" name="com_user">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3">
+                <%--@elvariable id="CommonUser" type="modle.CommonUser"--%>
+                <form:form class="signin-form" action="http://localhost:8080/com_hnist_war_exploded/commonlogin" method="post" modelAttribute="CommonUser">
+                    <div class="form-group">
+                        <label>输入账号</label>
+                        <input type="email" class="form-control" placeholder="输入邮箱账号" required="" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label>输入密码</label>
+                        <input type="password" class="form-control" placeholder="输入密码" required="" id="com_pwd" name="com_pwd">
+                    </div>
+                    <div class="signin-btn text-center">
+                        <button type="submit">登录</button>
+                    </div>
+                    <div class="other-signin text-center">
+                        <span>或者使用其他账号</span>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class='bx bxl-google'></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class='bx bxl-facebook'></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class='bx bxl-twitter'></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class='bx bxl-linkedin'></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="create-btn text-center">
+                        <p>没有账号?
+                            <a href="http://localhost:8080/com_hnist_war_exploded/toregister">
+                                点击创建账号
+                                <i class='bx bx-chevrons-right bx-fade-right'></i>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="create-btn text-center">
+                        <p>忘记密码?
+                            <a href="http://localhost:8080/com_hnist_war_exploded/GotoFindPassword">
+                                点击找回账号
+                                <i class='bx bx-chevrons-right bx-fade-right'></i>
+                            </a>
+                        </p>
+                    </div>
+                </form:form>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="form-group">
-<label>输入密码</label>
-<input type="password" class="form-control" placeholder="输入密码" required="" id="com_pwd" name="com_pwd">
-</div>
-<div class="signin-btn text-center">
-<button type="submit">登录</button>
-</div>
-<div class="other-signin text-center">
-<span>或者使用其他账号</span>
-<ul>
-<li>
-<a href="#">
-<i class='bx bxl-google'></i>
-</a>
-</li>
-<li>
-<a href="#">
-<i class='bx bxl-facebook'></i>
-</a>
-</li>
-<li>
-<a href="#">
-<i class='bx bxl-twitter'></i>
-</a>
-</li>
-<li>
-<a href="#">
-<i class='bx bxl-linkedin'></i>
-</a>
-</li>
-</ul>
-</div>
-<div class="create-btn text-center">
-<p>没有账号?
-<a href="javascript:;">
-点击创建账号
-<i class='bx bx-chevrons-right bx-fade-right'></i>
-</a>
-</p>
-</div>
-</form:form>
-</div>
-</div>
-</div>
-</div>
+
 <footer class="footer-area pt-100 pb-70">
 <div class="container">
 <div class="row">

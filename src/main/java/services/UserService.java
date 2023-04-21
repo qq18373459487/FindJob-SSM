@@ -1,10 +1,9 @@
 package services;
 
-import ResponseMessage.ReturnObject;
-import modle.Company;
+import modle.Article;
+import tool.ReturnObject;
 import modle.FileModle;
 import modle.User;
-import modle.WorkList;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -32,6 +31,26 @@ public interface UserService {
     String updateUserReById(String id, Model model, HttpSession session,String relname);
 
     String insertUser(User user ,Model model, HttpSession session);
+
+    String GotoCv(User user ,Model model, HttpSession session);
+    String DeleteCv(String id,Model model, HttpSession session);
+    ReturnObject addArticle(Article article, HttpSession session , Model model);
+
+    // 分页查询
+    List<Article> queryArticleList(int page);
+    // 查询页数
+    int queryArticlePage();
+
+    String GetAllArticle(Article article, Model model, HttpSession session, String page);
+
+    String deleteArticle(String id, Model model, HttpSession session);
+
+    ReturnObject updateArticle( Model model, HttpSession session,Article article);
+
+    String GotoUpdateArticle(String id, Model model, HttpSession session);
+
+    String updateArticleState(String id, String state,Model model, HttpSession session);
+
 
 
 

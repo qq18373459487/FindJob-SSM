@@ -25,6 +25,7 @@ public class AppTest {
             InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(inputStream);
             session = factory.openSession();
+            System.out.println("before");
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -36,12 +37,14 @@ public class AppTest {
         CompanyAndWorkListMapper companyAndWorkListMapper = session.getMapper(CompanyAndWorkListMapper.class);
         List<CompanyAndWorkList > list = companyAndWorkListMapper.selectByCompany("华为");
         System.out.println(list.toString());
+        System.out.println("now");
     }
 
 
     @After
     public void end() {
         if (session != null) {
+            System.out.println("after");
             session.close();
         }
     }

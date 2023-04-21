@@ -9,7 +9,6 @@ import javax.validation.constraints.NotEmpty;
 public class CommonUser {
 
     private int id;
-    @NotEmpty
     private String com_user;
     @Length(min = 6,max = 20,message = "{ 密码长度无效}")
     private String com_pwd;

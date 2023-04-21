@@ -37,7 +37,6 @@
 
 </head>
 <body>
-
 <div class="loader-content">
  <div class="d-table">
   <div class="d-table-cell">
@@ -88,19 +87,23 @@
         <li class="nav-item">
          <a href="http://localhost:8080/com_hnist_war_exploded/work/ToSelectWork" class="nav-link">搜索工作</a>
         </li>
-        <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
-        </li>
+        <c:if test="${role=='HR'}">
+         <li class="nav-item">
+          <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
+         </li>
+        </c:if>
         <li class="nav-item">
          <a href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork" class="nav-link">工作列表</a>
         </li>
        </ul>
       </li>
+      <c:if test="${message!=null}">
       <li class="nav-item">
        <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
        <ul class="dropdown-menu">
         <li class="nav-item">
          <a href="#" class="nav-link dropdown-toggle">用户</a>
+
          <ul class="dropdown-menu">
           <li class="nav-item">
            <a href="http://localhost:8080/com_hnist_war_exploded/Account?email=${email}" class="nav-link">账号</a>
@@ -109,20 +112,31 @@
            <a href="http://localhost:8080/com_hnist_war_exploded/Toresetpwd" class="nav-link">修改密码</a>
           </li>
          </ul>
+
         </li>
+        <c:if test="${role=='HR'}">
+         <li class="nav-item">
+          <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
+         </li>
+        </c:if>
         <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
+         <a href="http://localhost:8080/com_hnist_war_exploded/logout" class="nav-link">退出登录</a>
         </li>
        </ul>
+       </c:if>
       </li>
-      <li class="nav-item">
-       <a href="#" class="nav-link dropdown-toggle">公司</a>
-       <ul class="dropdown-menu">
-        <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
-        </li>
-       </ul>
-      </li>
+      <c:if test="${role!='HR'}">
+       <li class="nav-item">
+        <a href="#" class="nav-link dropdown-toggle">公司</a>
+        <ul class="dropdown-menu">
+
+         <li class="nav-item">
+          <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
+         </li>
+
+        </ul>
+       </li>
+      </c:if>
      </ul>
      <c:if test="${message==null}">
       <div class="other-option">
@@ -202,30 +216,12 @@
        </div>
        <div class="details-text">
         <h3>描述</h3>
-        <p>一般的程序员都有在专业领域的学习，还有很小一部分程序员是自学的，尽管一些专业性的学校或者综合大学可以提供，但是也需要一些别的途径来提供相关的人才。尽管学历是比较重要的，但是公司经常把重点放在应聘者的工作经验上，很多刚从大学毕业的大学生虽然有引人注目的学位证书，但是他们找不到工作是因为他们缺乏经验。一个程序员虽然没有正规的学历，但是如果一个人拥有程序设计的深厚知识背景或者丰富的工作经验的话，那么他的机会要比有学历的应届毕业生大得多。所以要尽量抓住有用的工作和实习机会，这样的话在毕业后你就会发现，多实习让你有更多的经验，在找工作的时候就有更多的机会。
-         对于职业程序员，另外一个重要的方面就是，程序员需要不断提升自己的业务技术，他的技术必须一直保持在一个较高的水平，并且要不断发展，程序员也要寻找贸易的机会，要参加研讨会，在周刊上发表文章和接受职业教育，这些使程序员在自己的领域中分级或者不断并排前进。</p>
+        <p>${result.getWorkDetail()}</p>
        </div>
        <div class="details-text">
         <h3>工作要求</h3>
         <p> 如果你想要应聘这份工作你至少要达到以下的几点要求</p>
-        <ul>
-         <li>
-          <i class='bx bx-check'></i>
-          具有工作经历</li>
-         <li>
-          <i class='bx bx-check'></i>
-          具有专业的工作技能（软件开发或者文档写作）</li>
-         <li>
-          <i class='bx bx-check'></i>
-          具有良好的道德品质和价值观
-         </li>
-         <li>
-          <i class='bx bx-check'></i>
-          支持将软件推广到生产环境。</li>
-         <li>
-          <i class='bx bx-check'></i>
-          指导和指导初级工程师。如果合适，担任团队负责人。</li>
-        </ul>
+        <p>${result.getWorkRequest()}</p>
        </div>
        <div class="details-text">
         <h3>工作详情</h3>
@@ -278,7 +274,7 @@
         </div>
        </div>
        <div class="theme-btn">
-        <a href="#" class="default-btn">
+        <a href="http://localhost:8080/com_hnist_war_exploded/work/GotoCv?id=${result.getId()}" class="default-btn">
          立即申请
         </a>
        </div>
@@ -291,12 +287,12 @@
      <h3>发布者</h3>
      <div class="posted-by">
       <img src="newStatic/picture/client-1.png" alt="client image">
-      <h4>John Doe</h4>
-      <span>公司CEO</span>
+      <h4 id="postMan">${personMg.getUsername()}</h4>
+      <span>身份:${personMg.getIdentity()}</span>
      </div>
     </div>
     <div class="job-sidebar">
-     <h3>Location</h3>
+     <h3>公司地址:${personMg.getCity()}</h3>
      <img src="newStatic/image/25.jpg"></img>
     </div>
     <div class="job-sidebar">
@@ -496,4 +492,5 @@ Address:
 
 <script src="newStatic/js/custom.js"></script>
 </body>
+
 </html>

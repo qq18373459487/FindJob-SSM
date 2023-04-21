@@ -1,4 +1,4 @@
-package ResponseMessage;
+package tool;
 
 import org.springframework.format.Formatter;
 

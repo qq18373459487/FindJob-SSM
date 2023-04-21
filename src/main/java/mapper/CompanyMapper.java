@@ -24,4 +24,6 @@ public interface CompanyMapper {
     int updateCompanyByUser(Company company);
 
     Company GetCompanyById(int id);
+    Company GetCompanyByEmail(@Param("email") String  email);
+
 }

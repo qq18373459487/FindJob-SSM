@@ -1,4 +1,4 @@
-package ResponseMessage;
+package tool;
 
 public class ReturnObject {
     private String code;//处理成功和失败的提示信息

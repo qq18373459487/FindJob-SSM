@@ -82,6 +82,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <dt>
        <i class="icon-columns"></i>数据列表<i class="icon-angle-right"></i>
       </dt>
+<c:if test="${role=='管理员'}">
+ <dd>
       <dd>
        <a href="http://localhost:8080/com_hnist_war_exploded/company/GetAllCompany">公司列表</a>
       </dd>
@@ -94,19 +96,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <dd>
        <a href="http://localhost:8080/com_hnist_war_exploded/user/manageList">管理员列表</a>
       </dd>
+</c:if>
      </dl>
     </li>
     <li>
      <dl>
-      <dt>
-       <i class="icon-inbox"></i>文件管理<i class="icon-angle-right"></i>
-      </dt>
-      <dd>
-       <a href="http://localhost:8080/com_hnist_war_exploded/user/file">文件下载</a>
-      </dd>
-      <dd>
-       <a href="http://localhost:8080/com_hnist_war_exploded/user/excel">数据导入导出</a>
-      </dd>
+      <c:if test="${role!='HR'}">
+       <dt>
+        <i class="icon-inbox"></i>文件管理<i class="icon-angle-right"></i>
+       </dt>
+       <dd>
+        <a href="http://localhost:8080/com_hnist_war_exploded/user/file">文件下载</a>
+       </dd>
+       <dd>
+        <a href="http://localhost:8080/com_hnist_war_exploded/user/excel">数据导入导出</a>
+       </dd>
+      </c:if>
      </dl>
     </li>
    </ul>

@@ -1,11 +1,7 @@
 package controller;
 
-import modle.CommonUser;
-import modle.FileModle;
-import modle.User;
-import modle.WorkList;
+import modle.*;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import services.*;
-
+import tool.ReturnObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -83,6 +79,69 @@ public class UserController {
     {
         return "/404";
     }
+    @RequestMapping("/GotoCvManage")
+    public String GotoCvManage(@ModelAttribute User user,Model model, HttpSession session)
+    {
+        userService.GotoCv(user,model,session);
+        return "/user/CurriculumViteManage";
+    }
+    @RequestMapping("/DeleteCv")
+    public String DeleteCv(String id,Model model, HttpSession session)
+    {
+       return userService.DeleteCv(id,model,session);
+
+    }
+
+    @RequestMapping("/GOtoAddArticle")
+    public String GotoAddArticle(@ModelAttribute Article article, Model model, HttpSession session)
+    {
+        return "/user/postArticle";
+    }
+
+    @RequestMapping("/addArticle")
+    @ResponseBody
+    public ReturnObject addArticle(@ModelAttribute Article article, Model model, HttpSession session)
+    {
+        return userService.addArticle(article,session,model);
+    }
+
+    @RequestMapping("/getArticle")
+
+    public String getArticle(@ModelAttribute Article article, Model model, HttpSession session,String page)
+    {
+        return userService.GetAllArticle(article,model,session,page);
+    }
+
+    @RequestMapping("deleteArticle")
+    public String deleteArticle(String id, Model model, HttpSession session)
+    {
+        return userService.deleteArticle(id,model,session);
+    }
+
+    @RequestMapping("updateArticle")
+    @ResponseBody
+    public ReturnObject updateArticle(@ModelAttribute Article  article, Model model, HttpSession session)
+    {
+        return userService.updateArticle(model,session,article);
+    }
+
+    @RequestMapping("GotoUpdateArticle")
+    public String GotoUpdateArticle(String id, Model model, HttpSession session)
+    {
+        return userService.GotoUpdateArticle(id,model,session);
+    }
+
+    @RequestMapping("updateArticleState")
+    public String updateArticleState(String id,String state, Model model, HttpSession session)
+    {
+        return userService.updateArticleState(id,state,model,session);
+    }
+
+
+
+
+
+
 
 
 
@@ -102,8 +161,9 @@ public class UserController {
             map.put("result", "error");
             map.put("msg", "上传文件不能为空");
         } else {
-            String originalFilename = file1.getOriginalFilename();
-            String fileBaseName = FilenameUtils.getBaseName(originalFilename);
+            String originalFilename = file1.getOriginalFilename(); //这里是获取文件名，例如 text.txt
+            // 这里是获取不要后缀的文件名，text。这一行不要，因为没有后缀他无法找到这个文件，就无法下载
+//            String fileBaseName = FilenameUtils.getBaseName(originalFilename);
             System.out.println(originalFilename);
             Date now = new Date();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -137,7 +197,7 @@ public class UserController {
     public void download(@RequestParam(value="filename")String filename,
                          HttpServletRequest request, HttpServletResponse response) throws IOException {
         //模拟文件，myfile.txt为需要下载的文件
-        String path = "/Users/cengqunbo/IdeaProjects/File/"+filename;
+        String path = "/Users/cengqunbo/IdeaProjects/File"+filename;
         //获取输入流
         System.out.println("path"+path);
         InputStream bis = new BufferedInputStream(new FileInputStream(new File(path)));

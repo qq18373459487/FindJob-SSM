@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="mapper.WorkMapper">
 
 <!--    <resultMap id="ResultWorkList" type="modle.WorkList">-->
@@ -15,9 +17,9 @@
 <!--    </resultMap>-->
 
     <insert id="InsertWork" parameterType="modle.WorkList" >
-    insert into worklist(workname,worknumber,postcompany,experince,location,salary,worktime,worktype,workdetail)
+    insert into worklist(workname,worknumber,postcompany,experince,location,salary,worktime,worktype,workdetail,post_people,workrequest)
        values (#{WorkName},#{WorkNumber},#{PostCompany},#{Experince},
-               #{Location},#{Salary},#{WorkTime},#{WorkType},#{WorkDetail})
+               #{Location},#{Salary},#{WorkTime},#{WorkType},#{WorkDetail},#{post_people},#{WorkRequest})
     </insert>
 
     <select id="queryWorkList" resultType="modle.WorkList">
@@ -28,7 +30,17 @@
         select count(id) from worklist;
     </select>
     <select id="queryConditional" parameterType="modle.WorkList" resultType="modle.WorkList">
-        select * from worklist where location=#{Location} and worktype=#{WorkType} and workname=#{WorkName}
+        select * from worklist <where>
+        <if test="Location!=null and Location!=''">
+            location=#{Location}
+        </if>
+        <if test="WorkType!=null and WorkType!=''">
+            and worktype=#{WorkType}
+        </if>
+        <if test="WorkName!=null and WorkName!=''">
+            and workname like concat('%',#{WorkName},'%')
+        </if>
+    </where>
     </select>
 
     <select id="queryWorkListById" parameterType="string" resultType="modle.WorkList">
@@ -48,4 +60,24 @@
         update worklist SET workname=#{WorkName},postcompany=#{PostCompany},experince=#{Experince},
         location=#{Location},salary=#{Salary},worktime=#{WorkTime},worktype=#{WorkType} where id=#{id}
     </update>
+
+    <select id="queryWorkByPostMan" parameterType="string" resultType="modle.WorkList">
+        select * from worklist where post_people=#{post_people};
+    </select>
+
+    <update id="updateCvById">
+        update CV SET state="已查看"  where file_Url=#{file_Url}
+    </update>
+
+    <select id="queryWorkList_HR" resultType="modle.WorkList">
+        select * from worklist where post_people=#{post_people} order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryPage_HR" resultType="java.lang.Integer">
+        select count(id) from worklist where post_people=#{post_people};
+    </select>
+
+    <delete id="deleteById_HR">
+        delete from worklist where id=#{id} and post_people=#{post_people}
+    </delete>
 </mapper>

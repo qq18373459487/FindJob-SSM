@@ -25,4 +25,17 @@ public interface WorkMapper
 
     int updateWorkByUser(WorkList list);
 
+    List<WorkList> queryWorkByPostMan(@Param("post_people") String post_people);
+
+    int updateCvById(@Param("file_Url") String file_Url);
+
+    // 分页查询 @parame
+    List<WorkList> queryWorkList_HR(@Param("m")int m, @Param("n")int n,@Param("post_people") String post_people);
+
+    // 查询页数
+    int queryPage_HR(@Param("post_people") String post_people);
+
+    int deleteById_HR(@Param("id") String id,@Param("post_people") String post_people);
+
+
 }

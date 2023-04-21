@@ -95,19 +95,23 @@
         <li class="nav-item">
          <a href="http://localhost:8080/com_hnist_war_exploded/work/ToSelectWork" class="nav-link">搜索工作</a>
         </li>
-        <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
-        </li>
+        <c:if test="${role=='HR'}">
+         <li class="nav-item">
+          <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
+         </li>
+        </c:if>
         <li class="nav-item">
          <a href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork" class="nav-link">工作列表</a>
         </li>
        </ul>
       </li>
+      <c:if test="${message!=null}">
       <li class="nav-item">
        <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
        <ul class="dropdown-menu">
         <li class="nav-item">
          <a href="#" class="nav-link dropdown-toggle">用户</a>
+
          <ul class="dropdown-menu">
           <li class="nav-item">
            <a href="http://localhost:8080/com_hnist_war_exploded/Account?email=${email}" class="nav-link">账号</a>
@@ -116,20 +120,31 @@
            <a href="http://localhost:8080/com_hnist_war_exploded/Toresetpwd" class="nav-link">修改密码</a>
           </li>
          </ul>
+
         </li>
+        <c:if test="${role=='HR'}">
+         <li class="nav-item">
+          <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
+         </li>
+        </c:if>
         <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
+         <a href="http://localhost:8080/com_hnist_war_exploded/logout" class="nav-link">退出登录</a>
         </li>
        </ul>
+       </c:if>
       </li>
-      <li class="nav-item">
-       <a href="#" class="nav-link dropdown-toggle">公司</a>
-       <ul class="dropdown-menu">
-        <li class="nav-item">
-         <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
-        </li>
-       </ul>
-      </li>
+      <c:if test="${role!='HR'}">
+       <li class="nav-item">
+        <a href="#" class="nav-link dropdown-toggle">公司</a>
+        <ul class="dropdown-menu">
+
+         <li class="nav-item">
+          <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
+         </li>
+
+        </ul>
+       </li>
+      </c:if>
      </ul>
      <c:if test="${message==null}">
       <div class="other-option">

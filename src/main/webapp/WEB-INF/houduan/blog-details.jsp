@@ -10,54 +10,55 @@
 <!doctype html>
 <html lang="zxx">
 <head>
+
+<meta charset="utf-8">
  <base href="<%=basePath%>">
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
- <link rel="stylesheet" href="newStatic/css/bootstrap.min.css">
+<link rel="stylesheet" href="newStatic/css/bootstrap.min.css">
 
- <link rel="stylesheet" href="newStatic/css/owl.carousel.min.css">
+<link rel="stylesheet" href="newStatic/css/owl.carousel.min.css">
 
- <link rel="stylesheet" href="newStatic/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="newStatic/css/owl.theme.default.min.css">
 
- <link rel="stylesheet" href="newStatic/css/boxicon.min.css">
+<link rel="stylesheet" href="newStatic/css/boxicon.min.css">
 
- <link rel="stylesheet" href="newStatic/css/flaticon.css">
+<link rel="stylesheet" href="newStatic/css/flaticon.css">
 
- <link rel="stylesheet" href="newStatic/css/magnific-popup.css">
+<link rel="stylesheet" href="newStatic/css/magnific-popup.css">
 
- <link rel="stylesheet" href="newStatic/css/meanmenu.css">
+<link rel="stylesheet" href="newStatic/css/meanmenu.css">
 
- <link rel="stylesheet" href="newStatic/css/nice-select.css">
+<link rel="stylesheet" href="newStatic/css/nice-select.css">
 
- <link rel="stylesheet" href="newStatic/css/style.css">
+<link rel="stylesheet" href="newStatic/css/style.css">
 
- <link rel="stylesheet" href="newStatic/css/responsive.css">
+<link rel="stylesheet" href="newStatic/css/responsive.css">
 
- <title>Jovie - Job Board & Portal HTML Template</title>
+<title>Jovie - Job Board & Portal HTML Template</title>
 
 </head>
 <body>
 
 <div class="loader-content">
- <div class="d-table">
-  <div class="d-table-cell">
-   <div class="sk-circle">
-    <div class="sk-circle1 sk-child"></div>
-    <div class="sk-circle2 sk-child"></div>
-    <div class="sk-circle3 sk-child"></div>
-    <div class="sk-circle4 sk-child"></div>
-    <div class="sk-circle5 sk-child"></div>
-    <div class="sk-circle6 sk-child"></div>
-    <div class="sk-circle7 sk-child"></div>
-    <div class="sk-circle8 sk-child"></div>
-    <div class="sk-circle9 sk-child"></div>
-    <div class="sk-circle10 sk-child"></div>
-    <div class="sk-circle11 sk-child"></div>
-    <div class="sk-circle12 sk-child"></div>
-   </div>
-  </div>
- </div>
+<div class="d-table">
+<div class="d-table-cell">
+<div class="sk-circle">
+<div class="sk-circle1 sk-child"></div>
+<div class="sk-circle2 sk-child"></div>
+<div class="sk-circle3 sk-child"></div>
+<div class="sk-circle4 sk-child"></div>
+<div class="sk-circle5 sk-child"></div>
+<div class="sk-circle6 sk-child"></div>
+<div class="sk-circle7 sk-child"></div>
+<div class="sk-circle8 sk-child"></div>
+<div class="sk-circle9 sk-child"></div>
+<div class="sk-circle10 sk-child"></div>
+<div class="sk-circle11 sk-child"></div>
+<div class="sk-circle12 sk-child"></div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -159,106 +160,237 @@
 
 
 
-
-<section class="page-title title-bg4">
- <div class="d-table">
-  <div class="d-table-cell">
-   <h2>工作列表</h2>
-   <ul>
-    <li>
-     <a href="default.jsp">主页</a>
-    </li>
-    <li>工作列表</li>
-   </ul>
-  </div>
- </div>
- <div class="lines">
-  <div class="line"></div>
-  <div class="line"></div>
-  <div class="line"></div>
- </div>
+<section class="page-title title-bg22">
+<div class="d-table">
+<div class="d-table-cell">
+<h2>文章详情</h2>
+<ul>
+<li>
+<a href="default.jsp">主页</a>
+</li>
+<li>文章详情</li>
+</ul>
+</div>
+</div>
+<div class="lines">
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+</div>
 </section>
 
 
-<section class="job-style-two job-list-section pt-100 pb-70">
- <div class="container">
-  <div class="section-title text-center">
-   <h2>你可能感兴趣的工作</h2>
-   <p>这里会列出一些你可能会感兴趣的工作岗位，如果你觉得你的条件可以胜任，那么赶快抓住这次难得的机会吧</p>
-  </div>
-  <div class="row">
-   <c:forEach items="${list}" var="coms">
-   <div class="col-lg-12">
-    <div class="job-card-two">
-     <div class="row align-items-center">
-
-      <div class="col-md-1">
-       <div class="company-logo">
-        <a href="job-details.html"></a>
-        <img src="newStatic/picture/1.png" alt="logo">
-       </div>
-      </div>
-      <div class="col-md-8">
-       <div class="job-info">
-        <h3>
-         <a href="job-details.html">${coms.getWorkName()}</a>
-        </h3>
-        <ul>
-         <li>
-          <i class='bx bx-briefcase'></i>
-           ${coms.getPostCompany()}</li>
-         <li>
-          <i class='bx bx-briefcase'></i>
-       ${coms.getSalary()}
-         </li>
-         <li>
-          <i class='bx bx-location-plus'></i>
-           ${coms.getLocation()}</li>
-         <li>
-          <i class='bx bx-stopwatch'></i>
-           ${coms.getExperince()}
-         </li>
-        </ul>
-        <span> ${coms.getWorkTime()}</span>
-       </div>
-      </div>
-      <div class="col-md-3">
-       <div class="theme-btn text-end">
-        <a href="http://localhost:8080/com_hnist_war_exploded/work/SelectWorkDetail?id=${coms.getId()}" class="default-btn">
-         工作详情
-        </a>
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
-   </c:forEach>
-   <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-     <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-       <i class='bx bx-chevrons-left bx-fade-left'></i>
-      </a>
-     </li>
-     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=1">首页</a></li>
-     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page-1}">上页</a></li>
-     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page-1}">${page-1}</a></li>
-     <li class="page-item active"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page}">${page}</a></li>
-     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page+1}">${page+1}</a></li>
-     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${page+1}">下页</a></li>
-     <li class="page-item"><a class="page-link" href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork?page=${maxPage}">尾页</a></li>
-     <li class="page-item">
-      <a class="page-link" href="#">
-       <i class='bx bx-chevrons-right bx-fade-right'></i>
-       <div class="col-md-4">
-       </div>
-      </a>
-     </li>
-    </ul>
-   </nav>
-  </div>
- </div>
+<section class="blog-details-area ptb-100">
+<div class="container">
+<div class="row">
+<div class="col-lg-4">
+<div class="blog-widget blog-search">
+<form>
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Search">
+<button>
+<i class='bx bx-search-alt-2'></i>
+</button>
+</div>
+</form>
+</div>
+<div class="blog-widget">
+<h3>Popular Post</h3>
+<article class="popular-post">
+<a href="" class="blog-thumb">
+<img src="newStatic/picture/popular-post1.jpg" alt="blog image">
+</a>
+<div class="info">
+<time datetime="2022-04-08">May 8, 2022</time>
+<h4>
+<a href="">Looking for Highly Motivated Product to Build</a>
+</h4>
+</div>
+</article>
+<article class="popular-post">
+<a href="" class="blog-thumb">
+<img src="newStatic/picture/popular-post2.jpg" alt="blog image">
+</a>
+<div class="info">
+<time datetime="2022-04-08">${article.getPost_time()}</time>
+<h4>
+<a href="">
+ ${article.getTitle()}
+</a>
+</h4>
+</div>
+</article>
+<article class="popular-post">
+<a href="" class="blog-thumb">
+<img src="newStatic/picture/popular-post3.jpg" alt="blog image">
+</a>
+<div class="info">
+<time datetime="2022-04-08">April 20, 2022</time>
+<h4>
+<a href="">
+Economy Growth is Being Increased by IT Sectors
+</a>
+</h4>
+</div>
+</article>
+<article class="popular-post">
+<a href="" class="blog-thumb">
+<img src="newStatic/picture/popular-post4.jpg" alt="blog image">
+</a>
+<div class="info">
+<time datetime="2022-04-08">April 28, 2022</time>
+<h4>
+<a href="">
+10 Things You Should Know Before Apply
+</a>
+</h4>
+</div>
+</article>
+</div>
+<div class="blog-widget blog-category">
+<h3>Category</h3>
+<ul>
+<li>
+<a href="#">Web Design</a>
+<span>(10)</span>
+</li>
+<li>
+<a href="#">Job Tips</a>
+<span>(5)</span>
+</li>
+<li>
+<a href="#">UX Design</a>
+<span>(8)</span>
+</li>
+<li>
+<a href="#">Tips & Tricks</a>
+<span>(4)</span>
+</li>
+<li>
+<a href="#">Writting</a>
+<span>(12)</span>
+</li>
+<li>
+<a href="#">Business</a>
+<span>(7)</span>
+</li>
+</ul>
+</div>
+<div class="blog-widget blog-tags">
+<h3>Tags</h3>
+<ul>
+<li>
+<a href="#">Web Design</a>
+</li>
+<li>
+<a href="#">Job Tips</a>
+</li>
+<li>
+<a href="#">UX Design</a>
+</li>
+<li>
+<a href="#">Tips & Tricks</a>
+</li>
+<li>
+<a href="#">Writting</a>
+</li>
+<li>
+<a href="#">Business</a>
+</li>
+<li>
+<a href="#">Resume</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-lg-8">
+<div class="blog-dedails-text">
+<div class="blog-details-img">
+<img src="newStatic/picture/blog-details.jpg" alt="blog details image">
+</div>
+<div class="blog-meta">
+<ul>
+<li>
+<i class='bx bxs-user'></i>
+ ${article.getAuthor()}
+</li>
+<li>
+<i class='bx bx-calendar'></i>
+ ${article.getPost_time()}
+</li>
+</ul>
+</div>
+<h3 class="post-title">Tips for Making Your Resume Stand Out</h3>
+ <p>  ${article.getAuthor_text()}</p>
+<div class="details-tag">
+<ul>
+<li>Tags:</li>
+<li>
+<a href="#">Business</a>
+</li>
+<li>
+<a href="#">Resume</a>
+</li>
+<li>
+<a href="#">Develpment</a>
+</li>
+</ul>
+</div>
+<form class="comment-form">
+<h3>Leave a Reply</h3>
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label>Name</label>
+<input type="text" class="form-control" placeholder="Your Name">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Email</label>
+<input type="email" class="form-control" placeholder="Your Name">
+</div>
+</div>
+<div class="col-md-12">
+<div class="form-group">
+<label>Comment</label>
+<textarea class="form-control comment-box" cols="30" rows="6" placeholder="Your Comment"></textarea>
+</div>
+</div>
+</div>
+<button type="submit" class="comment-btn">
+Post a Comment
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
 </section>
+
+
+<section class="subscribe-section">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-6">
+<div class="section-title">
+<h2>Get New Job Notifications</h2>
+<p>Subscribe & get all related jobs notification</p>
+</div>
+</div>
+<div class="col-md-6">
+<form class="newsletter-form" data-toggle="validator">
+<input type="email" class="form-control" placeholder="Enter your email" name="EMAIL" required="" autocomplete="off">
+<button class="default-btn sub-btn" type="submit">
+Subscribe
+</button>
+<div id="validator-newsletter" class="form-result"></div>
+</form>
+</div>
+</div>
+</div>
+</section>
+
 
 <footer class="footer-area pt-100 pb-70">
  <div class="container">
@@ -290,7 +422,7 @@
        </a>
       </li>
       <li>
-       <a href="job-list.jsp">
+       <a href="job-list.html">
         <i class='bx bx-chevrons-right bx-tada'></i>
         工作列表 </a>
       </li>
@@ -324,7 +456,7 @@
       <li>
        <a href="pricing.html">
         <i class='bx bx-chevrons-right bx-tada'></i>
-        Pricing
+        价格
        </a>
       </li>
      </ul>
@@ -333,31 +465,30 @@
    <div class="col-lg-3 col-sm-6">
     <div class="footer-widget footer-info">
      <h3>公司信息</h3>
-
      <ul>
       <li>
-<span>
-<i class='bx bxs-phone'></i>
-Phone:
-</span>
+    <span>
+    <i class='bx bxs-phone'></i>
+    Phone:
+    </span>
        <a href="tel:882569756">
         +101 984 754
        </a>
       </li>
       <li>
-<span>
-<i class='bx bxs-envelope'></i>
-Email:
-</span>
+    <span>
+    <i class='bx bxs-envelope'></i>
+    Email:
+    </span>
        <a href="email-protection.html#89e0e7efe6c9e3e6ffe0eca7eae6e4">
         <span class="__cf_email__" data-cfemail="ee87808881ae848198878bc08d8183">[email&#160;protected]</span>
        </a>
       </li>
       <li>
-<span>
-<i class='bx bx-location-plus'></i>
-Address:
-</span>
+    <span>
+    <i class='bx bx-location-plus'></i>
+    Address:
+    </span>
        123, Denver, USA
       </li>
      </ul>

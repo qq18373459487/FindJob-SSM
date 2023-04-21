@@ -1,8 +1,13 @@
 package services.Impl;
 
+import mapper.ComUserMapper;
 import mapper.CompanyMapper;
 import mapper.PersonMapper;
+import mapper.UserMapper;
+import modle.CommonUser;
 import modle.Company;
+import modle.PersonMg;
+import modle.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -19,6 +24,13 @@ public class CompanyServiceImpl implements CompanyService {
 
    @Autowired
    private PersonMapper personMapper;
+
+   @Autowired
+   private UserMapper userMapper;
+
+   @Autowired
+   private ComUserMapper comUserMapper;
+
     @Override
     public List<Company> queryWorkListPage(int page) {
         int n = this.num;
@@ -80,8 +92,16 @@ public class CompanyServiceImpl implements CompanyService {
         {
          String email= companyMapper.selectCompanyById(ID);
          companyMapper.updateCompanyState(ID,"审核通过");
+         Company company= companyMapper.GetCompanyByEmail(email);
          personMapper.updatePerson_identityByEmail(email,"HR");
-        }else
+         CommonUser commonUser=comUserMapper.selectByEmail(email);
+         personMapper.updatePerson_companyByEmail(company.getCompanyName(),email);
+         User user=new User();
+         user.setUsername(commonUser.getEmail());
+         user.setPassword(commonUser.getCom_pwd());
+         user.setRealname("HR");
+         userMapper.insertUser(user);
+        }else if(name.equals("审核不通过"))
         {
             String email= companyMapper.selectCompanyById(ID);
             companyMapper.updateCompanyState(ID,"审核不通过");

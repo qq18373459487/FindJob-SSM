@@ -8,6 +8,7 @@ public class PersonMg {
     String city;
     String experience;
     String identity;
+    String company;
     public String getIdentity() {
         return identity;
     }
@@ -64,6 +65,14 @@ public class PersonMg {
 
     public void setExperience(String experience) {
         this.experience = experience;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     @Override

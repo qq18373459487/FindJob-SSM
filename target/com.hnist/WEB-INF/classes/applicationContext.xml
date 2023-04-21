@@ -26,4 +26,18 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
     <!-- 导入数据相关配置 -->
     <import resource="applicationContext-datasource.xml" />
 
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.qq.com"/>
+        <property name="username" value="2306732673@qq.com"/>
+        <property name="password" value="cszilgzzvinwdjhh"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.ssl.enable">true</prop>
+            </props>
+        </property>
+    </bean>
+
+
 </beans>

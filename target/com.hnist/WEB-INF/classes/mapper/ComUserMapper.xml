@@ -18,8 +18,8 @@
         <result property="identity" column="identity" jdbcType="VARCHAR"/>
     </resultMap>
 
-<select id="selectBycom_user" parameterType="Map" resultMap="ResultUser">
-    select * from commonuser where com_user=#{com_user} and com_pwd=#{com_pwd}
+<select id="selectByCom_user" parameterType="Map" resultMap="ResultUser">
+    select * from commonuser where email=#{email} and com_pwd=#{com_pwd}
 </select>
 
     <update id="updateBycom_user" parameterType="Map">
@@ -51,6 +51,24 @@ delete from commonuser where id=#{id}
     <update id="updateUser" parameterType="modle.CommonUser">
         update commonuser SET com_user=#{com_user},email=#{email}  where id=#{id}
     </update>
+
+    <select id="selectByEmail" resultType="modle.CommonUser">
+        select * from commonuser where email=#{email};
+    </select>
+
+    <update id="update_password" parameterType="modle.CommonUser">
+        update commonuser SET com_pwd=#{com_pwd} where email=#{email}
+    </update>
+
+<!--    文章处理-->
+    <select id="queryArticleList" resultType="modle.Article">
+        select * from article where state="审核通过" order by id desc limit #{m},#{n} ;
+    </select>
+
+    <select id="queryArticlePage" resultType="java.lang.Integer">
+        select count(id) from article where state="审核通过";
+    </select>
+
 
 
 </mapper>

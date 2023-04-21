@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -47,24 +46,24 @@
 <body>
 
 <div class="loader-content">
-<div class="d-table">
-<div class="d-table-cell">
-<div class="sk-circle">
-<div class="sk-circle1 sk-child"></div>
-<div class="sk-circle2 sk-child"></div>
-<div class="sk-circle3 sk-child"></div>
-<div class="sk-circle4 sk-child"></div>
-<div class="sk-circle5 sk-child"></div>
-<div class="sk-circle6 sk-child"></div>
-<div class="sk-circle7 sk-child"></div>
-<div class="sk-circle8 sk-child"></div>
-<div class="sk-circle9 sk-child"></div>
-<div class="sk-circle10 sk-child"></div>
-<div class="sk-circle11 sk-child"></div>
-<div class="sk-circle12 sk-child"></div>
-</div>
-</div>
-</div>
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="sk-circle">
+                <div class="sk-circle1 sk-child"></div>
+                <div class="sk-circle2 sk-child"></div>
+                <div class="sk-circle3 sk-child"></div>
+                <div class="sk-circle4 sk-child"></div>
+                <div class="sk-circle5 sk-child"></div>
+                <div class="sk-circle6 sk-child"></div>
+                <div class="sk-circle7 sk-child"></div>
+                <div class="sk-circle8 sk-child"></div>
+                <div class="sk-circle9 sk-child"></div>
+                <div class="sk-circle10 sk-child"></div>
+                <div class="sk-circle11 sk-child"></div>
+                <div class="sk-circle12 sk-child"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -96,19 +95,23 @@
                                 <li class="nav-item">
                                     <a href="http://localhost:8080/com_hnist_war_exploded/work/ToSelectWork" class="nav-link">搜索工作</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
-                                </li>
+                                <c:if test="${role=='HR'}">
+                                    <li class="nav-item">
+                                        <a href="http://localhost:8080/com_hnist_war_exploded/work/ToAddWork" class="nav-link">发布工作</a>
+                                    </li>
+                                </c:if>
                                 <li class="nav-item">
                                     <a href="http://localhost:8080/com_hnist_war_exploded/work/GetAllWork" class="nav-link">工作列表</a>
                                 </li>
                             </ul>
                         </li>
+                        <c:if test="${message!=null}">
                         <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle">服务&nbsp;</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link dropdown-toggle">用户</a>
+
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a href="http://localhost:8080/com_hnist_war_exploded/Account?email=${email}" class="nav-link">账号</a>
@@ -117,20 +120,31 @@
                                             <a href="http://localhost:8080/com_hnist_war_exploded/Toresetpwd" class="nav-link">修改密码</a>
                                         </li>
                                     </ul>
+
                                 </li>
+                                <c:if test="${role=='HR'}">
+                                    <li class="nav-item">
+                                        <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
+                                    </li>
+                                </c:if>
                                 <li class="nav-item">
-                                    <a href="http://localhost:8080/com_hnist_war_exploded/user/login" class="nav-link">后台</a>
+                                    <a href="http://localhost:8080/com_hnist_war_exploded/logout" class="nav-link">退出登录</a>
                                 </li>
                             </ul>
+                            </c:if>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle">公司</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
-                                </li>
-                            </ul>
-                        </li>
+                        <c:if test="${role!='HR'}">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">公司</a>
+                                <ul class="dropdown-menu">
+
+                                    <li class="nav-item">
+                                        <a href="http://localhost:8080/com_hnist_war_exploded/Topostcompany" class="nav-link">公司入驻</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </c:if>
                     </ul>
                     <c:if test="${message==null}">
                         <div class="other-option">
@@ -176,6 +190,7 @@
             <div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3">
 <%--        action="http://localhost:8080/com_hnist_war_exploded/register" method="post"      --%>
                 <div class="signup-form">
+                    <div> <p id="message_password"></p></div>
                     <div class="form-group">
                         <label>输入用户名</label>
                         <input type="text" class="form-control" placeholder="Enter Username" required="" id="com_user">
@@ -187,6 +202,17 @@
                     <div class="form-group">
                         <label>输入密码</label>
                         <input type="password" class="form-control" placeholder="Enter Your Password" required="" id="com_pwd">
+                    </div>
+                    <div class="form-group">
+                        <label>再次输入密码</label>
+                        <input type="password" class="form-control" placeholder="Enter Your Password" required="" id="com_pwd_re" onkeyup="cheakPassWord()">
+                    </div>
+                    <div class="form-group">
+                        <label>验证码</label>
+                    </div>
+                    <div class="input-group mb-3 form-group">
+                        <input type="text" class="form-control" id="code" placeholder="点击按钮获得验证码" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="getCode()">验证码</button>
                     </div>
                     <div class="signup-btn   text-center">
                         <button type="submit" id="register_btn" onclick="register()">注册</button>
@@ -221,7 +247,7 @@
                         <p>
                             已经拥有账号了？
                             <a href="/tocommonlogin">
-                                登录<i class='bx bx-chevrons-right bx-fade-right'></i>
+                                登录<a href="http://localhost:8080/com_hnist_war_exploded/tocommonlogin" class='bx bx-chevrons-right bx-fade-right'></a>
                             </a>
                         </p>
                     </div>
@@ -352,6 +378,8 @@ Address:
         var com_user=$.trim($("#com_user").val());
         var com_pwd=$.trim($("#com_pwd").val());
         var email=$.trim($("#email").val());
+        var code=$.trim($("#code").val());
+
         if(com_user==null)
         {
             alert("用户名不能为空");
@@ -371,15 +399,20 @@ Address:
                 data: {
                     com_user:com_user,
                     com_pwd:com_pwd,
-                    email:email
+                    email:email,
+                    code:code
                 },
                 type:'post',
                 dataType:'json',
                 success:function (data)
                 {
-                    if(data.code==="1")
+                    if(data.code==="0")
                     {
-                        $("#msg").html("注册成功");
+                        $("#msg").html("验证码错误");
+                    }else if(data.code==="1")
+                    {
+                        $("#msg").html("注册成功，即将跳转到登录页面");
+                        setTimeout(() =>window.location.href="http://localhost:8080/com_hnist_war_exploded/tocommonlogin", 1800)
                     }else if(data.code=="2")
                     {
                         $("#msg").html("注册失败");
@@ -393,6 +426,57 @@ Address:
         )
 
 
+    }
+
+    function cheakPassWord()
+    {
+        const com_pwd=$.trim($("#com_pwd").val());
+        const com_pwd_re=$.trim($("#com_pwd_re").val());
+        if(com_pwd_re!=com_pwd)
+        {
+
+            document.getElementById("message_password").innerText="前后密码不一致";
+
+        }else
+        {
+            document.getElementById("message_password").innerText="";
+
+        }
+
+    }
+
+    function getCode()
+    {
+        var email=$.trim($("#email").val());
+        $.ajax({
+            url:'http://localhost:8080/com_hnist_war_exploded/SignVerificationCode',
+            type: "post",
+            data:{"email":email},
+            dataType:"json",
+            success: function (re)
+            {
+                if(re.code==="0")
+                {
+                    document.getElementById("message_password").innerText="发送成功";
+                }else
+                {
+                    if (re.code==="1") {
+
+                        document.getElementById("message_password").innerText="邮箱已被注册";
+                    }
+                    if(re.code==="2")
+                    {
+                        document.getElementById("message_password").innerText="发送失败";
+
+                    }
+                }
+
+            },
+            error: function ()
+            {
+                document.getElementById("message_password").innerText="发送失败";
+            }
+        });
     }
 
 </script>

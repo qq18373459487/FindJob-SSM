@@ -14,6 +14,16 @@ public class WorkList {
     String WorkTime;
     String WorkType;
     String WorkDetail;
+    String post_people;
+    String WorkRequest;
+
+    public String getWorkRequest() {
+        return WorkRequest;
+    }
+
+    public void setWorkRequest(String workRequest) {
+        WorkRequest = workRequest;
+    }
 
     public int getId() {
         return Id;
@@ -94,6 +104,14 @@ public class WorkList {
 
     public void setWorkTime(String workTime) {
         WorkTime = workTime;
+    }
+
+    public String getPost_people() {
+        return post_people;
+    }
+
+    public void setPost_people(String post_people) {
+        this.post_people = post_people;
     }
 
     @Override

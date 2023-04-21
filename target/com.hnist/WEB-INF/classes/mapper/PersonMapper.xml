@@ -18,7 +18,7 @@
         <result property="identity" column="identity" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="selectByPersonId" parameterType="string" resultMap="ResultPerson">
+    <select id="selectByEmail" parameterType="string" resultMap="ResultPerson">
         select * from person where email=#{email}
     </select>
 
@@ -28,12 +28,16 @@
     </update>
 
     <insert id="insertPerson_email" parameterType="string" >
-        insert into person(email)
-        values (#{email})
+        insert into person(email,username)
+        values (#{email},#{username})
     </insert>
 
     <update id="updatePerson_identityByEmail" parameterType="string">
         update person SET identity=#{identity} where email=#{email}
+    </update>
+
+    <update id="updatePerson_companyByEmail" parameterType="string">
+        update person SET company=#{company} where email=#{email}
     </update>
 
 </mapper>
