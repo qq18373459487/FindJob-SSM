@@ -1,5 +1,6 @@
 package services.Impl;
 
+import mapper.WorkMapper;
 import modle.*;
 import tool.ReturnObject;
 import mapper.UserMapper;
@@ -22,6 +23,9 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private WorkMapper workMapper;
 
     int num=5;
     int num_article=4;
@@ -166,17 +170,62 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String GotoCv(User user, Model model, HttpSession session) {
-       String username= (String) session.getAttribute("user");
-      List<CurriculumVitae> curriculumVitae= userMapper.getAllCvByre_man(username);
-      model.addAttribute("CV",curriculumVitae);
+    public List<CurriculumVitae> queryCurriculumVitaeList(int page,String username) {
+        int n = this.num;
+        int m = n * (page - 1);
+        return userMapper.queryCurriculumVitaeList(m,n,username);
+    }
+
+    @Override
+    public int queryCurriculumVitaePage(String username) {
+        int count = userMapper.queryCurriculumVitaePage(username);
+        int page;
+        if (count%this.num==0) {
+            page = count/this.num;
+        } else {
+            page = count/this.num + 1;
+        }
+        return page;
+    }
+
+    @Override
+    public String GotoCv(User user, Model model, HttpSession session,String page) {
+        String username= (String) session.getAttribute("user");
+        int max=queryCurriculumVitaePage(username);
+        int ReturnPage;
+        try {
+            ReturnPage=Integer.valueOf(page);
+        }catch (Exception e)
+        {
+            ReturnPage=1;
+        }
+
+        //当传过来是空的时候,默认第一页
+        if (page == null) {
+            ReturnPage = 1;
+        } else if (ReturnPage < 1){
+            //不能小于第一页
+            ReturnPage = 1;
+        } else if (ReturnPage > max) {
+            //不能大于最大页
+            ReturnPage = max;
+        }
+
+        //绑定最大页数
+        model.addAttribute("maxPage", max);
+        //调用service层查询第几页的数据
+        List<CurriculumVitae> curriculumVitae= queryCurriculumVitaeList(ReturnPage,username);
+        //绑定查询的结果到列表
+        model.addAttribute("CV",curriculumVitae);
+        //绑定当前的页码
+        model.addAttribute("page", ReturnPage);
       return "/user/CurriculumViteManage";
     }
 
     @Override
     public String DeleteCv(String id, Model model, HttpSession session) {
         userMapper.deleteCvById(id);
-        return GotoCv(null,model,session);
+        return GotoCv(null,model,session,null);
     }
 
     @Override
@@ -380,5 +429,21 @@ public class UserServiceImpl implements UserService {
         }
         userMapper.updateCommentState(id,state);
         return GetAllComment(null,model,session,null);
+    }
+
+    @Override
+    public String GotoUpdateWork_HR(String id, String state, Model model, HttpSession session) {
+         WorkList workList= workMapper.queryWorkListById(id);
+         model.addAttribute("work",workList);
+        return "/user/updateWork_HR";
+    }
+
+    @Override
+    public ReturnObject updateWork_HR(WorkList workList, Model model, HttpSession session) {
+        ReturnObject returnObject=new ReturnObject();
+        int i=userMapper.updateWorkById(workList);
+        if(i==1) returnObject.setCode("1");
+        else returnObject.setCode("0");
+        return returnObject;
     }
 }

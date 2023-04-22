@@ -124,5 +124,44 @@ from user  where username=#{username} and password=#{password}
         update comment set state=#{state} where id=#{id}
     </update>
 
+    <update id="updateWorkById">
+        update worklist <set>
+        <if test="WorkName!=null and WorkName!=''">
+            workname=#{WorkName},
+        </if>
+        <if test="Experince!=null and Experince!=''">
+            experince=#{Experince},
+        </if>
+        <if test="WorkDetail!=null and WorkDetail!=''">
+            workdetail=#{WorkDetail},
+        </if>
+        <if test="WorkRequest!=null and WorkRequest!=''">
+            workrequest=#{WorkRequest},
+        </if>
+        <if test="Location!=null and Location!=''">
+            location=#{Location},
+        </if>
+        <if test="Salary!=null and Salary!=''">
+            salary=#{Salary},
+        </if>
+        <if test="WorkTime!=null and WorkTime!=''">
+            worktime=#{WorkTime},
+        </if>
+        <if test="WorkType!=null and WorkType!=''">
+            worktype=#{WorkType}
+        </if>
+
+    </set>
+        where id=#{id}
+    </update>
+
+    <select id="queryCurriculumVitaeList" resultType="modle.CurriculumVitae">
+        select * from CV where re_man=#{re_man} order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryCurriculumVitaePage" resultType="java.lang.Integer">
+        select count(id) from CV where re_man=#{re_man};
+    </select>
+
 
 </mapper>

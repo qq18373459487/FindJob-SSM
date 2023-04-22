@@ -69,6 +69,14 @@ public interface UserMapper {
 
     int updateCommentState(@Param("id") String id,@Param("state") String state);
 
+    int updateWorkById(WorkList workList);
+
+    // 分页查询 @parame
+    List<CurriculumVitae> queryCurriculumVitaeList(@Param("m")int m, @Param("n")int n,@Param("re_man") String re_man);
+
+    // 查询页数
+    int queryCurriculumVitaePage(@Param("re_man") String re_man);
+
 
 
 

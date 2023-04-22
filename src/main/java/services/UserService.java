@@ -1,10 +1,7 @@
 package services;
 
-import modle.Article;
-import modle.Comment;
+import modle.*;
 import tool.ReturnObject;
-import modle.FileModle;
-import modle.User;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -33,10 +30,15 @@ public interface UserService {
 
     String insertUser(User user ,Model model, HttpSession session);
 
-    String GotoCv(User user ,Model model, HttpSession session);
+    List<CurriculumVitae> queryCurriculumVitaeList(int page,String username);
+    // 查询页数
+    int queryCurriculumVitaePage(String username);
+    String GotoCv(User user ,Model model, HttpSession session,String page);
     String DeleteCv(String id,Model model, HttpSession session);
-    ReturnObject addArticle(Article article, HttpSession session , Model model);
 
+
+
+    ReturnObject addArticle(Article article, HttpSession session , Model model);
     // 分页查询
     List<Article> queryArticleList(int page);
     // 查询页数
@@ -63,6 +65,10 @@ public interface UserService {
     String deleteComment(String id, Model model, HttpSession session);
 
     String updateCommentState(String id, String state,Model model, HttpSession session);
+
+    String GotoUpdateWork_HR(String id, String state,Model model, HttpSession session);
+
+    ReturnObject updateWork_HR(WorkList workList,Model model,HttpSession session);
 
 
 

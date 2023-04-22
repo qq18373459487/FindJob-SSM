@@ -80,9 +80,9 @@ public class UserController {
         return "/404";
     }
     @RequestMapping("/GotoCvManage")
-    public String GotoCvManage(@ModelAttribute User user,Model model, HttpSession session)
+    public String GotoCvManage(@ModelAttribute User user,Model model, HttpSession session,String page)
     {
-        userService.GotoCv(user,model,session);
+        userService.GotoCv(user,model,session,page);
         return "/user/CurriculumViteManage";
     }
     @RequestMapping("/DeleteCv")
@@ -155,6 +155,18 @@ public class UserController {
     {
         return userService.updateCommentState(id,state,model,session);
     }
+    @RequestMapping("GotoUpdateWork_HR")
+    public String GotoUpdateWork_HR(String id,String state, Model model, HttpSession session)
+    {
+        return userService.GotoUpdateWork_HR(id,state,model,session);
+    }
+    @RequestMapping("updateWork_HR")
+    @ResponseBody
+    public ReturnObject updateWork_HR(WorkList workList, Model model, HttpSession session)
+    {
+        return userService.updateWork_HR(workList,model,session);
+    }
+
 
 
 

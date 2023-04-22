@@ -30,9 +30,6 @@
     <script src="editor/ueditor.all.js"></script>
     <script src="javascript/plug-ins/pagination.js"></script>
     <script src="javascript/public.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="javascript/ajaxfileupload.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="main-wrap">
@@ -213,9 +210,8 @@
         pageCount:${maxPage},
         current:${page},
         backFn:function(p){
-        window.location.href="http://localhost:8080/com_hnist_war_exploded/work/workList?page="+p;
+        window.location.href="http://localhost:8080/com_hnist_war_exploded/user/GotoCvManage?page="+p;
     }
     });
-
 </script>
 </html>

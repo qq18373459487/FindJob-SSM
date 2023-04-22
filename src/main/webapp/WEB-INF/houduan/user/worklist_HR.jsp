@@ -208,105 +208,7 @@
         </table>
         <!--开始::结束-->
 
-        <%--这里是隐藏的弹窗--%>
 
-        <%--这里是添加弹窗开始--%>
-        <%--@elvariable id="WorkList" type="modle.WorkList"--%>
-        <form:form id="modal" class="c2 hide panel-bd"
-                   action="http://localhost:8080/com_hnist_war_exploded/work/insertWorkByUser" modelAttribute="WorkList">
-          <div class="panel panel-primary">
-            <div class="panel-hd">工作信息添加</div>
-            <div class="panel-bd">
-              <p>工作名称：<input type="text"  name="WorkName"/></p>
-              <br/>
-              <p>工作时间：<input type="text"  name="WorkTime"/></p>
-              <br/>
-              <p>发布公司：<input type="text"   name="PostCompany" /></p>
-              <br/>
-              <p>工作地址：<input type="text"  name="Location"/></p>
-              <br/>
-              <p>工作类型：<input type="text"  name="WorkType"/></p>
-              <br/>
-              <p>薪水：<input type="text"  name="Salary"/></p>
-              <br/>
-              <p>经验要求：<input type="text"   name="Experince" /></p>
-              <br/>
-              <p>
-                <input type="submit" class="btn btn-primary" value="确定">
-                <input type="button" class="btn btn-primary" value="取消" onclick="Hide();">
-              </p>
-            </div>
-          </div>
-        </form:form>
-        <%--添加弹窗结束--%>
-
-        <%--这里是修改弹窗开始--%>
-
-        <div id="shade" class="c1 hide"></div>
-        <c:if test="${update==1}">
-          <%--@elvariable id="WorkList" type="modle.WorkList"--%>
-          <form:form id="modal1" class="c2 panel-bd"
-                     action="http://localhost:8080/com_hnist_war_exploded/work/updateWorkByUser" modelAttribute="WorkList">
-            <div class="panel panel-primary">
-              <div class="panel-hd">工作信息修改</div>
-              <div class="panel-bd">
-                <p>id：<input type="text"   value="${com.getId()}"  name="id" readonly="readonly"/></p>
-                <br/>
-                <p>工作名称：<input type="text"  value="${com.getWorkName()}" name="WorkName"/></p>
-                <br/>
-                <p>工作时间：<input type="text" value="${com.getWorkTime()}" name="WorkTime"/></p>
-                <br/>
-                <p>发布公司：<input type="text"  value="${com.getPostCompany()}" name="PostCompany" /></p>
-                <br/>
-                <p>工作地址：<input type="text" value="${com.getLocation()}" name="Location"/></p>
-                <br/>
-                <p>工作类型：<input type="text" value="${com.getWorkType()}" name="WorkType"/></p>
-                <br/>
-                <p>薪水：<input type="text" value="${com.getSalary()}" name="Salary"/></p>
-                <br/>
-                <p>经验要求：<input type="text" value="${com.getExperince()}"  name="Experince" /></p>
-                <br/>
-                <p>
-                  <input type="submit" class="btn btn-primary" value="确定">
-                  <input type="button" class="btn btn-primary" value="取消" onclick="Hide1();">
-                </p>
-              </div>
-            </div>
-          </form:form>
-          <%--修改弹窗结束--%>
-        </c:if>
-        <c:if test="${update==null}">
-          <%--@elvariable id="WorkList" type="modle.WorkList"--%>
-          <form:form id="modal1" class="c2 hide panel-bd"
-                     action="http://localhost:8080/com_hnist_war_exploded/work/updateWorkByUser" modelAttribute="WorkList">
-            <div class="panel panel-primary">
-              <div class="panel-hd">工作信息修改</div>
-              <div class="panel-bd">
-                <p>id：<input type="text"  name="id" readonly="readonly"/></p>
-                <br/>
-                <p>工作名称：<input type="text"  name="WorkName"/></p>
-                <br/>
-                <p>工作时间：<input type="text"  name="WorkTime"/></p>
-                <br/>
-                <p>发布公司：<input type="text"   name="PostCompany" /></p>
-                <br/>
-                <p>工作地址：<input type="text"  name="Location"/></p>
-                <br/>
-                <p>工作类型：<input type="text"  name="WorkType"/></p>
-                <br/>
-                <p>薪水：<input type="text" name="Salary"/></p>
-                <br/>
-                <p>经验要求：<input type="text"   name="Experince" /></p>
-                <br/>
-                <p>
-                  <input type="submit" class="btn btn-primary" value="确定">
-                  <input type="button" class="btn btn-primary" value="取消" onclick="Hide1();">
-                </p>
-              </div>
-            </div>
-          </form:form>
-          <%--修改弹窗结束--%>
-        </c:if>
 
       </div>
       <div class="panel panel-default">
@@ -335,22 +237,9 @@
 </body>
 <%--这里是控制JS弹窗的--%>
 <script type="text/javascript">
-  function Show(){
-    document.getElementById('shade').classList.remove('hide');
-    document.getElementById('modal').classList.remove('hide');
-  }
-  function Hide(){
-    document.getElementById('shade').classList.add('hide');
-    document.getElementById('modal').classList.add('hide');
-  }
-
-  function Hide1(){
-    document.getElementById('shade').classList.add('hide');
-    document.getElementById('modal1').classList.add('hide');
-  }
   function Show1(id)
   {
-    window.location.href="http://localhost:8080/com_hnist_war_exploded/work/GetWorkByUser?id="+id;
+    window.location.href="http://localhost:8080/com_hnist_war_exploded/user/GotoUpdateWork_HR?id="+id;
   }
 </script>
 <script>
