@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ComUserMapper">
+    <!--实体类与数据库映射字段部分-->
+    <resultMap id="ResultUser" type="modle.CommonUser">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="com_user" column="com_user" jdbcType="VARCHAR"/>
+        <result property="com_pwd" column="com_pwd" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ResultPerson" type="modle.PersonMg">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="experience" column="experience" jdbcType="VARCHAR"/>
+        <result property="identity" column="identity" jdbcType="VARCHAR"/>
+    </resultMap>
+
+<select id="selectByCom_user" parameterType="Map" resultMap="ResultUser">
+    select * from commonuser where email=#{email} and com_pwd=#{com_pwd}
+</select>
+
+    <update id="updateBycom_user" parameterType="Map">
+update commonuser SET com_pwd=#{newpwd}  where com_pwd=#{oldpwd} and com_user=#{account}
+    </update>
+
+    <delete id="deleteBycom_user">
+delete from commonuser where id=#{id}
+    </delete>
+
+    <insert id="insertBycom_user" parameterType="Map" >
+       insert into commonuser(com_user,com_pwd,email)
+       values (#{com_user},#{com_pwd},#{email})
+    </insert>
+
+    <insert id="insertUser" parameterType="modle.CommonUser" >
+        insert into commonuser(com_user,com_pwd,email)
+        values (#{com_user},#{com_pwd},#{email})
+    </insert>
+
+    <select id="queryUserList" resultType="modle.CommonUser">
+        select * from commonuser order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryPage" resultType="java.lang.Integer">
+        select count(id) from commonuser;
+    </select>
+
+    <update id="updateUser" parameterType="modle.CommonUser">
+        update commonuser SET com_user=#{com_user},email=#{email}  where id=#{id}
+    </update>
+
+    <select id="selectByEmail" resultType="modle.CommonUser">
+        select * from commonuser where email=#{email};
+    </select>
+
+    <update id="update_password" parameterType="modle.CommonUser">
+        update commonuser SET com_pwd=#{com_pwd} where email=#{email}
+    </update>
+
+<!--    文章处理-->
+    <select id="queryArticleList" resultType="modle.Article">
+        select * from article where state="审核通过" order by id desc limit #{m},#{n} ;
+    </select>
+
+    <select id="queryArticlePage" resultType="java.lang.Integer">
+        select count(id) from article where state="审核通过";
+    </select>
+
+    <insert id="insertComment" parameterType="modle.Comment" >
+        insert into comment(comment_name,article_id,comment_text,comment_email,state)
+        values (#{comment_name},#{article_id},#{comment_text},#{comment_email},#{state})
+    </insert>
+
+<!--    评论-->
+
+    <select id="getCommentByArticle_id" resultType="modle.Comment">
+        select * from comment where state="审核通过" and article_id=#{article_id};
+    </select>
+
+
+</mapper>

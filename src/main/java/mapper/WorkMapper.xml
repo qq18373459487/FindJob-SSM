@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.WorkMapper">
+
+<!--    <resultMap id="ResultWorkList" type="modle.WorkList">-->
+<!--        <result property="WorkName" column="worknumber" jdbcType="INTEGER"/>-->
+<!--        <result property="WorkName" column="workname" jdbcType="VARCHAR"/>-->
+<!--        <result property="PostCompany" column="postcompany" jdbcType="VARCHAR"/>-->
+<!--        <result property="Experince" column="experince" jdbcType="VARCHAR"/>-->
+<!--        <result property="Location" column="location" jdbcType="VARCHAR"/>-->
+<!--        <result property="Salary" column="salay" jdbcType="VARCHAR"/>-->
+<!--        <result property="WorkTime" column="worktime" jdbcType="VARCHAR"/>-->
+<!--        <result property="WorkType" column="worktype" jdbcType="VARCHAR"/>-->
+<!--        <result property="WorkDetail" column="workdetail" jdbcType="JAVA_OBJECT"/>-->
+<!--    </resultMap>-->
+
+    <insert id="InsertWork" parameterType="modle.WorkList" >
+    insert into worklist(workname,worknumber,postcompany,experince,location,salary,worktime,worktype,workdetail,post_people,workrequest)
+       values (#{WorkName},#{WorkNumber},#{PostCompany},#{Experince},
+               #{Location},#{Salary},#{WorkTime},#{WorkType},#{WorkDetail},#{post_people},#{WorkRequest})
+    </insert>
+
+    <select id="queryWorkList" resultType="modle.WorkList">
+        select * from worklist order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryPage" resultType="java.lang.Integer">
+        select count(id) from worklist;
+    </select>
+    <select id="queryConditional" parameterType="modle.WorkList" resultType="modle.WorkList">
+        select * from worklist <where>
+        <if test="Location!=null and Location!=''">
+            location=#{Location}
+        </if>
+        <if test="WorkType!=null and WorkType!=''">
+            and worktype=#{WorkType}
+        </if>
+        <if test="WorkName!=null and WorkName!=''">
+            and workname like concat('%',#{WorkName},'%')
+        </if>
+    </where>
+    </select>
+
+    <select id="queryWorkListById" parameterType="string" resultType="modle.WorkList">
+        select * from worklist where id=#{id};
+    </select>
+
+    <delete id="deleteByid">
+        delete from worklist where id=#{id}
+    </delete>
+
+    <insert id="InsertWorkByUser" parameterType="modle.WorkList" >
+        insert into worklist(workname,postcompany,experince,location,salary,worktime,worktype)
+        values (#{WorkName},#{PostCompany},#{Experince},
+                #{Location},#{Salary},#{WorkTime},#{WorkType})
+    </insert>
+    <update id="updateWorkByUser">
+        update worklist SET workname=#{WorkName},postcompany=#{PostCompany},experince=#{Experince},
+        location=#{Location},salary=#{Salary},worktime=#{WorkTime},worktype=#{WorkType} where id=#{id}
+    </update>
+
+    <select id="queryWorkByPostMan" parameterType="string" resultType="modle.WorkList">
+        select * from worklist where post_people=#{post_people};
+    </select>
+
+    <update id="updateCvByFile_Url">
+        update CV SET state="已查看"  where file_Url=#{file_Url}
+    </update>
+
+    <select id="queryWorkList_HR" resultType="modle.WorkList">
+        select * from worklist where post_people=#{post_people} order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryPage_HR" resultType="java.lang.Integer">
+        select count(id) from worklist where post_people=#{post_people};
+    </select>
+
+    <delete id="deleteById_HR">
+        delete from worklist where id=#{id} and post_people=#{post_people}
+    </delete>
+
+    <select id="queryWorkListByWorkType" resultType="modle.WorkList">
+        select * from worklist where worktype= #{WorkType} order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryPageByWorkType" resultType="java.lang.Integer">
+        select count(id) from worklist where worktype= #{WorkType};
+    </select>
+
+    <update id="updateCvStateById">
+        update CV SET state="面试邀约已发送" where id=#{id}
+    </update>
+</mapper>

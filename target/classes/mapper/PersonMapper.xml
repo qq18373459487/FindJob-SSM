@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PersonMapper">
+    <!--实体类与数据库映射字段部分-->
+    <resultMap id="ResultUser" type="modle.CommonUser">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="com_user" column="com_user" jdbcType="VARCHAR"/>
+        <result property="com_pwd" column="com_pwd" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ResultPerson" type="modle.PersonMg">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="experience" column="experience" jdbcType="VARCHAR"/>
+        <result property="identity" column="identity" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectByEmail" parameterType="string" resultMap="ResultPerson">
+        select * from person where email=#{email}
+    </select>
+
+    <update id="updatePerson" parameterType="modle.PersonMg">
+        update person SET username=#{username}, email=#{email},age=#{age},city=#{city} ,experience=#{experience}
+        where email=#{email}
+    </update>
+
+    <insert id="insertPerson_email" parameterType="string" >
+        insert into person(email,username)
+        values (#{email},#{username})
+    </insert>
+
+    <update id="updatePerson_identityByEmail" parameterType="string">
+        update person SET identity=#{identity} where email=#{email}
+    </update>
+
+    <update id="updatePerson_companyByEmail" parameterType="string">
+        update person SET company=#{company} where email=#{email}
+    </update>
+
+</mapper>

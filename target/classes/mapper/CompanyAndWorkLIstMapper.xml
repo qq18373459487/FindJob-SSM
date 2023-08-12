@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CompanyAndWorkListMapper">
+    <!--实体类与数据库映射字段部分-->
+<!--    <resultMap id="ResultCompanyAndWorkList" type="modle.CompanyAndWorkList">-->
+<!--        <result property="WorkNumber" column="worknumber" jdbcType="INTEGER"/>-->
+<!--        <result property="WorkName" column="com_user" jdbcType="VARCHAR"/>-->
+<!--        <result property="" column="com_pwd" jdbcType="VARCHAR"/>-->
+<!--        <result property="" column="email" jdbcType="VARCHAR"/>-->
+
+<!--    </resultMap>-->
+
+    <select id="selectByCompany" parameterType="String" resultType="modle.CompanyAndWorkList">
+      select * from worklist w,company c where w.postcompany=#{company} and c.companyname=#{company}
+    </select>
+</mapper>

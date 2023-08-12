@@ -1,0 +1,532 @@
+package services.Impl;
+
+import mapper.CompanyMapper;
+import mapper.WorkMapper;
+import modle.*;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import tool.ReturnObject;
+import mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import services.UserService;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+@Transactional
+@Service
+public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private WorkMapper workMapper;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    @Autowired
+    private CompanyMapper companyMapper;
+
+    int num=5;
+    int num_article=4;
+    @Override
+   public ReturnObject queryUserByLoginNameAndPwd(User user, Model model, HttpSession session)
+    {
+        //封装参数
+        Map<String,Object> map=new HashMap<>();
+        map.put("username",user.getUsername());
+        map.put("password",user.getPassword());
+
+        //调用方法查询用户
+        User user1= userMapper.selectUserByLoginNameAndPWD(map);
+
+        session.setAttribute("username",user.getUsername());
+        ReturnObject returnObject=new ReturnObject();
+        if(user1==null)
+        {
+            //登录账号或密码错误
+            returnObject.setCode("0");
+            returnObject.setMessage("用户名或密码错误");
+            return returnObject;
+        }
+        else
+        {
+            //进一步判断账号是否合法
+            if(user1.getRealname().equals("管理员"))
+            {
+                //登录成功
+                returnObject.setCode("1");
+                returnObject.setMessage("登录成功");
+                returnObject.setData(user.getUsername());
+                session.setAttribute("user",user1.getUsername());
+                session.setAttribute("role",user1.getRealname());
+            }else if(user1.getRealname().equals("HR"))
+            {
+                session.setAttribute("user",user1.getUsername());
+                session.setAttribute("role",user1.getRealname());
+                returnObject.setCode("1");
+                returnObject.setMessage("登录成功");
+            }else
+            {
+                returnObject.setCode("2");
+                returnObject.setMessage("账户已被锁定");
+            }
+        }
+        return returnObject;
+
+    }
+
+    @Override
+    public String GetAllFile( Model model, HttpSession session) {
+    List<FileModle> list=   userMapper.selectAllFile();
+    model.addAttribute("list",list);
+    return "/user/fileManage";
+    }
+
+    @Override
+    public String insertFile(FileModle fileModle) {
+        userMapper.insertFile(fileModle);
+         return null;
+    }
+
+    @Override
+    public List<User> queryUserPage(int page)
+    {
+        int n = this.num;
+        int m = n * (page - 1);
+        return userMapper.queryUserList(m,n);
+         }
+
+    @Override
+    public int queryPage() {
+        int count = userMapper.queryPage();
+        int page;
+        if (count%this.num==0) {
+            page = count/this.num;
+        } else {
+            page = count/this.num + 1;
+        }
+        return page;
+    }
+
+    @Override
+    public String GetAllUser(User user, Model model, HttpSession session, String page) {
+        int max=queryPage();
+        int   ReturnPage;
+        try {
+            ReturnPage=Integer.valueOf(page);
+        }catch (Exception e)
+        {
+            ReturnPage=1;
+        }
+
+        //当传过来是空的时候,默认第一页
+        if (page == null) {
+            ReturnPage = 1;
+        } else if (ReturnPage < 1){
+            //不能小于第一页
+            ReturnPage = 1;
+        } else if (ReturnPage > max) {
+            //不能大于最大页
+            ReturnPage = max;
+        }
+
+        //绑定最大页数
+        model.addAttribute("maxPage", max);
+        //调用service层查询第几页的数据
+        List<User> list= queryUserPage(ReturnPage);
+        //绑定查询的结果到列表
+        model.addAttribute("list",list);
+        //绑定当前的页码
+        model.addAttribute("page", ReturnPage);
+        return "/user/Manage";
+    }
+
+    @Override
+    public String deleteUserById(String id, Model model, HttpSession session) {
+        userMapper.deleteUserById(Integer.valueOf(id));
+        User user=null;
+        return GetAllUser(user,model,session,null);
+    }
+
+    @Override
+    public String updateUserReById(String id, Model model, HttpSession session,String relname)
+    {
+        if(relname.equals("1"))
+        {
+            userMapper.updateUserReById(Integer.valueOf(id),"管理员");
+        }else {
+            userMapper.updateUserReById(Integer.valueOf(id),"受限");
+        }
+
+        User user=null;
+        return GetAllUser(null,model,session,null);
+    }
+
+    @Override
+    public String insertUser(User user, Model model, HttpSession session) {
+        userMapper.insertUser(user);
+        return GetAllUser(user,model,session,null);
+    }
+
+    @Override
+    public List<CurriculumVitae> queryCurriculumVitaeList(int page,String username) {
+        int n = this.num;
+        int m = n * (page - 1);
+        return userMapper.queryCurriculumVitaeList(m,n,username);
+    }
+
+    @Override
+    public int queryCurriculumVitaePage(String username) {
+        int count = userMapper.queryCurriculumVitaePage(username);
+        int page;
+        if (count%this.num==0) {
+            page = count/this.num;
+        } else {
+            page = count/this.num + 1;
+        }
+        return page;
+    }
+
+    @Override
+    public String GotoCv(User user, Model model, HttpSession session,String page) {
+        String username= (String) session.getAttribute("user");
+        int max=queryCurriculumVitaePage(username);
+        int ReturnPage;
+        try {
+            ReturnPage=Integer.valueOf(page);
+        }catch (Exception e)
+        {
+            ReturnPage=1;
+        }
+
+        //当传过来是空的时候,默认第一页
+        if (page == null) {
+            ReturnPage = 1;
+        } else if (ReturnPage < 1){
+            //不能小于第一页
+            ReturnPage = 1;
+        } else if (ReturnPage > max) {
+            //不能大于最大页
+            ReturnPage = max;
+        }
+
+        //绑定最大页数
+        model.addAttribute("maxPage", max);
+        //调用service层查询第几页的数据
+        List<CurriculumVitae> curriculumVitae= queryCurriculumVitaeList(ReturnPage,username);
+        //绑定查询的结果到列表
+        model.addAttribute("CV",curriculumVitae);
+        //绑定当前的页码
+        model.addAttribute("page", ReturnPage);
+      return "/user/CurriculumViteManage";
+    }
+
+    @Override
+    public String DeleteCv(String id, Model model, HttpSession session) {
+        userMapper.deleteCvById(id);
+        return GotoCv(null,model,session,null);
+    }
+
+    @Override
+    public ReturnObject addArticle(Article article, HttpSession session, Model model) {
+        ReturnObject returnObject=new ReturnObject();
+        article.setState("未审核");
+        Date date = new Date();//获取当前的日期
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String str = df.format(date);//获取String类型的时间
+        article.setPost_time(str);
+        String user= (String) session.getAttribute("user");
+        article.setAuthor(user);
+        int i=userMapper.insertArticle(article);
+        if(i==0)
+        {
+            returnObject.setCode("0");
+        }else
+            returnObject.setCode("1");
+        return returnObject;
+    }
+
+    @Override
+    public List<Article> queryArticleList(int page) {
+        int n = this.num_article;
+        int m = n * (page -1);
+        return userMapper.queryArticleList(m,n);
+    }
+
+    @Override
+    public int queryArticlePage() {
+        int count = userMapper.queryArticlePage();
+        int page;
+        if (count%this.num_article==0) {
+            page = count/this.num_article;
+        } else {
+            page = count/this.num_article + 1;
+        }
+        return page;
+    }
+
+    @Override
+    public String GetAllArticle(Article article, Model model, HttpSession session, String page) {
+        int max=queryArticlePage();
+        int   ReturnPage;
+        try {
+            ReturnPage=Integer.valueOf(page);
+        }catch (Exception e)
+        {
+            ReturnPage=1;
+        }
+
+        //当传过来是空的时候,默认第一页
+        if (page == null) {
+            ReturnPage = 1;
+        } else if (ReturnPage < 1){
+            //不能小于第一页
+            ReturnPage = 1;
+        } else if (ReturnPage > max) {
+            //不能大于最大页
+            ReturnPage = max;
+        }
+
+        //绑定最大页数
+        model.addAttribute("maxPage", max);
+        //调用service层查询第几页的数据
+        List<Article> list= queryArticleList(ReturnPage);
+        //绑定查询的结果到列表
+        model.addAttribute("list",list);
+        //绑定当前的页码
+        model.addAttribute("page", ReturnPage);
+        return "/user/articleManage";
+    }
+
+    @Override
+    public String deleteArticle(String id, Model model, HttpSession session) {
+
+       int i= userMapper.deleteArticleById(id);
+       if(i==1)
+       {
+           return GetAllArticle(null,model,session,null);
+       }else
+       {
+           return "error";
+       }
+
+
+    }
+
+    @Override
+    public ReturnObject  updateArticle( Model model, HttpSession session,Article article) {
+        System.out.println("article"+article.toString());
+        ReturnObject returnObject=new ReturnObject();
+        int i=userMapper.updateArticleById(article);
+        if(i==1)
+        {
+          GetAllArticle(null,model,session,null);
+          returnObject.setCode("0");
+          return returnObject;
+        }else
+        {
+            returnObject.setCode("0");
+            return returnObject;
+        }
+    }
+
+    @Override
+    public String GotoUpdateArticle(String id, Model model, HttpSession session) {
+       Article article= userMapper.selectArticleById(id);
+       model.addAttribute("article",article);
+       return "/user/updateArticle";
+    }
+
+    @Override
+    public String updateArticleState(String id, String state, Model model, HttpSession session) {
+    if(state.equals("1"))
+    {
+        state="审核通过";
+    }else   if(state.equals("0"))
+
+        {
+        state="未审核通过";
+    }
+        userMapper.updateArticleState(id,state);
+        return GetAllArticle(null,model,session,null);
+    }
+
+    @Override
+    public String GetAllComment(Comment comment, Model model, HttpSession session, String page) {
+        int max=queryCommentPage();
+        int ReturnPage=0;
+        try {
+            ReturnPage=Integer.valueOf(page);
+        }catch (Exception e)
+        {
+            ReturnPage=1;
+        }
+
+        //当传过来是空的时候,默认第一页
+        if (page == null) {
+            ReturnPage = 1;
+        } else if (ReturnPage < 1){
+            //不能小于第一页
+            ReturnPage = 1;
+        } else if (ReturnPage > max) {
+            //不能大于最大页
+            ReturnPage = max;
+        }
+
+        //绑定最大页数
+        model.addAttribute("maxPage", max);
+        //调用service层查询第几页的数据
+        List<Comment> list= queryCommentList(ReturnPage);
+        //绑定查询的结果到列表
+        model.addAttribute("list",list);
+        //绑定当前的页码
+        model.addAttribute("page", ReturnPage);
+        return "/user/commentManage";
+    }
+
+    @Override
+    public List<Comment> queryCommentList(int page) {
+        int n = this.num_article;
+        int m = n * (page -1);
+        return userMapper.queryCommentList(m,n);
+    }
+
+    @Override
+    public int queryCommentPage() {
+        int count = userMapper.queryCommentPage();
+        int page;
+        if (count%this.num_article==0) {
+            page = count/this.num_article;
+        } else {
+            page = count/this.num_article + 1;
+        }
+        return page;
+    }
+
+    @Override
+    public String deleteComment(String id, Model model, HttpSession session) {
+        int i= userMapper.deleteCommentById(id);
+        if(i==1)
+        {
+            return GetAllComment(null,model,session,null);
+        }else
+        {
+            return "error";
+        }
+    }
+
+    @Override
+    public String updateCommentState(String id, String state, Model model, HttpSession session) {
+
+        if(state.equals("1"))
+        {
+            state="审核通过";
+        }else   if(state.equals("0"))
+
+        {
+            state="未审核通过";
+        }
+        userMapper.updateCommentState(id,state);
+        return GetAllComment(null,model,session,null);
+    }
+
+    @Override
+    public String GotoUpdateWork_HR(String id, String state, Model model, HttpSession session) {
+         WorkList workList= workMapper.queryWorkListById(id);
+         model.addAttribute("work",workList);
+        return "/user/updateWork_HR";
+    }
+
+    @Override
+    public ReturnObject updateWork_HR(WorkList workList, Model model, HttpSession session) {
+        ReturnObject returnObject=new ReturnObject();
+        int i=userMapper.updateWorkById(workList);
+        if(i==1) returnObject.setCode("1");
+        else returnObject.setCode("0");
+        return returnObject;
+    }
+
+    @Override
+    public String SentInterview(String id, Model model, HttpSession session) {
+        User user=new User();
+        CurriculumVitae curriculumVitae= userMapper.selectCVById(id);
+        Company company=companyMapper.GetCompanyByEmail(curriculumVitae.getRe_man());
+        sendEmailMessage(curriculumVitae.getPost_man(),company.getCompanyName(),curriculumVitae.getRe_man(),curriculumVitae.getPost_cv());
+        workMapper.updateCvStateById(curriculumVitae.getId());
+        return GotoCv(user,model,session,null);
+    }
+
+    public void sendEmailMessage(String post_email,String company,String re_email,String WorkName) {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setSubject("主题");
+            helper.setText(buildContent("感谢您投递"+company+"的"+WorkName+"岗位"), true);
+            helper.setTo(post_email);
+            helper.setFrom(re_email);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    //加载邮件html模板
+    public String buildContent(String title) {
+        Resource resource = new ClassPathResource("interview-template.ftl");
+        InputStream inputStream = null;
+        BufferedReader fileReader = null;
+        StringBuffer buffer = new StringBuffer();
+        String line = "";
+        try {
+            inputStream = resource.getInputStream();
+            fileReader = new BufferedReader(new InputStreamReader(inputStream));
+            while ((line = fileReader.readLine()) != null) {
+                buffer.append(line);
+            }
+        } catch (Exception e) {
+//            log.info("发送邮件读取模板失败{}", e);
+            e.printStackTrace();
+        } finally {
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        //替换html模板中的参数
+        return MessageFormat.format(buffer.toString(), title);
+    }
+
+
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CompanyMapper">
+
+    <select id="queryCompanyList" resultType="modle.Company">
+        select * from company order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryPage" resultType="java.lang.Integer">
+        select count(id) from company;
+    </select>
+
+    <select id="selectCompanyById" parameterType="string" resultType="string">
+        select useremail from company where id=#{id};
+    </select>
+
+    <insert id="insertCompany" parameterType="modle.Company" >
+        insert into company(companyname,companyaddress,companyemail,useremail)
+        values (#{CompanyName},#{CompanyAddress},#{CompanyEmail},#{userEmail})
+    </insert>
+
+    <insert id="insertCompanyByUser" parameterType="modle.Company" >
+        insert into company(companyname,companyaddress,companyemail,useremail,companyqualification,companydata)
+        values (#{CompanyName},#{CompanyAddress},#{CompanyEmail},#{userEmail},#{CompanyQualification},#{CompanyData})
+    </insert>
+
+<update id="updateCompanyState">
+    update company SET state=#{state} where id=#{id}
+</update>
+
+    <update id="updateCompanyByUser">
+        update company SET companyname=#{CompanyName},companyaddress=#{CompanyAddress},companyemail=#{CompanyEmail}
+                         ,companyqualification=#{CompanyQualification}, companydata=#{CompanyData},useremail=#{userEmail} where id=#{id}
+    </update>
+
+
+    <delete id="deleteCompany" parameterType="int">
+        delete from company where id=#{id}
+    </delete>
+
+    <select id="GetCompanyById" parameterType="int" resultType="modle.Company">
+        select * from company where id=#{id};
+    </select>
+
+    <select id="GetCompanyByEmail" parameterType="string" resultType="modle.Company">
+        select * from company where useremail=#{useremail};
+    </select>
+
+</mapper>

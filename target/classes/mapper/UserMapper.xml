@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+    <!--实体类与数据库映射字段部分-->
+    <resultMap id="ResultUser" type="modle.User">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="realname" column="realname" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectUserByLoginNameAndPWD" parameterType="Map" resultMap="ResultUser">
+     select *
+from user  where username=#{username} and password=#{password}
+    </select>
+
+    <select id="selectAllFile"  resultType="modle.FileModle">
+        select * from file
+    </select>
+
+    <select id="GetAllUser"  resultType="modle.User">
+        select * from user
+    </select>
+
+    <insert id="insertFile" parameterType="modle.User">
+        insert into file(filename,url,time)
+        values (#{filename},#{url},#{time})
+    </insert>
+
+    <insert id="insertUser" parameterType="modle.User">
+        insert into user(username,password,realname)
+        values (#{username},#{password},#{realname})
+    </insert>
+
+    <select id="queryUserList" resultType="modle.User">
+        select * from user order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryPage" resultType="java.lang.Integer">
+        select count(id) from user;
+    </select>
+<delete id="deleteUserById" parameterType="integer">
+    delete from user where id=#{id}
+</delete>
+    <update id="updateUserReById">
+        update user set realname=#{realname} where id=#{id}
+    </update>
+
+    <insert id="insertCv" parameterType="modle.CurriculumVitae">
+        insert into CV(post_man,re_man,file_Url,state,post_cv)
+        values (#{post_man},#{re_man},#{file_Url},#{state},#{post_cv})
+    </insert>
+
+    <select id="selectCVById"  resultType="modle.CurriculumVitae">
+        select * from cv where  id=#{id}
+    </select>
+    <select id="selectFileByFileName" resultType="modle.FileModle" parameterType="string">
+        select * from file where filename=#{filename};
+    </select>
+
+    <update id="updateFileState">
+        update file set type=#{type} where filename=#{filename}
+    </update>
+
+    <select id="getAllCvByre_man" resultType="modle.CurriculumVitae" parameterType="string">
+        select * from CV where re_man=#{re_man};
+    </select>
+
+    <delete id="deleteCvById" parameterType="string">
+        delete from CV where id=#{id}
+    </delete>
+
+    <insert id="insertArticle" parameterType="modle.Article">
+        insert into article(author,post_time,brief_introduction,author_text,state,title)
+        values (#{author},#{post_time},#{brief_introduction},#{author_text},#{state},#{title})
+    </insert>
+
+    <select id="queryArticleList" resultType="modle.Article">
+        select * from article order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryArticlePage" resultType="java.lang.Integer">
+        select count(id) from article;
+    </select>
+
+    <delete id="deleteArticleById" parameterType="string">
+        delete from article where id=#{id}
+    </delete>
+
+    <update id="updateArticleById" parameterType="modle.Article">
+        update article
+       <set>
+           <if test="title!=null and title!=''">
+               title=#{title},
+           </if>
+           <if test="brief_introduction!=null and brief_introduction!=''">
+              brief_introduction=#{brief_introduction},
+           </if>
+           <if test="author_text!=null and author_text!=''">
+              author_text=#{author_text}
+           </if>
+       </set>
+        where id=#{id}
+    </update>
+
+    <select id="selectArticleById" resultType="modle.Article">
+        select * from article where id=#{id};
+    </select>
+
+    <update id="updateArticleState">
+        update article set state=#{state} where id=#{id}
+    </update>
+
+    <select id="queryCommentList" resultType="modle.Comment">
+        select * from comment order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryCommentPage" resultType="java.lang.Integer">
+        select count(id) from comment;
+    </select>
+
+    <delete id="deleteCommentById" parameterType="string">
+        delete from comment where id=#{id}
+    </delete>
+
+    <update id="updateCommentState">
+        update comment set state=#{state} where id=#{id}
+    </update>
+
+    <update id="updateWorkById">
+        update worklist <set>
+        <if test="WorkName!=null and WorkName!=''">
+            workname=#{WorkName},
+        </if>
+        <if test="Experince!=null and Experince!=''">
+            experince=#{Experince},
+        </if>
+        <if test="WorkDetail!=null and WorkDetail!=''">
+            workdetail=#{WorkDetail},
+        </if>
+        <if test="WorkRequest!=null and WorkRequest!=''">
+            workrequest=#{WorkRequest},
+        </if>
+        <if test="Location!=null and Location!=''">
+            location=#{Location},
+        </if>
+        <if test="Salary!=null and Salary!=''">
+            salary=#{Salary},
+        </if>
+        <if test="WorkTime!=null and WorkTime!=''">
+            worktime=#{WorkTime},
+        </if>
+        <if test="WorkType!=null and WorkType!=''">
+            worktype=#{WorkType}
+        </if>
+
+    </set>
+        where id=#{id}
+    </update>
+
+    <select id="queryCurriculumVitaeList" resultType="modle.CurriculumVitae">
+        select * from CV where re_man=#{re_man} order by id desc limit #{m},#{n};
+    </select>
+
+    <select id="queryCurriculumVitaePage" resultType="java.lang.Integer">
+        select count(id) from CV where re_man=#{re_man};
+    </select>
+
+
+</mapper>
